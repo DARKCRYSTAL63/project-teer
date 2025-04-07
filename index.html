@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Lottery</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <svg class="logo-svg" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#333" stroke-width="3" fill="none"/>
+                    <circle cx="50" cy="50" r="30" stroke="#333" stroke-width="2" fill="none"/>
+                    <circle cx="50" cy="50" r="20" stroke="#333" stroke-width="2" fill="none"/>
+                    <circle cx="50" cy="50" r="10" stroke="#333" stroke-width="2" fill="#ff5252"/>
+                    <line x1="10" y1="50" x2="30" y2="50" stroke="#333" stroke-width="2"/>
+                    <line x1="70" y1="50" x2="90" y2="50" stroke="#333" stroke-width="2"/>
+                    <line x1="50" y1="10" x2="50" y2="30" stroke="#333" stroke-width="2"/>
+                    <line x1="50" y1="70" x2="50" y2="90" stroke="#333" stroke-width="2"/>
+                </svg>
+            </a>
+            
+            <nav class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="mytickets.html">MyTickets</a></li>
+                    <li><a href="#">Common Numbers</a></li>
+                    <li><a href="dreamnumber.html">Dream Numbers</a></li>
+                    <li><a href="previousresults.html">Previous Results</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="log in.html">Login</a></li>
+                </ul>
+            </nav>
+            
+            <div class="mobile-menu">
+                <button class="hamburger" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="mytickets.html">MyTickets</a></li>
+                <li><a href="#">Common Numbers</a></li>
+                <li><a href="dreamnumber.html">Lucky Numbers</a></li>
+                <li><a href="previousresults.html">Previous Results</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="log in.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero-image"></div>
+
+    <main>
+        <section class="todays-result">
+            <h2>Today's Result</h2>
+            <div class="result-container">
+                <div class="result-box">
+                    <h3>First Round</h3>
+                    <p class="result-number">12</p>
+                </div>
+                <div class="result-box">
+                    <h3>Second Round</h3>
+                    <p class="result-number">45</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="booking-section">
+            <h2>Booking</h2>
+            <div class="round-section">
+                <h3>First Round</h3>
+                <table class="booking-table">
+                    <thead>
+                        <tr>
+                            <th>Numbers</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="number" class="number-input" min="0" max="99" placeholder="Enter number"></td>
+                            <td><input type="number" class="amount-input" min="1" placeholder="Enter amount"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row" style="display: none;">
+                            <td>Total:</td>
+                            <td class="total-amount">0</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <button class="add-number">Add Another Number</button>
+                <button class="pay-button">Pay</button>
+            </div>
+
+            <div class="round-section">
+                <h3>Second Round</h3>
+                <table class="booking-table">
+                    <thead>
+                        <tr>
+                            <th>Numbers</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="number" class="number-input" min="0" max="99" placeholder="Enter number"></td>
+                            <td><input type="number" class="amount-input" min="1" placeholder="Enter amount"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row" style="display: none;">
+                            <td>Total:</td>
+                            <td class="total-amount">0</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <button class="add-number">Add Another Number</button>
+                <button class="pay-button">Pay</button>
+            </div>
+        </section>
+
+        <section class="forecast-section">
+            <h2>Forecast</h2>
+            <div class="round-section">
+                <table class="forecast-table">
+                    <thead>
+                        <tr>
+                            <th>First Round</th>
+                            <th>Second Round</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="number" class="fr-input" min="0" max="99" placeholder="F/R"></td>
+                            <td><input type="number" class="sr-input" min="0" max="99" placeholder="S/R"></td>
+                            <td><input type="number" class="amount-input" min="1" placeholder="Enter amount"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row" style="display: none;">
+                            <td colspan="2">Total:</td>
+                            <td class="total-amount">0</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <button class="add-number">Add Another Number</button>
+                <button class="pay-button">Pay</button>
+            </div>
+        </section>
+
+        <section class="house-section">
+            <h2>House</h2>
+            <div class="round-section">
+                <table class="booking-table">
+                    <thead>
+                        <tr>
+                            <th>Numbers </th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="number" class="number-input" min="0" max="9" placeholder="Enter number"></td>
+                            <td><input type="number" class="amount-input" min="1" placeholder="Enter amount"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row" style="display: none;">
+                            <td>Total:</td>
+                            <td class="total-amount">0</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <button class="add-number">Add Another Number</button>
+                <button class="pay-button">Pay</button>
+            </div>
+        </section>
+
+        <section class="ending-section">
+            <h2>Ending</h2>
+            <div class="round-section">
+                <table class="booking-table">
+                    <thead>
+                        <tr>
+                            <th>Numbers</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="number" class="number-input" min="0" max="9" placeholder="Enter number"></td>
+                            <td><input type="number" class="amount-input" min="1" placeholder="Enter amount"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row" style="display: none;">
+                            <td>Total:</td>
+                            <td class="total-amount">0</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <button class="add-number">Add Another Number</button>
+                <button class="pay-button">Pay</button>
+            </div>
+        </section>
+
+        <section class="video-links">
+            <h2>Live Draws</h2>
+            <div class="video-container">
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Morning Draw Live</a>
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Afternoon Draw Live</a>
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Evening Draw Live</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Online Lottery. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileNav = document.querySelector('.mobile-nav');
+            
+            hamburger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileNav.classList.toggle('active');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+            });
+            
+            // Prevent mobile nav from closing when clicking inside it
+            mobileNav.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+        // Add row functionality for all sections
+        document.querySelectorAll('.add-number').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const table = this.closest('.round-section').querySelector('table');
+                        const tbody = table.querySelector('tbody');
+                        const newRow = tbody.firstElementChild.cloneNode(true);
+                        
+                        // Clear input values in new row
+                        newRow.querySelectorAll('input').forEach(input => {
+                            input.value = '';
+                        });
+                        
+                        tbody.appendChild(newRow);
+                        calculateTotal(table);
+                    });
+                });
+    
+                // Calculate totals when amounts change
+                document.addEventListener('input', function(e) {
+                    if (e.target.classList.contains('amount-input')) {
+                        const table = e.target.closest('table');
+                        calculateTotal(table);
+                    }
+                });
+    
+                // Function to calculate and display total
+                function calculateTotal(table) {
+                    const amountInputs = table.querySelectorAll('.amount-input');
+                    let total = 0;
+                    
+                    amountInputs.forEach(input => {
+                        const value = parseFloat(input.value) || 0;
+                        total += value;
+                    });
+                    
+                    const totalRow = table.querySelector('.total-row');
+                    const totalAmountCell = table.querySelector('.total-amount');
+                    
+                    if (total > 0) {
+                        totalRow.style.display = '';
+                        totalAmountCell.textContent = total.toFixed(2);
+                    } else {
+                        totalRow.style.display = 'none';
+                    }
+                }
+    
+                // Validate number inputs
+                document.addEventListener('change', function(e) {
+                    if (e.target.classList.contains('number-input')) {
+                        const input = e.target;
+                        const max = parseInt(input.max);
+                        const min = parseInt(input.min);
+                        let value = parseInt(input.value) || 0;
+                        
+                        if (value > max) input.value = max;
+                        if (value < min) input.value = min;
+                    }
+                });
+    </script>
+</body>
+
+</html>

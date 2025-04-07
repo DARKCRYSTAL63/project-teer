@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottery Login</title>
+    <link rel="stylesheet" href="login.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Online Lottery</h1>
+        <h2>Login with Phone</h2>
+
+        <form action="#" method="post" id="loginForm">
+            <div class="input-section">
+                <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                <button type="button" id="sendOTP">Send OTP</button>
+            </div>
+            
+            <div id="otpSection" class="input-section" style="display:none;">
+                <input type="text" id="otp" name="otp" required placeholder="Enter the OTP sent to your phone">
+                <button type="submit" id="verifyOTP">Verify</button>
+            </div>
+        </form>
+
+        <div class="icon-container">
+            <i class='bx bxl-google'></i>
+        </div>
+
+        <div class="footer">
+            <a href="#">Contact Us</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const sendOTP = document.getElementById("sendOTP");
+            const otpSection = document.getElementById("otpSection");
+
+            // Show OTP section when sending OTP
+            sendOTP.addEventListener("click", function() {
+                otpSection.style.display = "block";
+            });
+        });
+    </script>
+</body>
+</html>

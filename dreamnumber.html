@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Numbers - Online Lottery</title>
+    <link rel="stylesheet" href="dreamnumber.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <svg class="logo-svg" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#333" stroke-width="3" fill="none"/>
+                    <circle cx="50" cy="50" r="30" stroke="#333" stroke-width="2" fill="none"/>
+                    <circle cx="50" cy="50" r="20" stroke="#333" stroke-width="2" fill="none"/>
+                    <circle cx="50" cy="50" r="10" stroke="#333" stroke-width="2" fill="#ff5252"/>
+                    <line x1="10" y1="50" x2="30" y2="50" stroke="#333" stroke-width="2"/>
+                    <line x1="70" y1="50" x2="90" y2="50" stroke="#333" stroke-width="2"/>
+                    <line x1="50" y1="10" x2="50" y2="30" stroke="#333" stroke-width="2"/>
+                    <line x1="50" y1="70" x2="50" y2="90" stroke="#333" stroke-width="2"/>
+                </svg>
+            </a>
+            
+            <nav class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="mytickets.html">MyTickets</a></li>
+                    <li><a href="common-numbers.html">Common Numbers</a></li>
+                    <li><a href="dreamnumber.html">Lucky Numbers</a></li>
+                    <li><a href="previousresults.html">Previous Results</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="log in.html">Login</a></li>
+                </ul>
+            </nav>
+            
+            <div class="mobile-menu">
+                <button class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="mytickets.html">MyTickets</a></li>
+                <li><a href="common-numbers.html">Common Numbers</a></li>
+                <li><a href="dreamnumber.html">Lucky Numbers</a></li>
+                <li><a href="previousresults.html">Previous Results</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="log in.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="lucky-numbers-container">
+        <h1>Dream Numbers</h1>
+        <p class="subtitle">Dream interpretations and their corresponding lucky numbers</p>
+        
+        <div class="table-container">
+            <table class="lucky-numbers-table">
+                <thead>
+                    <tr>
+                        <th>S.no</th>
+                        <th>Dream</th>
+                        <th>Direct</th>
+                        <th>House</th>
+                        <th>Ending</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Quarrel between husband and wife</td>
+                        <td>03, 08, 13, 37, 40, 73</td>
+                        <td></td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Erotic dream</td>
+                        <td>17, 40, 53, 59, 60, 83</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Bathing in the open</td>
+                        <td>08, 18, 28, 48, 78, 98</td>
+                        <td></td>
+                        <td>8</td>
+                    </tr>
+                    <!-- More rows would be added here following the same pattern -->
+                    <tr>
+                        <td>73</td>
+                        <td>Pencil</td>
+                        <td>7, 77, 79</td>
+                        <td>7</td>
+                        <td>7</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Online Lottery. All rights reserved.</p>
+    </footer>
+    <script>
+       // Mobile navigation toggle
+       document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileNav = document.querySelector('.mobile-nav');
+            
+            hamburger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileNav.classList.toggle('active');
+            });
+            
+            document.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+            });
+            
+            mobileNav.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }); 
+    </script>
+</body>
+</html>

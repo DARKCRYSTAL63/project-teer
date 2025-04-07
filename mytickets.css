@@ -1,0 +1,214 @@
+/* Mobile-First Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: white;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* Header */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.logo-svg {
+    width: 40px;
+    height: 40px;
+}
+
+/* Mobile Navigation */
+.hamburger {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 100;
+}
+
+.desktop-nav {
+    display: none;
+}
+
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background-color: white;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    z-index: 99;
+    transition: right 0.3s ease;
+    padding-top: 70px;
+}
+
+.mobile-nav.active {
+    right: 0;
+}
+
+.mobile-nav ul {
+    list-style: none;
+}
+
+.mobile-nav li a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 16px;
+}
+
+.mobile-nav li a:hover {
+    background-color: #f5f5f5;
+}
+
+/* Main Content */
+.tickets-container {
+    padding: 15px;
+}
+
+.tickets-container h1 {
+    color: #ff5252;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.ticket-section {
+    margin-bottom: 30px;
+}
+
+.ticket-section h2 {
+    color: #333;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Tables */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.tickets-table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.tickets-table th {
+    background-color: #ff5252;
+    color: white;
+    padding: 12px 10px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.tickets-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.tickets-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.winning-tickets .tickets-table tr {
+    background-color: #f0fff0;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+/* Desktop Styles */
+@media (min-width: 768px) {
+    .hamburger {
+        display: none;
+    }
+    
+    .mobile-nav {
+        display: none;
+    }
+    
+    .desktop-nav {
+        display: block;
+    }
+    
+    .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 15px;
+    }
+    
+    .nav-links li a {
+        text-decoration: none;
+        color: #333;
+        font-size: 14px;
+        padding: 8px 12px;
+        border-radius: 4px;
+        transition: all 0.3s;
+    }
+    
+    .nav-links li a:hover {
+        background-color: #f5f5f5;
+    }
+    
+    .tickets-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .tickets-table {
+        min-width: auto;
+        width: 100%;
+    }
+    
+    .tickets-table th,
+    .tickets-table td {
+        padding: 15px;
+    }
+}
+
+/* Larger Mobile Screens */
+@media (min-width: 480px) and (max-width: 767px) {
+    .mobile-nav {
+        width: 60%;
+    }
+    
+    .tickets-table th,
+    .tickets-table td {
+        padding: 10px;
+    }
+}
