@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Balance - Online Lottery</title>
+  <link rel="stylesheet" href="mybalance.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <svg class="logo-svg" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="40" stroke="#333" stroke-width="3" fill="none"/>
+          <circle cx="50" cy="50" r="30" stroke="#333" stroke-width="2" fill="none"/>
+          <circle cx="50" cy="50" r="20" stroke="#333" stroke-width="2" fill="none"/>
+          <circle cx="50" cy="50" r="10" stroke="#333" stroke-width="2" fill="#ff5252"/>
+          <line x1="10" y1="50" x2="30" y2="50" stroke="#333" stroke-width="2"/>
+          <line x1="70" y1="50" x2="90" y2="50" stroke="#333" stroke-width="2"/>
+          <line x1="50" y1="10" x2="50" y2="30" stroke="#333" stroke-width="2"/>
+          <line x1="50" y1="70" x2="50" y2="90" stroke="#333" stroke-width="2"/>
+        </svg>
+      </a>
+      <nav class="desktop-nav">
+        <ul class="nav-links">
+          <li><a href="mytickets.html">MyTickets</a></li>
+          <li><a href="mybalance.html">My Balance</a></li>
+          <li><a href="common-numbers.html">Common Numbers</a></li>
+          <li><a href="lucky-numbers.html">Lucky Numbers</a></li>
+          <li><a href="previous-results.html">Previous Results</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+      <div class="mobile-menu">
+        <button class="hamburger">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+    <nav class="mobile-nav">
+      <ul>
+        <li><a href="mytickets.html">MyTickets</a></li>
+        <li><a href="mybalance.html">My Balance</a></li>
+        <li><a href="common-numbers.html">Common Numbers</a></li>
+        <li><a href="lucky-numbers.html">Lucky Numbers</a></li>
+        <li><a href="previous-results.html">Previous Results</a></li>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="balance-container">
+    <h1>My Balance</h1>
+    <div class="balance-display">
+      <p>Available Balance: <span id="balance">0.00</span></p>
+    </div>
+
+    <section class="recharge-section">
+      <h2>Recharge</h2>
+      <div class="preset-buttons" style="text-align: center;">
+        <button class="preset-btn" data-value="50">50</button>
+        <button class="preset-btn" data-value="100">100</button>
+        <button class="preset-btn" data-value="500">500</button>
+        <button class="preset-btn" data-value="1000">1000</button>
+        <button class="preset-btn" data-value="5000">5000</button>
+      </div>
+      <input type="number" id="custom-recharge" placeholder="Enter custom amount" />
+      <button id="recharge-btn">Recharge</button>
+    </section>
+
+    <section class="withdrawal-section">
+      <h2>Withdraw</h2>
+      <input type="text" placeholder="Bank Name" id="bank-name" />
+      <input type="text" placeholder="Account Holder Name" id="account-holder" />
+      <input type="text" placeholder="Account Number" id="account-number" />
+      <input type="number" placeholder="Withdraw Amount" id="withdraw-amount" />
+      <button id="withdraw-btn">Withdraw</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Online Lottery. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.querySelector('.hamburger');
+      const mobileNav = document.querySelector('.mobile-nav');
+
+      hamburger.addEventListener('click', e => {
+        e.stopPropagation();
+        mobileNav.classList.toggle('active');
+      });
+
+      document.addEventListener('click', () => {
+        mobileNav.classList.remove('active');
+      });
+
+      mobileNav.addEventListener('click', e => {
+        e.stopPropagation();
+      });
+
+      const balanceDisplay = document.getElementById('balance');
+      let balance = 2000; // example starting balance
+      balanceDisplay.textContent = `${balance.toFixed(2)}`;
+
+      const presetButtons = document.querySelectorAll('.preset-btn');
+      const customRechargeInput = document.getElementById('custom-recharge');
+      let selectedAmount = null;
+
+      presetButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          selectedAmount = parseInt(button.getAttribute('data-value'));
+          customRechargeInput.value = selectedAmount;
+          customRechargeInput.disabled = true;
+        });
+      });
+
+      customRechargeInput.addEventListener('input', () => {
+        selectedAmount = parseInt(customRechargeInput.value);
+        presetButtons.forEach(btn => btn.classList.remove('selected'));
+        customRechargeInput.disabled = false;
+      });
+
+      document.getElementById('recharge-btn').addEventListener('click', () => {
+        if (!selectedAmount || selectedAmount <= 0) return alert('Enter a valid recharge amount');
+        balance += selectedAmount;
+        balanceDisplay.textContent = `${balance.toFixed(2)}`;
+        selectedAmount = null;
+        customRechargeInput.value = '';
+        customRechargeInput.disabled = false;
+      });
+
+      document.getElementById('withdraw-btn').addEventListener('click', () => {
+        const withdrawAmount = parseInt(document.getElementById('withdraw-amount').value);
+        if (isNaN(withdrawAmount) || withdrawAmount <= 0) return alert('Enter a valid amount');
+        if (withdrawAmount > balance) return alert('Withdraw amount exceeds balance');
+        balance -= withdrawAmount;
+        balanceDisplay.textContent = `${balance.toFixed(2)}`;
+        document.getElementById('withdraw-amount').value = '';
+      });
+    });
+  </script>
+</body>
+</html>

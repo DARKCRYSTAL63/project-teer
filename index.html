@@ -26,6 +26,7 @@
             <nav class="desktop-nav">
                 <ul class="nav-links">
                     <li><a href="mytickets.html">MyTickets</a></li>
+                    <li><a href="mybalance.html">My Balance</a></li>
                     <li><a href="#">Common Numbers</a></li>
                     <li><a href="dreamnumber.html">Dream Numbers</a></li>
                     <li><a href="previousresults.html">Previous Results</a></li>
@@ -44,6 +45,7 @@
         <nav class="mobile-nav">
             <ul>
                 <li><a href="mytickets.html">MyTickets</a></li>
+                <li><a href="mybalance.html">My Balance</a></li>
                 <li><a href="#">Common Numbers</a></li>
                 <li><a href="dreamnumber.html">Lucky Numbers</a></li>
                 <li><a href="previousresults.html">Previous Results</a></li>
@@ -210,6 +212,32 @@
                 <button class="pay-button">Pay</button>
             </div>
         </section>
+        <section class="allpair-section">
+            <h2>All Pair</h2>
+            <div class="round-section">
+                <table class="booking-table">
+                    <thead>
+                        <tr>
+                            <th>Numbers </th>
+                            <th>Amount </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="pair-numbers">00,11,22,33,44,55,66,77,88,99</td>
+                            <td><input type="number" class="amount-input" min="1" placeholder="Enter amount"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row" style="display: none;">
+                            <td>Total (10 numbers):</td>
+                            <td class="total-amount">0</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <button class="pay-button">Pay</button>
+            </div>
+        </section>
         <section class="booking-section">
             <h2>Night Teer</h2>
             <div class="round-section">
@@ -279,6 +307,55 @@
         <p>&copy; 2023 Online Lottery. All rights reserved.</p>
     </footer>
     <script>
+               function calculateTotal(table) {
+    const amountInput = table.querySelector('.amount-input');
+    let total = 0;
+    
+    // Check which section we're in
+    const sectionTitle = table.closest('.round-section').querySelector('h3').textContent;
+    const isMultipliedSection = ['House', 'Ending', 'All Pair'].includes(sectionTitle);
+    
+    // Calculate total
+    const amount = parseFloat(amountInput.value) || 0;
+    total = isMultipliedSection ? amount * 10 : amount;
+    
+    // Update display
+    const totalRow = table.querySelector('.total-row');
+    const totalAmountCell = table.querySelector('.total-amount');
+    
+    if (amount > 0) {
+        totalRow.style.display = '';
+        totalAmountCell.textContent = total.toFixed(2);
+    } else {
+        totalRow.style.display = 'none';
+    }
+}
+
+// Event listener for amount changes
+document.addEventListener('input', function(e) {
+    if (e.target.classList.contains('amount-input')) {
+        const table = e.target.closest('table');
+        calculateTotal(table);
+    }
+});
+
+                // Restrict number inputs to 2 digits
+                document.addEventListener('input', function(e) {
+                    if (e.target.classList.contains('number-input')) {
+                        // For House and Ending sections (0-9)
+                        if (e.target.max === '9') {
+                            if (e.target.value.length > 1) {
+                                e.target.value = e.target.value.slice(0, 1);
+                            }
+                        }
+                        // For other sections (0-99)
+                        else {
+                            if (e.target.value.length > 2) {
+                                e.target.value = e.target.value.slice(0, 2);
+                            }
+                        }
+                    }
+                });
         document.addEventListener('DOMContentLoaded', function() {
             const hamburger = document.querySelector('.hamburger');
             const mobileNav = document.querySelector('.mobile-nav');
@@ -321,7 +398,7 @@
                         const table = e.target.closest('table');
                         calculateTotal(table);
                     }
-                });
+                });              
     
                 // Function to calculate and display total
                 function calculateTotal(table) {
@@ -356,6 +433,7 @@
                         if (value < min) input.value = min;
                     }
                 });
+         
     </script>
 </body>
 
