@@ -307,134 +307,88 @@
         <p>&copy; 2023 Online Lottery. All rights reserved.</p>
     </footer>
     <script>
-               function calculateTotal(table) {
-    const amountInput = table.querySelector('.amount-input');
-    let total = 0;
-    
-    // Check which section we're in
-    const sectionTitle = table.closest('.round-section').querySelector('h3').textContent;
-    const isMultipliedSection = ['House', 'Ending', 'All Pair'].includes(sectionTitle);
-    
-    // Calculate total
-    const amount = parseFloat(amountInput.value) || 0;
-    total = isMultipliedSection ? amount * 10 : amount;
-    
-    // Update display
-    const totalRow = table.querySelector('.total-row');
-    const totalAmountCell = table.querySelector('.total-amount');
-    
-    if (amount > 0) {
-        totalRow.style.display = '';
-        totalAmountCell.textContent = total.toFixed(2);
-    } else {
-        totalRow.style.display = 'none';
-    }
-}
-
-// Event listener for amount changes
-document.addEventListener('input', function(e) {
-    if (e.target.classList.contains('amount-input')) {
-        const table = e.target.closest('table');
-        calculateTotal(table);
-    }
-});
-
-                // Restrict number inputs to 2 digits
-                document.addEventListener('input', function(e) {
-                    if (e.target.classList.contains('number-input')) {
-                        // For House and Ending sections (0-9)
-                        if (e.target.max === '9') {
-                            if (e.target.value.length > 1) {
-                                e.target.value = e.target.value.slice(0, 1);
-                            }
-                        }
-                        // For other sections (0-99)
-                        else {
-                            if (e.target.value.length > 2) {
-                                e.target.value = e.target.value.slice(0, 2);
-                            }
-                        }
-                    }
-                });
-        document.addEventListener('DOMContentLoaded', function() {
+                document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
             const hamburger = document.querySelector('.hamburger');
             const mobileNav = document.querySelector('.mobile-nav');
             
-            hamburger.addEventListener('click', function(e) {
-                e.stopPropagation();
+            hamburger.addEventListener('click', function() {
                 mobileNav.classList.toggle('active');
+                this.classList.toggle('active');
             });
             
             // Close menu when clicking outside
-            document.addEventListener('click', function() {
-                mobileNav.classList.remove('active');
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.mobile-nav') && !e.target.closest('.hamburger')) {
+                    mobileNav.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
             });
             
-            // Prevent mobile nav from closing when clicking inside it
-            mobileNav.addEventListener('click', function(e) {
-                e.stopPropagation();
-            });
-        });
-        // Add row functionality for all sections
-        document.querySelectorAll('.add-number').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const table = this.closest('.round-section').querySelector('table');
-                        const tbody = table.querySelector('tbody');
-                        const newRow = tbody.firstElementChild.cloneNode(true);
-                        
-                        // Clear input values in new row
-                        newRow.querySelectorAll('input').forEach(input => {
-                            input.value = '';
-                        });
-                        
-                        tbody.appendChild(newRow);
-                        calculateTotal(table);
+            // Add row functionality
+            document.querySelectorAll('.add-number').forEach(button => {
+                button.addEventListener('click', function() {
+                    const tbody = this.closest('.round-section').querySelector('tbody');
+                    const newRow = tbody.firstElementChild.cloneNode(true);
+                    
+                    // Clear input values
+                    newRow.querySelectorAll('input').forEach(input => {
+                        input.value = '';
                     });
+                    
+                    tbody.appendChild(newRow);
+                    calculateTotal(tbody.closest('table'));
                 });
-    
-                // Calculate totals when amounts change
-                document.addEventListener('input', function(e) {
-                    if (e.target.classList.contains('amount-input')) {
-                        const table = e.target.closest('table');
-                        calculateTotal(table);
+            });
+            
+            // Calculate totals when amounts change
+            document.addEventListener('input', function(e) {
+                if (e.target.classList.contains('amount-input')) {
+                    const table = e.target.closest('table');
+                    calculateTotal(table);
+                }
+            });
+            
+            // Restrict number inputs
+            document.addEventListener('input', function(e) {
+                if (e.target.classList.contains('number-input')) {
+                    // For House and Ending (single digit)
+                    if (e.target.max === '9') {
+                        e.target.value = e.target.value.slice(0, 1);
                     }
-                });              
-    
-                // Function to calculate and display total
-                function calculateTotal(table) {
-                    const amountInputs = table.querySelectorAll('.amount-input');
-                    let total = 0;
-                    
-                    amountInputs.forEach(input => {
-                        const value = parseFloat(input.value) || 0;
-                        total += value;
-                    });
-                    
-                    const totalRow = table.querySelector('.total-row');
-                    const totalAmountCell = table.querySelector('.total-amount');
-                    
-                    if (total > 0) {
-                        totalRow.style.display = '';
-                        totalAmountCell.textContent = total.toFixed(2);
-                    } else {
-                        totalRow.style.display = 'none';
+                    // For other sections (two digits)
+                    else {
+                        
+                        e.target.value = e.target.value.slice(0, 2);
                     }
                 }
-    
-                // Validate number inputs
-                document.addEventListener('change', function(e) {
-                    if (e.target.classList.contains('number-input')) {
-                        const input = e.target;
-                        const max = parseInt(input.max);
-                        const min = parseInt(input.min);
-                        let value = parseInt(input.value) || 0;
-                        
-                        if (value > max) input.value = max;
-                        if (value < min) input.value = min;
-                    }
+            });
+            
+            // Calculate total function
+            function calculateTotal(table) {
+                const amountInputs = table.querySelectorAll('.amount-input');
+                let total = 0;
+                
+                // Check which section we're in
+                const sectionTitle = table.closest('.round-section').querySelector('h3').textContent;
+                const isMultipliedSection = ['House', 'Ending', 'All Pair'].includes(sectionTitle);
+                
+                amountInputs.forEach(input => {
+                    const amount = parseFloat(input.value) || 0;
+                    total += isMultipliedSection ? amount * 10 : amount;
                 });
-         
+                
+                const totalRow = table.querySelector('.total-row');
+                const totalAmountCell = table.querySelector('.total-amount');
+                
+                if (total > 0) {
+                    totalRow.style.display = '';
+                    totalAmountCell.textContent = total.toFixed(2);
+                } else {
+                    totalRow.style.display = 'none';
+                }
+            }
+        });
     </script>
 </body>
-
 </html>

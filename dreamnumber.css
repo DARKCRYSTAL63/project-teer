@@ -1,50 +1,58 @@
+/* Minimalist Base Styles */
+:root {
+    --primary: #ff5252;
+    --text: #333;
+    --light-gray: #f5f5f5;
+    --border: #e0e0e0;
+}
 /* Base Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
 body {
     background-color: white;
-    color: #333;
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background-color: white;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: relative;
-}
+/* Header */
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border);
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
 }
-.logo {
+.nav-container {
     display: flex;
     align-items: center;
+    margin-left: auto; 
 }
-
 .logo-svg {
     width: 50px;
     height: 50px;
     cursor: pointer;
 }
+
+/* Desktop Navigation - Right side */
 .desktop-nav {
     display: block;
-    margin-left: auto;
 }
+
 .nav-links {
     display: flex;
     list-style: none;
     gap: 15px;
-    justify-content: flex-end;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links li a {
@@ -53,49 +61,42 @@ header {
     font-size: 14px;
     padding: 8px 12px;
     border-radius: 4px;
-    transition: background-color 0.3s;
+    transition:color 0.2s;
 }
 
 .nav-links li a:hover {
-    background-color: #f5f5f5;
-}
-.mobile-menu {
-    display: none;
-    margin-left: auto; 
-    position: absolute;
-    right: 20px;
+    color: var(--primary);
 }
 
+/* Mobile Menu Button - Right side */
 .hamburger {
+    display: none;
     background: none;
     border: none;
     font-size: 24px;
+    color: var(--text);
     cursor: pointer;
-    color: #333;
     padding: 5px;
+    margin-left: 15px;
 }
 
 /* Mobile Navigation */
 .mobile-nav {
     display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 100%;
-    max-width: 300px;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
     background-color: white;
-    box-shadow: -5px 5px 10px rgba(0,0,0,0.1);
-    border-radius: 0 0 0 4px;
-    z-index: 1000;
-    transform: translateY(-10px);
-    opacity: 0;
-    transition: all 0.3s ease;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    z-index: 99;
+    transition: right 0.3s ease;
+    padding-top: 70px;
 }
 
 .mobile-nav.active {
-    display: block;
-    transform: translateY(0);
-    opacity: 1;
+    right: 0;
 }
 
 .mobile-nav ul {
@@ -104,21 +105,13 @@ header {
 
 .mobile-nav li a {
     display: block;
-    padding: 12px 20px;
+    padding: 15px 20px;
     text-decoration: none;
     color: #333;
-    transition: background-color 0.3s;
     border-bottom: 1px solid #f0f0f0;
 }
 
-.mobile-nav li:last-child a {
-    border-bottom: none;
-}
-
-.mobile-nav li a:hover {
-    background-color: #f5f5f5;
-}
-/* Lucky Numbers Content */
+/* Main Content */
 .lucky-numbers-container {
     padding: 20px;
     max-width: 1200px;
@@ -126,7 +119,8 @@ header {
 }
 
 .lucky-numbers-container h1 {
-    color: #ff5252;
+    color: var(--primary);
+    font-weight: 300;
     margin-bottom: 10px;
     text-align: center;
 }
@@ -135,10 +129,12 @@ header {
     text-align: center;
     color: #666;
     margin-bottom: 20px;
+    font-weight: 300;
 }
 
 /* Table Styles */
 .table-container {
+    width: 100%;
     overflow-x: auto;
     margin: 20px 0;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -149,6 +145,7 @@ header {
     width: 100%;
     border-collapse: collapse;
     background-color: white;
+    border: 1px solid var(--border);
 }
 
 .lucky-numbers-table th {
@@ -156,11 +153,15 @@ header {
     color: white;
     padding: 12px 15px;
     text-align: left;
+    position: sticky;
+    top: 0;
+    font-weight: 500;
+    border-bottom: 2px solid var(--border);
 }
 
 .lucky-numbers-table td {
     padding: 12px 15px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border);
 }
 
 .lucky-numbers-table tr:nth-child(even) {
@@ -177,6 +178,7 @@ footer {
     padding: 20px;
     background-color: #f5f5f5;
     margin-top: 30px;
+    border-top: 1px solid var(--border);
 }
 
 /* Responsive Styles */
@@ -185,7 +187,7 @@ footer {
         display: none;
     }
     
-    .mobile-menu {
+    .hamburger {
         display: block;
     }
     
@@ -216,8 +218,7 @@ footer {
         font-size: 12px;
     }
     
-    .lucky-numbers-table th:nth-child(2),
-    .lucky-numbers-table td:nth-child(2) {
+    .lucky-numbers-table td:first-child {
         min-width: 150px;
     }
 }
