@@ -269,6 +269,15 @@ footer {
     background-color: #f5f5f5;
     margin-top: 30px;
 }
+footer a{
+    display: block;
+    padding: 5px;
+    background-color: #f5f5f5;
+    color: #ff5252;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+}
 /* Responsive table styles */
 @media (max-width: 600px) {
     th, td {
