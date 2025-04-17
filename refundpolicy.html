@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Balance - Online Lottery</title>
+  <title>Refund|FranyTeer</title>
   <link rel="stylesheet" href="refundpolicy.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
 </head>
@@ -59,37 +59,26 @@
     
     <div class="legal-content">
         <section class="policy-section">
-            <p>WONDERFUL NONGSIEJ believes in helping its customers as far as possible, and has therefore a liberal cancellation policy.</p>
+            <p>FrankyTeer believes in helping its customers as far as possible, and has therefore a liberal cancellation policy.</p>
             
             <h2>Cancellation Policy</h2>
             <ul>
                 <li>Cancellations will be considered only if the request is made immediately after placing the order.</li>
-                <li>The cancellation request may not be entertained if the orders have been communicated to the vendors/merchants and they have initiated the process of shipping them.</li>
-                <li>WONDERFUL NONGSIEJ does not accept cancellation requests for perishable items like flowers, eatables etc.</li>
+                <li>The cancellation request will not be entertained for wrong input order by the users.</li>
+                
             </ul>
             
             <h2>Refund Policy</h2>
             <ul>
-                <li>Refund/replacement can be made if the customer establishes that the quality of product delivered is not good.</li>
-                <li>In case of receipt of damaged or defective items please report the same to our Customer Service team.</li>
-                <li>The request will be entertained once the merchant has checked and determined the same at his own end.</li>
-                <li>This should be reported within the same day of receipt of the products.</li>
-            </ul>
-            
-            <h2>Quality Concerns</h2>
-            <ul>
-                <li>In case you feel that the product received is not as shown on the site or as per your expectations, you must bring it to the notice of our customer service within the same day of receiving the product.</li>
-                <li>The Customer Service Team after looking into your complaint will take an appropriate decision.</li>
-            </ul>
-            
-            <h2>Warranty Items</h2>
-            <ul>
-                <li>In case of complaints regarding products that come with a warranty from manufacturers, please refer the issue to them.</li>
+                <li>Refund can be made if the customer's cancelation is approved.</li>
+                <li>No refund without booking receipt.</li>
+                <li>The request will be entertained once we have checked and determined the same at our end.</li>
+                
             </ul>
             
             <h2>Refund Processing</h2>
             <ul>
-                <li>In case of any Refunds approved by WONDERFUL NONGSIEJ, it'll take 1-2 days for the refund to be processed to the end customer.</li>
+                <li>In case of any Refunds approved by Frankyteer, it'll take 1-2 days for the refund to be processed to the end customer.</li>
             </ul>
             
             <div class="contact-note">
@@ -99,25 +88,27 @@
     </div>
 </main>
 <footer>
-    <p>&copy; 2023 Online Lottery. All rights reserved.</p>
+    <p>&copy; 2025 FrankyTeer. All rights reserved.</p>
 </footer>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const hamburger = document.querySelector('.hamburger');
-        const mobileNav = document.querySelector('.mobile-nav');
-        
-        hamburger.addEventListener('click', function() {
-            mobileNav.classList.toggle('active');
-            this.classList.toggle('active');
-        });
-        
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.mobile-nav') && !e.target.closest('.hamburger')) {
-                mobileNav.classList.remove('active');
-                hamburger.classList.remove('active');
-            }
-        });
-    });
+  document.addEventListener('DOMContentLoaded', function() {
+      // Mobile menu toggle
+      const hamburger = document.querySelector('.hamburger');
+      const mobileNav = document.querySelector('.mobile-nav');
+      
+      hamburger.addEventListener('click', function() {
+          mobileNav.classList.toggle('active');
+          this.classList.toggle('active');
+      });
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', function(e) {
+          if (!e.target.closest('.mobile-nav') && !e.target.closest('.hamburger')) {
+              mobileNav.classList.remove('active');
+              hamburger.classList.remove('active');
+          }
+      });
+  });
 </script>
 </body>
 </html>
