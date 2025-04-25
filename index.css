@@ -284,17 +284,7 @@ footer {
     flex-wrap: wrap;
 }
 
-.footer-left {
-    flex: 1;
-    min-width: 250px;
-    margin-bottom: 15px;
-}
 
-.footer-right {
-    flex: 1;
-    min-width: 250px;
-    text-align: right;
-}
 
 .footer-links {
     margin-top: 10px;
