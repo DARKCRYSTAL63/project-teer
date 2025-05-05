@@ -431,6 +431,10 @@ body {
   button#withdraw-btn:hover {
     background-color: #555;
   }
+  .preset-btn.selected {
+    background-color: black;
+    color:white;
+  }
   
   /* Responsive adjustments */
   @media (min-width: 600px) {

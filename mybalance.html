@@ -63,13 +63,12 @@
     <section class="recharge-section">
       <h2>Recharge</h2>
       <div class="preset-buttons" style="text-align: center;">
-        <button class="preset-btn" data-value="50">50</button>
-        <button class="preset-btn" data-value="100">100</button>
-        <button class="preset-btn" data-value="500">500</button>
-        <button class="preset-btn" data-value="1000">1000</button>
-        <button class="preset-btn" data-value="5000">5000</button>
+        <button class="preset-btn" data-value="50" data-link="qrcode50.html">50</button>
+        <button class="preset-btn" data-value="100" data-link="qr100.html">100</button>
+        <button class="preset-btn" data-value="300" data-link="qr300.html">300</button>
+        <button class="preset-btn" data-value="500" data-link="qr500.html">500</button>
+        <button class="preset-btn" data-value="1000" data-link="qr100.html">1000</button>
       </div>
-      <input type="number" id="custom-recharge" placeholder="Enter custom amount" />
       <button id="recharge-btn">Recharge</button>
     </section>
 
@@ -78,6 +77,7 @@
       <input type="text" placeholder="Bank Name" id="bank-name" />
       <input type="text" placeholder="Account Holder Name" id="account-holder" />
       <input type="text" placeholder="Account Number" id="account-number" />
+      <input type="text" placeholder="IFSC Code" id="ifsc-code" />
       <input type="number" placeholder="Withdraw Amount" id="withdraw-amount" />
       <button id="withdraw-btn">Withdraw</button>
     </section>
@@ -91,6 +91,8 @@
     document.addEventListener('DOMContentLoaded', () => {
       const hamburger = document.querySelector('.hamburger');
       const mobileNav = document.querySelector('.mobile-nav');
+      let selectedAmount = null;
+      let selectedLink = null;
 
       hamburger.addEventListener('click', e => {
         e.stopPropagation();
@@ -110,39 +112,48 @@
       balanceDisplay.textContent = `${balance.toFixed(2)}`;
 
       const presetButtons = document.querySelectorAll('.preset-btn');
-      const customRechargeInput = document.getElementById('custom-recharge');
-      let selectedAmount = null;
-
       presetButtons.forEach(button => {
         button.addEventListener('click', () => {
+          // Remove selected class from all buttons
+          presetButtons.forEach(btn => btn.classList.remove('selected'));
+          // Add selected class to clicked button
+          button.classList.add('selected');
           selectedAmount = parseInt(button.getAttribute('data-value'));
-          customRechargeInput.value = selectedAmount;
-          customRechargeInput.disabled = true;
+          selectedLink = button.getAttribute('data-link');
         });
       });
 
-      customRechargeInput.addEventListener('input', () => {
-        selectedAmount = parseInt(customRechargeInput.value);
-        presetButtons.forEach(btn => btn.classList.remove('selected'));
-        customRechargeInput.disabled = false;
-      });
-
       document.getElementById('recharge-btn').addEventListener('click', () => {
-        if (!selectedAmount || selectedAmount <= 0) return alert('Enter a valid recharge amount');
-        balance += selectedAmount;
-        balanceDisplay.textContent = `${balance.toFixed(2)}`;
-        selectedAmount = null;
-        customRechargeInput.value = '';
-        customRechargeInput.disabled = false;
+        if (!selectedAmount) return alert('Please select a recharge amount');
+        // Here you would normally process the recharge
+        // For now we'll just redirect to the QR code page
+        window.location.href = selectedLink;
       });
 
       document.getElementById('withdraw-btn').addEventListener('click', () => {
         const withdrawAmount = parseInt(document.getElementById('withdraw-amount').value);
         if (isNaN(withdrawAmount) || withdrawAmount <= 0) return alert('Enter a valid amount');
         if (withdrawAmount > balance) return alert('Withdraw amount exceeds balance');
+        
+        const bankName = document.getElementById('bank-name').value;
+        const accountHolder = document.getElementById('account-holder').value;
+        const accountNumber = document.getElementById('account-number').value;
+        const ifscCode = document.getElementById('ifsc-code').value;
+        
+        if (!bankName || !accountHolder || !accountNumber || !ifscCode) {
+          return alert('Please fill all bank details');
+        }
+        
         balance -= withdrawAmount;
         balanceDisplay.textContent = `${balance.toFixed(2)}`;
+        alert(`Withdrawal request of ₹${withdrawAmount} submitted successfully`);
+        
+        // Clear form
         document.getElementById('withdraw-amount').value = '';
+        document.getElementById('bank-name').value = '';
+        document.getElementById('account-holder').value = '';
+        document.getElementById('account-number').value = '';
+        document.getElementById('ifsc-code').value = '';
       });
     });
   </script>
