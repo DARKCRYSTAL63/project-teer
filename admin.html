@@ -6,533 +6,467 @@
     <title>FrankyTeer - Admin Panel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker@3.1.0/daterangepicker.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        
-        .admin-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 30px;
-        }
-        
-        .admin-header h1 {
-            color: #ff5252;
-        }
-        
-        .header-actions {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .btn {
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            border: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .btn-primary {
-            background-color: #2196F3;
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background-color: #0b7dda;
-        }
-        
-        .btn-success {
-            background-color: #4CAF50;
-            color: white;
-        }
-        
-        .btn-success:hover {
-            background-color: #45a049;
-        }
-        
-        .btn-danger {
-            background-color: #ff5252;
-            color: white;
-        }
-        
-        .btn-danger:hover {
-            background-color: #e04141;
-        }
-        
-        .btn-warning {
-            background-color: #FFC107;
-            color: #333;
-        }
-        
-        .btn-warning:hover {
-            background-color: #e0a800;
-        }
-        
-        .panel {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-        }
-        
-        .panel-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .panel-header h2 {
-            color: #333;
-        }
-        
-        .panel-actions {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .input-group {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .input-box {
-            flex: 1;
-        }
-        
-        .input-box label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        
-        .input-box input, 
-        .input-box select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        th {
-            background-color: #f8f8f8;
-            font-weight: 600;
-        }
-        
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-        
-        .highlight {
-            background-color: #fffde7;
-            font-weight: bold;
-        }
-        
-        .no-data {
-            text-align: center;
-            padding: 20px;
-            color: #777;
-        }
-        
-        .tab-container {
-            margin-bottom: 20px;
-        }
-        
-        .tab-buttons {
-            display: flex;
-            border-bottom: 1px solid #ddd;
-            overflow-x: auto;
-        }
-        
-        .tab-btn {
-            padding: 10px 20px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            color: #555;
-            border-bottom: 3px solid transparent;
-            white-space: nowrap;
-        }
-        
-        .tab-btn.active {
-            color: #ff5252;
-            border-bottom: 3px solid #ff5252;
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        .winning-number {
-            display: inline-block;
-            background-color: #ff5252;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            margin-right: 5px;
-            margin-bottom: 5px;
-        }
-        
-        .date-range-picker {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .date-range-picker input {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .modal-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .modal-header h3 {
-            color: #333;
-        }
-        
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #777;
-        }
-        
-        .form-group {
-            margin-bottom: 15px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-        
-        .form-group input, 
-        .form-group select {
-            width: 100%;
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        
-        .modal-footer {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        
-        .user-status-active {
-            color: #4CAF50;
-            font-weight: bold;
-        }
-        
-        .user-status-inactive {
-            color: #ff5252;
-            font-weight: bold;
-        }
-        
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        
-        .pagination button {
-            padding: 5px 10px;
-            margin: 0 5px;
-            border: 1px solid #ddd;
-            background: none;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-        
-        .pagination button.active {
-            background-color: #ff5252;
-            color: white;
-            border-color: #ff5252;
-        }
-        
-        @media (max-width: 768px) {
-            .input-group {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            th, td {
-                padding: 8px 10px;
-                font-size: 14px;
-            }
-            
-            .admin-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-            
-            .panel-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-            
-            .panel-actions {
-                width: 100%;
-                justify-content: space-between;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="admin.css">
+   
 </head>
 <body>
-    <div class="admin-container">
-        <div class="admin-header">
-            <h1><i class="fas fa-user-shield"></i> FrankyTeer Admin Panel</h1>
-            <div class="header-actions">
-                <button class="btn btn-primary" id="export-data"><i class="fas fa-file-export"></i> Export</button>
-                <button class="btn btn-danger" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
-            </div>
+    <!-- Navigation Column -->
+    <div class="nav-column">
+        <div class="nav-header">
+            <h2><i class="fas fa-user-shield"></i> Admin Panel</h2>
         </div>
-        
-        <div class="panel">
-            <div class="panel-header">
-                <h2><i class="fas fa-trophy"></i> Update Today's Results</h2>
-                <div class="date-range-picker">
-                    <input type="text" id="date-range" placeholder="Select date range">
-                    <button class="btn btn-primary" id="apply-date-range"><i class="fas fa-filter"></i> Apply</button>
-                </div>
-            </div>
-            <div class="input-group">
-                <div class="input-box">
-                    <label for="first-round">First Round Result</label>
-                    <input type="number" id="first-round" min="0" max="99" placeholder="Enter first round result">
-                </div>
-                <div class="input-box">
-                    <label for="second-round">Second Round Result</label>
-                    <input type="number" id="second-round" min="0" max="99" placeholder="Enter second round result">
-                </div>
-            </div>
-            <button class="btn btn-success" id="update-results"><i class="fas fa-sync-alt"></i> Update Results</button>
-        </div>
-        
-        <div class="panel">
-            <div class="panel-header">
-                <h2><i class="fas fa-book"></i> Bookings Management</h2>
-                <div class="panel-actions">
-                    <button class="btn btn-primary" id="refresh-bookings"><i class="fas fa-redo"></i> Refresh</button>
-                    <button class="btn btn-warning" id="manage-users"><i class="fas fa-users-cog"></i> Manage Users</button>
+        <ul class="nav-menu">
+            <li><a href="#" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="#results-section"><i class="fas fa-trophy"></i> Results</a></li>
+            <li><a href="#bookings-section"><i class="fas fa-book"></i> Bookings</a></li>
+            <li><a href="#winners-section"><i class="fas fa-medal"></i> Winners</a></li>
+            <li><a href="#recharge-section"><i class="fas fa-rupee-sign"></i> Recharge Approval</a></li>
+            <li><a href="#users-section"><i class="fas fa-users"></i> Users</a></li>
+            <li><a href="#reports-section"><i class="fas fa-chart-bar"></i> Reports</a></li>
+            <li><a href="#settings-section"><i class="fas fa-cog"></i> Settings</a></li>
+            <li><a href="#logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="admin-container">
+            <div class="admin-header">
+                <h1><i class="fas fa-home"></i> Dashboard</h1>
+                <div class="header-actions">
+                    <button class="btn btn-primary" id="export-data"><i class="fas fa-file-export"></i> Export</button>
+                    <button class="btn btn-danger" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
                 </div>
             </div>
             
-            <div class="tab-container">
-                <div class="tab-buttons">
-                    <button class="tab-btn active" data-tab="forecast">Forecast</button>
-                    <button class="tab-btn" data-tab="first-round">First Round</button>
-                    <button class="tab-btn" data-tab="second-round">Second Round</button>
-                    <button class="tab-btn" data-tab="house">House</button>
-                    <button class="tab-btn" data-tab="ending">Ending</button>
-                    <button class="tab-btn" data-tab="all-pair">All Pair</button>
-                </div>
-                
-                <div class="tab-content active" id="forecast-tab">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>User ID</th>
-                                <th>First Round</th>
-                                <th>Second Round</th>
-                                <th>Amount</th>
-                                <th>Date/Time</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="forecast-bookings">
-                            <!-- Forecast bookings will be populated here -->
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="3">Total Forecast Bookings:</td>
-                                <td colspan="3">₹0</td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    <div class="pagination">
-                        <button id="forecast-prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="active">1</button>
-                        <button>2</button>
-                        <button>3</button>
-                        <button id="forecast-next"><i class="fas fa-chevron-right"></i></button>
+            <!-- Results Section -->
+            <div class="panel" id="results-section">
+                <div class="panel-header">
+                    <h2><i class="fas fa-trophy"></i> Update Results</h2>
+                    <div class="date-range-picker">
+                        <input type="text" id="date-range" placeholder="Select date">
+                        <button class="btn btn-primary" id="apply-date-range"><i class="fas fa-filter"></i> Apply</button>
                     </div>
                 </div>
                 
-                <!-- Other booking tabs with similar structure -->
-                <!-- First Round, Second Round, House, Ending, All Pair -->
-                
-            </div>
-        </div>
-        
-        <div class="panel" id="winners-section" style="display: none;">
-            <div class="panel-header">
-                <h2><i class="fas fa-medal"></i> Winners Management</h2>
-                <div>
-                    <span class="winning-number" id="fr-result-display">FR: -</span>
-                    <span class="winning-number" id="sr-result-display">SR: -</span>
+                <div class="round-update-section">
+                    <div class="round-update-box">
+                        <h3><i class="fas fa-flag"></i> First Round</h3>
+                        <div class="input-box">
+                            <label for="first-round">Result</label>
+                            <input type="number" id="first-round" min="0" max="99" placeholder="Enter result">
+                        </div>
+                        <button class="btn btn-success" id="update-fr"><i class="fas fa-save"></i> Update First Round</button>
+                    </div>
+                    
+                    <div class="round-update-box">
+                        <h3><i class="fas fa-flag-checkered"></i> Second Round</h3>
+                        <div class="input-box">
+                            <label for="second-round">Result</label>
+                            <input type="number" id="second-round" min="0" max="99" placeholder="Enter result">
+                        </div>
+                        <button class="btn btn-success" id="update-sr"><i class="fas fa-save"></i> Update Second Round</button>
+                    </div>
                 </div>
             </div>
             
-            <div class="tab-container">
-                <div class="tab-buttons">
-                    <button class="tab-btn active" data-tab="forecast-winners">Forecast Winners</button>
-                    <button class="tab-btn" data-tab="fr-winners">First Round Winners</button>
-                    <button class="tab-btn" data-tab="sr-winners">Second Round Winners</button>
-                    <button class="tab-btn" data-tab="house-winners">House Winners</button>
-                    <button class="tab-btn" data-tab="ending-winners">Ending Winners</button>
+            <!-- Bookings Section -->
+            <div class="panel" id="bookings-section">
+                <div class="panel-header">
+                    <h2><i class="fas fa-book"></i> Today's Bookings</h2>
+                    <div class="panel-actions">
+                        <button class="btn btn-primary" id="refresh-bookings"><i class="fas fa-redo"></i> Refresh</button>
+                        <button class="btn btn-warning" id="manage-users"><i class="fas fa-users-cog"></i> Manage Users</button>
+                    </div>
                 </div>
                 
-                <!-- Winners tabs with similar structure -->
-                
-            </div>
-        </div>
-        <!-- Add this new panel to admin.html -->
-<div class="panel">
-    <div class="panel-header">
-        <h2><i class="fas fa-money-bill-wave"></i> Recharge Approvals</h2>
-        <div class="panel-actions">
-            <button class="btn btn-primary" id="refresh-recharges"><i class="fas fa-redo"></i> Refresh</button>
-        </div>
-    </div>
-    
-    <table>
-        <thead>
-            <tr>
-                <th>Request ID</th>
-                <th>User ID</th>
-                <th>Username</th>
-                <th>Amount</th>
-                <th>Request Time</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="recharge-requests">
-            <!-- Recharge requests will be populated here -->
-            <tr>
-                <td>REQ001</td>
-                <td>USER123</td>
-                <td>john_doe</td>
-                <td>₹500</td>
-                <td>2023-06-15 14:30</td>
-                <td><span class="badge badge-warning">Pending</span></td>
-                <td>
-                    <button class="btn btn-success btn-sm approve-recharge" data-id="REQ001"><i class="fas fa-check"></i> Approve</button>
-                    <button class="btn btn-danger btn-sm reject-recharge" data-id="REQ001"><i class="fas fa-times"></i> Reject</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-        <!-- User Management Panel -->
-        <div class="panel">
-            <div class="panel-header">
-                <h2><i class="fas fa-users"></i> User Management</h2>
-                <div class="panel-actions">
-                    <button class="btn btn-success" id="add-user"><i class="fas fa-user-plus"></i> Add User</button>
+                <div class="tab-container">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="forecast">Forecast</button>
+                        <button class="tab-btn" data-tab="first-round">First Round</button>
+                        <button class="tab-btn" data-tab="second-round">Second Round</button>
+                        <button class="tab-btn" data-tab="house">House</button>
+                        <button class="tab-btn" data-tab="ending">Ending</button>
+                    </div>
+                    
+                    <!-- Forecast Bookings -->
+                    <div class="tab-content active" id="forecast-tab">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>First Round</th>
+                                    <th>Second Round</th>
+                                    <th>Amount</th>
+                                    <th>Booking Time</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="forecast-bookings">
+                                <tr>
+                                    <td>john_doe</td>
+                                    <td>12</td>
+                                    <td>45</td>
+                                    <td>₹100</td>
+                                    <td>Today, 09:30 AM</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></button>
+                                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>jane_smith</td>
+                                    <td>34</td>
+                                    <td>78</td>
+                                    <td>₹150</td>
+                                    <td>Today, 10:45 AM</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></button>
+                                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3">Total Forecast Bookings:</td>
+                                    <td colspan="3">₹250 (2 bookings)</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    
+                    <!-- First Round Bookings -->
+                    <div class="tab-content" id="first-round-tab">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Number</th>
+                                    <th>Amount</th>
+                                    <th>Booking Time</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="first-round-bookings">
+                                <tr>
+                                    <td>john_doe</td>
+                                    <td>12</td>
+                                    <td>₹50</td>
+                                    <td>Today, 09:15 AM</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></button>
+                                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>agent1</td>
+                                    <td>34</td>
+                                    <td>₹75</td>
+                                    <td>Today, 09:20 AM</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></button>
+                                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2">Total First Round Bookings:</td>
+                                    <td colspan="3">₹125 (2 bookings)</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    
+                    <!-- Second Round Bookings -->
+                    <div class="tab-content" id="second-round-tab">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Number</th>
+                                    <th>Amount</th>
+                                    <th>Booking Time</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="second-round-bookings">
+                                <tr>
+                                    <td>john_doe</td>
+                                    <td>45</td>
+                                    <td>₹60</td>
+                                    <td>Today, 09:15 AM</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></button>
+                                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>jane_smith</td>
+                                    <td>78</td>
+                                    <td>₹90</td>
+                                    <td>Today, 10:30 AM</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></button>
+                                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2">Total Second Round Bookings:</td>
+                                    <td colspan="3">₹150 (2 bookings)</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    
+                    <!-- House Bookings -->
+                    <div class="tab-content" id="house-tab">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Number</th>
+                                    <th>Amount</th>
+                                    <th>Booking Time</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="house-bookings">
+                                <tr>
+                                    <td>agent1</td>
+                                    <td>5</td>
+                                    <td>₹40</td>
+                                    <td>Today, 11:15 AM</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></button>
+                                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2">Total House Bookings:</td>
+                                    <td colspan="3">₹40 (1 booking)</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    
+                    <!-- Ending Bookings -->
+                    <div class="tab-content" id="ending-tab">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Number</th>
+                                    <th>Amount</th>
+                                    <th>Booking Time</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ending-bookings">
+                                <tr>
+                                    <td>jane_smith</td>
+                                    <td>7</td>
+                                    <td>₹30</td>
+                                    <td>Today, 11:30 AM</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></button>
+                                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2">Total Ending Bookings:</td>
+                                    <td colspan="3">₹30 (1 booking)</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
             
-            <table>
-                <thead>
-                    <tr>
-                        <th>User ID</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Balance</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="users-list">
-                    <!-- Users will be populated here -->
-                </tbody>
-            </table>
-            <div class="pagination">
-                <button id="users-prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="active">1</button>
-                <button>2</button>
-                <button>3</button>
-                <button id="users-next"><i class="fas fa-chevron-right"></i></button>
+            <!-- Recharge Approval Section -->
+            <div class="panel" id="recharge-section">
+                <div class="panel-header">
+                    <h2><i class="fas fa-rupee-sign"></i> Recharge Approval</h2>
+                    <div class="panel-actions">
+                        <button class="btn btn-primary" id="refresh-recharge"><i class="fas fa-redo"></i> Refresh</button>
+                    </div>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Request ID</th>
+                            <th>Username</th>
+                            <th>Amount</th>
+                            <th>Payment Method</th>
+                            <th>Transaction ID</th>
+                            <th>Status</th>
+                            <th>Request Time</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recharge-requests">
+                        <tr>
+                            <td>REQ1001</td>
+                            <td>john_doe</td>
+                            <td>₹1000</td>
+                            <td>UPI</td>
+                            <td>UPI123456789</td>
+                            <td class="status-pending">Pending</td>
+                            <td>Today, 09:15 AM</td>
+                            <td>
+                                <button class="btn btn-success btn-sm approve-recharge" data-id="REQ1001"><i class="fas fa-check"></i></button>
+                                <button class="btn btn-danger btn-sm reject-recharge" data-id="REQ1001"><i class="fas fa-times"></i></button>
+                                <button class="btn btn-primary btn-sm view-proof" data-id="REQ1001"><i class="fas fa-eye"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>REQ1002</td>
+                            <td>jane_smith</td>
+                            <td>₹2000</td>
+                            <td>Bank Transfer</td>
+                            <td>BANK987654321</td>
+                            <td class="status-pending">Pending</td>
+                            <td>Today, 10:30 AM</td>
+                            <td>
+                                <button class="btn btn-success btn-sm approve-recharge" data-id="REQ1002"><i class="fas fa-check"></i></button>
+                                <button class="btn btn-danger btn-sm reject-recharge" data-id="REQ1002"><i class="fas fa-times"></i></button>
+                                <button class="btn btn-primary btn-sm view-proof" data-id="REQ1002"><i class="fas fa-eye"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>REQ1003</td>
+                            <td>agent1</td>
+                            <td>₹5000</td>
+                            <td>UPI</td>
+                            <td>UPI987654321</td>
+                            <td class="status-approved">Approved</td>
+                            <td>Yesterday, 04:45 PM</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm view-proof" data-id="REQ1003"><i class="fas fa-eye"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>REQ1004</td>
+                            <td>inactive_user</td>
+                            <td>₹1500</td>
+                            <td>Bank Transfer</td>
+                            <td>BANK123456789</td>
+                            <td class="status-rejected">Rejected</td>
+                            <td>Yesterday, 03:20 PM</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm view-proof" data-id="REQ1004"><i class="fas fa-eye"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">Total Pending Requests:</td>
+                            <td colspan="6">2 requests (₹3000)</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div class="pagination">
+                    <button id="recharge-prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="active">1</button>
+                    <button>2</button>
+                    <button id="recharge-next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            
+            <!-- Winners Section -->
+            <div class="panel" id="winners-section" style="display: none;">
+                <div class="panel-header">
+                    <h2><i class="fas fa-medal"></i> Today's Winners</h2>
+                    <div>
+                        <span class="winning-number" id="fr-result-display">FR: -</span>
+                        <span class="winning-number" id="sr-result-display">SR: -</span>
+                    </div>
+                </div>
+                
+                <!-- Winners tabs would go here -->
+                
+            </div>
+            
+            <!-- User Management Section -->
+            <div class="panel" id="users-section">
+                <div class="panel-header">
+                    <h2><i class="fas fa-users"></i> User Management</h2>
+                    <div class="panel-actions">
+                        <button class="btn btn-success" id="add-user"><i class="fas fa-user-plus"></i> Add User</button>
+                    </div>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Balance</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-list">
+                        <tr>
+                            <td>john_doe</td>
+                            <td>john@example.com</td>
+                            <td>9876543210</td>
+                            <td>₹1500</td>
+                            <td class="user-status-active">Active</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>jane_smith</td>
+                            <td>jane@example.com</td>
+                            <td>9876543211</td>
+                            <td>₹2500</td>
+                            <td class="user-status-active">Active</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>agent1</td>
+                            <td>agent1@example.com</td>
+                            <td>9876543212</td>
+                            <td>₹5000</td>
+                            <td class="user-status-active">Active</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>inactive_user</td>
+                            <td>inactive@example.com</td>
+                            <td>9876543214</td>
+                            <td>₹0</td>
+                            <td class="user-status-inactive">Inactive</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <button id="users-prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="active">1</button>
+                    <button>2</button>
+                    <button id="users-next"><i class="fas fa-chevron-right"></i></button>
+                </div>
             </div>
         </div>
     </div>
@@ -551,6 +485,7 @@
                     <option value="winners">Winners</option>
                     <option value="users">Users</option>
                     <option value="results">Results</option>
+                    <option value="recharge">Recharge Requests</option>
                 </select>
             </div>
             <div class="form-group">
@@ -621,6 +556,47 @@
         </div>
     </div>
 
+    <!-- Payment Proof Modal -->
+    <div class="modal" id="proof-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-receipt"></i> Payment Proof</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label>Request ID</label>
+                <input type="text" id="proof-request-id" readonly>
+            </div>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="proof-username" readonly>
+            </div>
+            <div class="form-group">
+                <label>Amount</label>
+                <input type="text" id="proof-amount" readonly>
+            </div>
+            <div class="form-group">
+                <label>Payment Method</label>
+                <input type="text" id="proof-method" readonly>
+            </div>
+            <div class="form-group">
+                <label>Transaction ID</label>
+                <input type="text" id="proof-transaction" readonly>
+            </div>
+            <div class="form-group">
+                <label>Payment Proof</label>
+                <div id="proof-image-container" style="margin-top: 10px;">
+                    <img src="" alt="Payment Proof" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger close-modal">Close</button>
+                <button class="btn btn-success" id="approve-from-proof">Approve</button>
+                <button class="btn btn-warning" id="reject-from-proof">Reject</button>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/daterangepicker@3.1.0/daterangepicker.min.js"></script>
@@ -628,6 +604,8 @@
         $(document).ready(function() {
             // Initialize date range pickers
             $('#date-range').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
                 opens: 'left',
                 autoUpdateInput: false,
                 locale: {
@@ -644,7 +622,7 @@
             });
 
             $('#date-range').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+                $(this).val(picker.startDate.format('MM/DD/YYYY'));
             });
 
             $('#date-range').on('cancel.daterangepicker', function(ev, picker) {
@@ -687,238 +665,156 @@
                 $('#' + tabId + '-tab').addClass('active');
             });
 
-            // Update results functionality
-            $('#update-results').click(function() {
+            // Update results functionality - First Round
+            $('#update-fr').click(function() {
                 const frResult = $('#first-round').val();
-                const srResult = $('#second-round').val();
                 
-                if (!frResult || !srResult) {
-                    alert('Please enter both first and second round results');
+                if (!frResult) {
+                    alert('Please enter first round result');
                     return;
                 }
                 
-                if (frResult < 0 || frResult > 99 || srResult < 0 || srResult > 99) {
-                    alert('Results must be between 0 and 99');
+                if (frResult < 0 || frResult > 99) {
+                    alert('Result must be between 0 and 99');
                     return;
                 }
                 
                 // In a real app, you would send this to your server to update the database
-                console.log('Updating results:', { firstRound: frResult, secondRound: srResult });
+                console.log('Updating first round result:', frResult);
                 
                 // Update the display
                 $('#fr-result-display').text('FR: ' + frResult);
+                
+                // If both results are entered, show winners section
+                if ($('#second-round').val()) {
+                    $('#winners-section').show();
+                    findWinners(frResult, $('#second-round').val());
+                }
+                
+                alert('First round result updated successfully!');
+            });
+
+            // Update results functionality - Second Round
+            $('#update-sr').click(function() {
+                const srResult = $('#second-round').val();
+                
+                if (!srResult) {
+                    alert('Please enter second round result');
+                    return;
+                }
+                
+                if (srResult < 0 || srResult > 99) {
+                    alert('Result must be between 0 and 99');
+                    return;
+                }
+                
+                // In a real app, you would send this to your server to update the database
+                console.log('Updating second round result:', srResult);
+                
+                // Update the display
                 $('#sr-result-display').text('SR: ' + srResult);
                 
-                // Show winners section
-                $('#winners-section').show();
+                // If both results are entered, show winners section
+                if ($('#first-round').val()) {
+                    $('#winners-section').show();
+                    findWinners($('#first-round').val(), srResult);
+                }
                 
-                // Find and display winners (simulated here)
-                findWinners(frResult, srResult);
+                alert('Second round result updated successfully!');
+            });
+
+            // Recharge approval functionality
+            $('.approve-recharge').click(function() {
+                const requestId = $(this).data('id');
+                if (confirm(`Are you sure you want to approve recharge request ${requestId}?`)) {
+                    // In a real app, you would send this to your server
+                    console.log('Approving recharge request:', requestId);
+                    
+                    // Update the UI
+                    const row = $(this).closest('tr');
+                    row.find('td.status-pending').removeClass('status-pending').addClass('status-approved').text('Approved');
+                    
+                    // Remove action buttons
+                    row.find('.approve-recharge, .reject-recharge').remove();
+                    
+                    alert(`Recharge request ${requestId} approved successfully!`);
+                }
+            });
+
+            $('.reject-recharge').click(function() {
+                const requestId = $(this).data('id');
+                if (confirm(`Are you sure you want to reject recharge request ${requestId}?`)) {
+                    // In a real app, you would send this to your server
+                    console.log('Rejecting recharge request:', requestId);
+                    
+                    // Update the UI
+                    const row = $(this).closest('tr');
+                    row.find('td.status-pending').removeClass('status-pending').addClass('status-rejected').text('Rejected');
+                    
+                    // Remove action buttons
+                    row.find('.approve-recharge, .reject-recharge').remove();
+                    
+                    alert(`Recharge request ${requestId} rejected successfully!`);
+                }
+            });
+
+            // View payment proof
+            $('.view-proof').click(function() {
+                const requestId = $(this).data('id');
+                const row = $(this).closest('tr');
+                const cells = row.find('td');
                 
-                alert('Results updated successfully!');
+                // Populate the modal with data from the row
+                $('#proof-request-id').val(requestId);
+                $('#proof-username').val(cells.eq(1).text());
+                $('#proof-amount').val(cells.eq(2).text());
+                $('#proof-method').val(cells.eq(3).text());
+                $('#proof-transaction').val(cells.eq(4).text());
+                
+                // In a real app, you would fetch the actual payment proof image from your server
+                // This is just a placeholder
+                $('#proof-image-container img').attr('src', 'https://via.placeholder.com/500x300?text=Payment+Proof+'+requestId);
+                
+                // Set the approve/reject buttons to work with this request
+                $('#approve-from-proof, #reject-from-proof').data('id', requestId);
+                
+                $('#proof-modal').show();
+            });
+
+            // Approve/reject from proof modal
+            $('#approve-from-proof').click(function() {
+                const requestId = $(this).data('id');
+                $('.approve-recharge[data-id="' + requestId + '"]').click();
+                $('#proof-modal').hide();
+            });
+
+            $('#reject-from-proof').click(function() {
+                const requestId = $(this).data('id');
+                $('.reject-recharge[data-id="' + requestId + '"]').click();
+                $('#proof-modal').hide();
             });
 
             // Simulated function to find winners based on results
             function findWinners(frResult, srResult) {
-                // This is a simulation - in a real app, you would query your database
-                
-                // Forecast winners (both numbers match)
-                const forecastWinners = [
-                    { userId: 'USER001', fr: frResult, sr: srResult, amount: '₹100', date: '2023-06-15 09:30' }
-                ];
-                
-                // First round winners
-                const frWinners = [
-                    { userId: 'USER002', number: frResult, amount: '₹50', date: '2023-06-15 09:15' }
-                ];
-                
-                // Second round winners
-                const srWinners = [
-                    { userId: 'USER002', number: srResult, amount: '₹60', date: '2023-06-15 09:15' }
-                ];
-                
-                // House winners (last digit of FR)
-                const houseDigit = frResult.slice(-1);
-                const houseWinners = [];
-                
-                // Ending winners (last digit of SR)
-                const endingDigit = srResult.slice(-1);
-                const endingWinners = [];
-                
-                // Populate forecast winners table
-                const forecastWinnersTable = $('#forecast-winners');
-                forecastWinnersTable.empty();
-                forecastWinners.forEach(winner => {
-                    forecastWinnersTable.append(`
-                        <tr class="highlight">
-                            <td>${winner.userId}</td>
-                            <td>${winner.fr}</td>
-                            <td>${winner.sr}</td>
-                            <td>${winner.amount}</td>
-                            <td>₹${parseInt(winner.amount.replace('₹', '')) * 80}</td>
-                            <td>${winner.date}</td>
-                        </tr>
-                    `);
-                });
-                
-                if (forecastWinners.length === 0) {
-                    forecastWinnersTable.append('<tr><td colspan="6" class="no-data">No forecast winners today</td></tr>');
-                } else {
-                    $('#forecast-winners-tab tfoot td:last-child').text(forecastWinners.length);
-                }
-                
-                // Similar population for other winner types...
+                // This would be replaced with actual data from your backend
+                console.log('Finding winners for FR:', frResult, 'SR:', srResult);
             }
 
-            // Load sample users
-            function loadUsers() {
-                const users = [
-                    { id: 'USER001', username: 'john_doe', email: 'john@example.com', phone: '9876543210', balance: '₹1500', status: 'active', role: 'user' },
-                    { id: 'USER002', username: 'jane_smith', email: 'jane@example.com', phone: '9876543211', balance: '₹2500', status: 'active', role: 'user' },
-                    { id: 'AGENT001', username: 'agent1', email: 'agent1@example.com', phone: '9876543212', balance: '₹5000', status: 'active', role: 'agent' },
-                    { id: 'ADMIN001', username: 'admin1', email: 'admin1@example.com', phone: '9876543213', balance: '₹10000', status: 'active', role: 'admin' },
-                    { id: 'USER003', username: 'inactive_user', email: 'inactive@example.com', phone: '9876543214', balance: '₹0', status: 'inactive', role: 'user' }
-                ];
-                
-                const usersList = $('#users-list');
-                usersList.empty();
-                
-                users.forEach(user => {
-                    usersList.append(`
-                        <tr>
-                            <td>${user.id}</td>
-                            <td>${user.username}</td>
-                            <td>${user.email}</td>
-                            <td>${user.phone}</td>
-                            <td>${user.balance}</td>
-                            <td class="user-status-${user.status}">${user.status.charAt(0).toUpperCase() + user.status.slice(1)}</td>
-                            <td>
-                                <button class="btn btn-primary btn-sm edit-user" data-id="${user.id}"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-danger btn-sm delete-user" data-id="${user.id}"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                    `);
-                });
-            }
-            
-            // Initial load
-            loadUsers();
+            // Navigation link scrolling
+            $('.nav-menu a').click(function(e) {
+                if ($(this).attr('href').startsWith('#')) {
+                    e.preventDefault();
+                    const target = $(this).attr('href');
+                    $('html, body').animate({
+                        scrollTop: $(target).offset().top - 20
+                    }, 500);
+                    
+                    // Update active nav item
+                    $('.nav-menu a').removeClass('active');
+                    $(this).addClass('active');
+                }
+            });
         });
-        // Add to admin.js
-$(document).ready(function() {
-    // ... existing code ...
-    
-    // Load recharge requests
-    function loadRechargeRequests() {
-        // In a real app, this would be an API call to your backend
-        const requests = [
-            {
-                id: 'REQ001',
-                userId: 'USER123',
-                username: 'john_doe',
-                amount: 500,
-                requestTime: '2023-06-15 14:30',
-                status: 'pending'
-            },
-            {
-                id: 'REQ002',
-                userId: 'USER124',
-                username: 'jane_smith',
-                amount: 1000,
-                requestTime: '2023-06-15 14:45',
-                status: 'pending'
-            }
-        ];
-        
-        const requestsTable = $('#recharge-requests');
-        requestsTable.empty();
-        
-        requests.forEach(req => {
-            requestsTable.append(`
-                <tr>
-                    <td>${req.id}</td>
-                    <td>${req.userId}</td>
-                    <td>${req.username}</td>
-                    <td>₹${req.amount}</td>
-                    <td>${req.requestTime}</td>
-                    <td><span class="badge ${req.status === 'pending' ? 'badge-warning' : req.status === 'approved' ? 'badge-success' : 'badge-danger'}">${req.status.charAt(0).toUpperCase() + req.status.slice(1)}</span></td>
-                    <td>
-                        <button class="btn btn-success btn-sm approve-recharge" data-id="${req.id}" data-user="${req.userId}" data-amount="${req.amount}" ${req.status !== 'pending' ? 'disabled' : ''}><i class="fas fa-check"></i> Approve</button>
-                        <button class="btn btn-danger btn-sm reject-recharge" data-id="${req.id}" ${req.status !== 'pending' ? 'disabled' : ''}><i class="fas fa-times"></i> Reject</button>
-                    </td>
-                </tr>
-            `);
-        });
-    }
-    
-    // Approve recharge request
-    $(document).on('click', '.approve-recharge', function() {
-        const requestId = $(this).data('id');
-        const userId = $(this).data('user');
-        const amount = $(this).data('amount');
-        
-        if(confirm(`Approve recharge of ₹${amount} for user ${userId}?`)) {
-            // In a real app, this would be an API call to your backend
-            console.log(`Approving recharge ${requestId}`);
-            
-            // Simulate API call
-            setTimeout(() => {
-                // Update UI
-                $(this).closest('tr').find('.badge')
-                    .removeClass('badge-warning')
-                    .addClass('badge-success')
-                    .text('Approved');
-                
-                $(this).prop('disabled', true);
-                $('.reject-recharge[data-id="' + requestId + '"]').prop('disabled', true);
-                
-                // In a real app, you would:
-                // 1. Update the user's balance in your database
-                // 2. Send notification to the user (could be email, websocket, etc.)
-                // 3. The user's page would either:
-                //    - Automatically update via websocket/polling
-                //    - Show the update when they refresh or navigate back
-                
-                alert(`Recharge approved! User ${userId}'s balance has been updated.`);
-            }, 1000);
-        }
-    });
-    
-    // Reject recharge request
-    $(document).on('click', '.reject-recharge', function() {
-        const requestId = $(this).data('id');
-        
-        if(confirm(`Reject recharge request ${requestId}?`)) {
-            // In a real app, this would be an API call to your backend
-            console.log(`Rejecting recharge ${requestId}`);
-            
-            // Simulate API call
-            setTimeout(() => {
-                // Update UI
-                $(this).closest('tr').find('.badge')
-                    .removeClass('badge-warning')
-                    .addClass('badge-danger')
-                    .text('Rejected');
-                
-                $(this).prop('disabled', true);
-                $('.approve-recharge[data-id="' + requestId + '"]').prop('disabled', true);
-                
-                alert(`Recharge request ${requestId} has been rejected.`);
-            }, 1000);
-        }
-    });
-    
-    // Initial load
-    loadRechargeRequests();
-    
-    // Refresh button
-    $('#refresh-recharges').click(function() {
-        loadRechargeRequests();
-    });
-    
-    // Add this CSS for badges
-    $('head').append('<style>.badge { padding: 3px 6px; border-radius: 3px; font-size: 12px; } .badge-warning { background-color: #ffc107; color: #000; } .badge-success { background-color: #28a745; color: #fff; } .badge-danger { background-color: #dc3545; color: #fff; }</style>');
-});
     </script>
 </body>
 </html>
