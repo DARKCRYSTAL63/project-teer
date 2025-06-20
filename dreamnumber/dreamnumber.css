@@ -1,0 +1,224 @@
+/* Minimalist Base Styles */
+:root {
+    --primary: #ff5252;
+    --text: #333;
+    --light-gray: #f5f5f5;
+    --border: #e0e0e0;
+}
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    background-color: white;
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Header */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border);
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+}
+.nav-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto; 
+}
+.logo-svg {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+/* Desktop Navigation - Right side */
+.desktop-nav {
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition:color 0.2s;
+}
+
+.nav-links li a:hover {
+    color: var(--primary);
+}
+
+/* Mobile Menu Button - Right side */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--text);
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 15px;
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background-color: white;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    z-index: 99;
+    transition: right 0.3s ease;
+    padding-top: 70px;
+}
+
+.mobile-nav.active {
+    right: 0;
+}
+
+.mobile-nav ul {
+    list-style: none;
+}
+
+.mobile-nav li a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* Main Content */
+.lucky-numbers-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.lucky-numbers-container h1 {
+    color: var(--primary);
+    font-weight: 300;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+/* Table Styles */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.lucky-numbers-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border: 1px solid var(--border);
+}
+
+.lucky-numbers-table th {
+    background-color: #ff5252;
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    font-weight: 500;
+    border-bottom: 2px solid var(--border);
+}
+
+.lucky-numbers-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border);
+}
+
+.lucky-numbers-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.lucky-numbers-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+    margin-top: 30px;
+    border-top: 1px solid var(--border);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .desktop-nav {
+        display: none;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    .lucky-numbers-table th, 
+    .lucky-numbers-table td {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-container {
+        padding: 10px 15px;
+    }
+    
+    .logo-svg {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .lucky-numbers-container {
+        padding: 10px;
+    }
+    
+    .lucky-numbers-table th, 
+    .lucky-numbers-table td {
+        padding: 6px 8px;
+        font-size: 12px;
+    }
+    
+    .lucky-numbers-table td:first-child {
+        min-width: 150px;
+    }
+}

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previous Results - FrankyTeer</title>
+    <link rel="stylesheet" href="previousresult.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Additional CSS for messages/loading */
+        .message-box {
+            margin-top: 20px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            text-align: center;
+            display: none; /* Hidden by default */
+        }
+        .message-box.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .message-box.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6fb;
+        }
+        .message-box.info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        /* Specific styles for table cells */
+        .tickets-table td {
+            text-align: center; /* Center align numbers */
+        }
+        .tickets-table th {
+            text-align: center; /* Center align headers */
+        }
+
+        /* Styling for empty table rows */
+        .empty-table-row td {
+            text-align: center;
+            font-style: italic;
+            color: #777;
+            padding: 20px;
+        }
+        
+        /* Flexbox for the section title to allow refresh button */
+        .ticket-section h2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 10px; /* Add some padding if refresh button is close to edge */
+        }
+        .ticket-section h2 .refresh-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+        }
+        .ticket-section h2 .refresh-btn:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="../index.html" class="logo">
+                <svg class="logo-svg" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#333" stroke-width="3" fill="none"/>
+                    <circle cx="50" cy="50" r="30" stroke="#333" stroke-width="2" fill="none"/>
+                    <circle cx="50" cy="50" r="20" stroke="#333" stroke-width="2" fill="none"/>
+                    <circle cx="50" cy="50" r="10" stroke="#333" stroke-width="2" fill="#ff5252"/>
+                    <line x1="10" y1="50" x2="30" y2="50" stroke="#333" stroke-width="2"/>
+                    <line x1="70" y1="50" x2="90" y2="50" stroke="#333" stroke-width="2"/>
+                    <line x1="50" y1="10" x2="50" y2="30" stroke="#333" stroke-width="2"/>
+                    <line x1="50" y1="70" x2="50" y2="90" stroke="#333" stroke-width="2"/>
+                </svg>
+            </a>
+            
+            <nav class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../mytickets/mytickets.html">MyTickets</a></li>
+                    <li><a href="../mybalance/mybalance.html">My Balance</a></li>
+                    <li><a href="../dreamnumber/dreamnumber.html">Dream Numbers</a></li>
+                    <li><a href="previousresults.html">Previous Results</a></li>
+                    <li><a href="../aboutus/aboutus.html">About Us</a></li>
+                    <li><a href="../login/login.html">Login</a></li>
+                </ul>
+            </nav>
+
+            <button class="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../mytickets/mytickets.html">MyTickets</a></li>
+                <li><a href="../mybalance/mybalance.html">My Balance</a></li>
+                <li><a href="../dreamnumber/dreamnumber.html">Dream Numbers</a></li>
+                <li><a href="previousresults.html">Previous Results</a></li>
+                <li><a href="../aboutus/aboutus.html">About Us</a></li>
+                <li><a href="../login/login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="tickets-container">
+        <h1>Previous Results</h1>
+        
+        <!-- Message Box for AJAX messages -->
+        <div id="resultsMessageBox" class="message-box"></div>
+
+        <section class="ticket-section">
+            <h2>
+                <i class="fas fa-history"></i> Draw History
+                <button class="refresh-btn" id="refreshResults"><i class="fas fa-redo-alt"></i> Refresh</button>
+            </h2>
+            <div class="table-container">
+                <table class="tickets-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>First Round (F/R)</th>
+                            <th>Second Round (S/R)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="previous-results-tbody">
+                        <tr class="empty-table-row"><td colspan="3">Loading previous results...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 FrankyTeer. All rights reserved.</p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileNav = document.querySelector('.mobile-nav');
+            
+            hamburger.addEventListener('click', function() {
+                mobileNav.classList.toggle('active');
+                this.classList.toggle('active');
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.mobile-nav') && !e.target.closest('.hamburger')) {
+                    mobileNav.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            });
+
+            // Helper function to display messages
+            function displayMessage(type, message, redirectUrl = null) {
+                const messageBox = $('#resultsMessageBox');
+                messageBox.removeClass('success error info').addClass(type).text(message).show();
+                if (redirectUrl) {
+                    setTimeout(() => { window.location.href = redirectUrl; }, 2000);
+                } else {
+                    setTimeout(() => messageBox.fadeOut(), 5000);
+                }
+            }
+
+            // Function to fetch and display previous results
+            function fetchPreviousResults() {
+                displayMessage('info', 'Loading previous results...');
+                $.ajax({
+                    url: 'get_previous_results.php',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log('get_previous_results.php Response:', response);
+                        if (response.success) {
+                            displayMessage('success', response.message);
+                            renderPreviousResults(response.results);
+                        } else {
+                            displayMessage('error', response.message);
+                            $('#previous-results-tbody').html('<tr class="empty-table-row"><td colspan="3">' + response.message + '</td></tr>');
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error("Error fetching previous results:", jqXHR.responseText);
+                        displayMessage('error', "Failed to load previous results. Server error.");
+                        $('#previous-results-tbody').html('<tr class="empty-table-row"><td colspan="3">Failed to load results.</td></tr>');
+                    }
+                });
+            }
+
+            // Function to render results into the table
+            function renderPreviousResults(results) {
+                const tbody = $('#previous-results-tbody');
+                tbody.empty(); // Clear existing rows
+
+                if (results.length === 0) {
+                    tbody.append('<tr class="empty-table-row"><td colspan="3">No previous results found.</td></tr>');
+                    return;
+                }
+
+                results.forEach(result => {
+                    // Format date from YYYY-MM-DD to DD/MM/YY
+                    const dateObj = new Date(result.result_date);
+                    const formattedDate = dateObj.toLocaleDateString('en-GB'); // e.g., 20/06/2025
+
+                    tbody.append(`
+                        <tr>
+                            <td>${formattedDate}</td>
+                            <td>${result.first_round_result || 'N/A'}</td>
+                            <td>${result.second_round_result || 'N/A'}</td>
+                        </tr>
+                    `);
+                });
+            }
+
+            // Attach refresh button listener
+            $('#refreshResults').on('click', fetchPreviousResults);
+
+            // Initial fetch on page load
+            fetchPreviousResults();
+        });
+    </script>
+</body>
+</html>

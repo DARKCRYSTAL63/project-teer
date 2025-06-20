@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recharge QR Code</title>
+  <link rel="stylesheet" href="qr.css" /> 
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f2f5; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+    }
+    .qr-container {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+    }
+    .qr-container h2 {
+        color: #ff5252;
+        margin-bottom: 20px;
+        font-size: 1.8rem;
+    }
+    .qr-container img {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+    .qr-container button {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        background-color: #ff5252;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .qr-container button:hover {
+        background-color: #e04141;
+    }
+    .qr-container p {
+        font-size: 0.95rem;
+        color: #555;
+        margin-top: 20px;
+        margin-bottom: 15px;
+    }
+    #loadingMessage {
+        color: #007bff;
+        font-style: italic;
+    }
+    #qrImage {
+        display: none; 
+    }
+  </style>
+</head>
+<body>
+      <div class="qr-container">
+        <h2 id="rechargeAmountTitle">Recharge Amount</h2>
+        <p id="loadingMessage">Generating QR code...</p>
+        <img id="qrImage" src="" alt="QR Code">
+
+        <button onclick="downloadQRCode()">Download QR Code</button>
+        <button onclick="shareQRCode()">Share QR Code</button>
+
+        <p>If you have finished recharging, click below to confirm:</p>
+        <button type="button" id="confirmRechargeBtn">Confirm Recharge</button>
+    </div>
+
+    <script>
+        let currentRechargeAmount = 0; 
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const amount = urlParams.get('amount');
+            const rechargeAmountTitle = document.getElementById('rechargeAmountTitle');
+            const qrImage = document.getElementById('qrImage');
+            const loadingMessage = document.getElementById('loadingMessage');
+            const confirmRechargeBtn = document.getElementById('confirmRechargeBtn');
+
+            if (amount) {
+                currentRechargeAmount = parseInt(amount);
+                rechargeAmountTitle.textContent = `Recharge ₹${currentRechargeAmount}`;
+                
+                // --- FIXED LINE HERE ---
+                // Correctly references currentRechargeAmount
+                const imageFileName = `qr${currentRechargeAmount}.jpeg`; 
+                qrImage.src = imageFileName; 
+                
+                console.log('Attempting to load QR code image from:', qrImage.src);
+
+                qrImage.onload = () => {
+                    loadingMessage.style.display = 'none'; 
+                    qrImage.style.display = 'block'; 
+                };
+                qrImage.onerror = () => {
+                    loadingMessage.textContent = 'Failed to load QR code image. Please ensure the image exists and the path is correct: ' + qrImage.src;
+                    loadingMessage.style.color = 'red';
+                    qrImage.style.display = 'none'; 
+                    console.error('Failed to load image:', qrImage.src); 
+                };
+
+            } else {
+                rechargeAmountTitle.textContent = 'Invalid Recharge Amount';
+                loadingMessage.textContent = 'Please specify a recharge amount.';
+                loadingMessage.style.color = 'red';
+                qrImage.style.display = 'none';
+                confirmRechargeBtn.disabled = true; 
+            }
+
+            confirmRechargeBtn.addEventListener('click', () => {
+                if (currentRechargeAmount === 0) {
+                    alert('Invalid recharge amount to confirm.');
+                    return;
+                }
+
+                // Corrected URL for project-teer
+                fetch('/project-teer/qrcode/submit_recharge_request.php', { 
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        amount: currentRechargeAmount
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        if (response.status === 401) {
+                            alert('Session expired or not logged in. Please log in again.');
+                            window.location.href = '/project-teer/login/login.html'; 
+                        }
+                        throw new Error('Network response was not ok.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        alert('Recharge request submitted successfully! It is pending admin approval.');
+                        window.location.href = '/project-teer/mybalance/mybalance.html?status=pending&amount=' + currentRechargeAmount; 
+                    } else {
+                        alert('Error submitting recharge request: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An unexpected error occurred. Please try again.');
+                });
+            });
+        });
+
+        function downloadQRCode() {
+            const link = document.createElement('a');
+            link.href = document.getElementById('qrImage').src;
+            link.download = `qr_recharge_${currentRechargeAmount}.jpeg`; 
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function shareQRCode() {
+            const imgURL = document.getElementById('qrImage').src;
+            if (navigator.share) {
+                navigator.share({
+                    title: `ProjectTeer Recharge ₹${currentRechargeAmount}`, 
+                    text: `Scan this QR code to recharge ₹${currentRechargeAmount} for ProjectTeer!`, 
+                    url: imgURL
+                }).catch(err => console.error('Share failed:', err));
+            } else {
+                alert('Sharing is not supported on this device.');
+            }
+        }
+    </script>
+</body>
+</html>

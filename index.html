@@ -6,11 +6,183 @@
     <title>FrankyTeer</title>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Message Box Styling (replacing alerts) */
+        .message-box {
+            margin-top: 20px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            text-align: left;
+            display: none; /* Hidden by default */
+        }
+        .message-box.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .message-box.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6fb;
+        }
+        /* Styles for user balance display */
+        .user-balance-display {
+            background-color: #e0f7fa; /* Light blue */
+            color: #007bff;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            max-width: fit-content; /* Adjust width to content */
+            margin-left: auto; /* Center or align as per your existing layout */
+            margin-right: auto;
+        }
+        .pair-numbers-display {
+            font-weight: bold;
+            color: #6a0dad; /* Purple color for pair numbers */
+            padding: 5px;
+            background-color: #f5f5ff;
+            border-radius: 4px;
+            word-break: break-all; /* Break long strings */
+            font-size: 0.9em;
+        }
+        /* Styling for the new Book button */
+        .book-button { /* Changed from .pay-button */
+            background-color: #28a745; /* Green for success actions */
+            color: white;
+            padding: 10px 20px; /* Adjusted padding */
+            border: none;
+            border-radius: 4px; /* Rounded buttons */
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            margin-top: 15px; /* Added spacing */
+        }
+        .book-button:hover {
+            background-color: #218838;
+            transform: translateY(-1px);
+        }
+        .book-button:disabled { /* Style for disabled buttons */
+            background-color: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        /* Adjustments for add/remove buttons */
+        .add-number {
+            background-color: #007bff; /* Blue for add */
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85em;
+            margin-top: 10px;
+            display: inline-block; /* Allow spacing */
+            transition: background-color 0.3s;
+        }
+        .add-number:hover {
+            background-color: #0056b3;
+        }
+        .remove-number-btn { /* New class for remove button */
+            background-color: #dc3545; /* Red for remove */
+            color: white;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75em;
+            margin-left: 5px;
+            transition: background-color 0.3s;
+        }
+        .remove-number-btn:hover {
+            background-color: #c82333;
+        }
+        /* Specific input width for forecast/night teer */
+        .forecast-table .fr-input, .forecast-table .sr-input,
+        .night-teer-table .fr-input, .night-teer-table .sr-input {
+            width: 70px; /* Adjust as needed */
+        }
+        /* Inputs in tables */
+        .booking-table .number-input, .booking-table .amount-input,
+        .forecast-table .fr-input, .forecast-table .sr-input, .forecast-table .amount-input,
+        .night-teer-table .fr-input, .night-teer-table .sr-input, .night-teer-table .amount-input,
+        .house-section .number-input, .house-section .amount-input,
+        .ending-section .number-input, .ending-section .amount-input,
+        .allpair-section .amount-input {
+            width: calc(100% - 10px); /* Adjust for padding and border within table cell */
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+        }
+        /* Removed .booking-table select.round-select as it's no longer used for these sections */
+
+        /* NEW CSS for "Booking Closed" overlay */
+        .round-section {
+            position: relative; /* Essential for absolute positioning of overlay */
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            padding: 20px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .booking-closed-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #dc3545; /* Red color for "Closed" */
+            z-index: 10; /* Ensure it's above other elements */
+            border-radius: 8px; /* Match section border-radius */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            pointer-events: none; /* Allows clicks to pass through if needed, but we'll disable elements below */
+        }
+        /* Styles for user greeting */
+        .user-greeting {
+            color: #555;
+            font-size: 1em;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        @media (max-width: 767px) {
+            .user-greeting {
+                display: none; /* Hide greeting in desktop header if space is tight */
+            }
+            .mobile-nav li a.user-greeting-mobile {
+                display: block; /* Show only in mobile nav */
+                padding: 15px 20px;
+                text-decoration: none;
+                color: #333;
+                border-bottom: 1px solid #f0f0f0;
+                font-size: 16px;
+                font-weight: bold;
+                background-color: #f9f9f9; /* Slightly different background */
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="header-container">
-            <a href="#" class="logo">
+            <a href="index.html" class="logo">
                 <svg class="logo-svg" viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="40" stroke="#333" stroke-width="3" fill="none"/>
                     <circle cx="50" cy="50" r="30" stroke="#333" stroke-width="2" fill="none"/>
@@ -25,14 +197,16 @@
             
             <nav class="desktop-nav">
                 <ul class="nav-links">
-                    <li><a href="mytickets.html">MyTickets</a></li>
-                    <li><a href="mybalance.html">Mybalance</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
-                    <li><a href="commonnumbers.html">Common Numbers</a></li>
-                    <li><a href="dreamnumber.html">Dream Numbers</a></li>
-                    <li><a href="previousresults.html">Previous Results</a></li>
-                    <li><a href="aboutus.html">About Us</a></li>
-                    <li><a href="log in.html">Login</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="mytickets/mytickets.html">MyTickets</a></li>
+                    <li><a href="mybalance/mybalance.html">My Balance</a></li>
+                    <li><a href="dreamnumber/dreamnumber.html">Dream Numbers</a></li>
+                    <li><a href="previousresult/previousresults.html">Previous Results</a></li>
+                    <li><a href="aboutus/aboutus.html">About Us</a></li>
+                    <!-- This list item will be dynamically updated for desktop -->
+                    <li id="login-logout-link-container">
+                        <a href="login/login.html" id="login-logout-link">Login</a>
+                    </li>
                 </ul>
             </nav>
             
@@ -45,14 +219,18 @@
         
         <nav class="mobile-nav">
             <ul>
-                <li><a href="mytickets.html">MyTickets</a></li>
-                <li><a href="mybalance.html">My Balance</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="#">Common Numbers</a></li>
-                <li><a href="dreamnumber.html">Dream Numbers</a></li>
-                <li><a href="previousresults.html">Previous Results</a></li>
-                <li><a href="aboutus.html">About Us</a></li>
-                <li><a href="log in.html">Login</a></li>
+                <!-- Mobile greeting added here -->
+                <li style="display: none;" id="mobile-user-greeting-li"><a href="#" class="user-greeting-mobile"></a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="mytickets/mytickets.html">MyTickets</a></li>
+                <li><a href="mybalance/mybalance.html">My Balance</a></li>
+                <li><a href="dreamnumber/dreamnumber.html">Dream Numbers</a></li>
+                <li><a href="previousresult/previousresults.html">Previous Results</a></li>
+                <li><a href="aboutus/aboutus.html">About Us</a></li>
+                <!-- This list item will be dynamically updated for mobile -->
+                <li id="mobile-login-logout-link-container">
+                    <a href="login/login.html" id="mobile-login-logout-link">Login</a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -65,233 +243,365 @@
             <div class="result-container">
                 <div class="result-box">
                     <h3>First Round</h3>
-                    <p class="result-number">12</p>
+                    <p class="result-number">--</p> <!-- Changed to -- to reflect loading -->
                 </div>
                 <div class="result-box">
                     <h3>Second Round</h3>
-                    <p class="result-number">45</p>
+                    <p class="result-number">--</p> <!-- Changed to -- to reflect loading -->
                 </div>
             </div>
         </section>
 
-        <section class="booking-section">
-            <h2>Booking</h2>
-            <div class="round-section">
+        <!-- User Balance Display - Added here -->
+        <div class="user-balance-display">
+            <i class="fas fa-wallet"></i> Current Balance: ₹<span id="currentBalance">0.00</span>
+        </div>
+        
+        <!-- Consolidated Message Box - Added here -->
+        <div id="bookingMessageBox" class="message-box"></div>
+
+        <section class="booking-section" data-booking-type="single">
+            <h2>Single Numbers Booking</h2>
+            <div class="round-section" data-round-type-binding="first_round">
                 <h3>First Round</h3>
+                <div class="booking-closed-overlay" style="display: none;"></div> 
                 <table class="booking-table">
                     <thead>
                         <tr>
-                            <th>Numbers</th>
+                            <th>Numbers (2 digits)</th>
                             <th>Amount</th>
+                            <th></th> <!-- For remove button -->
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><input type="number" class="number-input" min="0" max="99" placeholder="Enter number"></td>
                             <td><input type="number" class="amount-input" min="1" placeholder="Enter amount"></td>
+                            <td><button type="button" class="remove-number-btn"><i class="fas fa-minus-circle"></i></button></td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr class="total-row" style="display: none;">
                             <td>Total:</td>
-                            <td class="total-amount">0</td>
+                            <td class="total-amount" colspan="2">0.00</td>
                         </tr>
                     </tfoot>
                 </table>
-                <button class="add-number">Add Another Number</button>
-                <button class="pay-button">Pay</button>
+                <button type="button" class="add-number">Add Another Number</button>
+                <button type="button" class="book-button" data-booking-category="single" data-round="first_round">Book First Round</button>
             </div>
 
-            <div class="round-section">
+            <div class="round-section" data-round-type-binding="second_round">
                 <h3>Second Round</h3>
+                <div class="booking-closed-overlay" style="display: none;"></div> 
                 <table class="booking-table">
                     <thead>
                         <tr>
-                            <th>Numbers</th>
+                            <th>Numbers (2 digits)</th>
                             <th>Amount</th>
+                            <th></th> <!-- For remove button -->
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><input type="number" class="number-input" min="0" max="99" placeholder="Enter number"></td>
                             <td><input type="number" class="amount-input" min="1" placeholder="Enter amount"></td>
+                            <td><button type="button" class="remove-number-btn"><i class="fas fa-minus-circle"></i></button></td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr class="total-row" style="display: none;">
                             <td>Total:</td>
-                            <td class="total-amount">0</td>
+                            <td class="total-amount" colspan="2">0.00</td>
                         </tr>
                     </tfoot>
                 </table>
-                <button class="add-number">Add Another Number</button>
-                <button class="pay-button">Pay</button>
+                <button type="button" class="add-number">Add Another Number</button>
+                <button type="button" class="book-button" data-booking-category="single" data-round="second_round">Book Second Round</button>
             </div>
         </section>
 
-        <section class="forecast-section">
-            <h2>Forecast</h2>
-            <div class="round-section">
-                <table class="forecast-table">
+        <section class="forecast-section" data-booking-type="forecast">
+            <h2>Forecast Booking</h2>
+            <div class="round-section" data-round-type-binding="forecast"> 
+                <div class="booking-closed-overlay" style="display: none;"></div> 
+                <table class="forecast-table booking-table"> 
                     <thead>
                         <tr>
-                            <th>First Round</th>
-                            <th>Second Round</th>
+                            <th>First Round (2 digits)</th>
+                            <th>Second Round (2 digits)</th>
                             <th>Amount</th>
+                            <th></th> <!-- For remove button -->
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><input type="number" class="fr-input" min="0" max="99" placeholder="F/R"></td>
-                            <td><input type="number" class="sr-input" min="0" max="99" placeholder="S/R"></td>
-                            <td><input type="number" class="amount-input" min="1" placeholder="Enter amount"></td>
+                            <td><input type="number" class="fr-input number-input" min="0" max="99" placeholder="F/R"></td>
+                            <td><input type="number" class="sr-input number-input" min="0" max="99" placeholder="S/R"></td>
+                            <td><input type="number" class="amount-input" min="1" placeholder="Amount"></td>
+                            <td><button type="button" class="remove-number-btn"><i class="fas fa-minus-circle"></i></button></td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr class="total-row" style="display: none;">
                             <td colspan="2">Total:</td>
-                            <td class="total-amount">0</td>
+                            <td class="total-amount" colspan="2">0.00</td>
                         </tr>
                     </tfoot>
                 </table>
-                <button class="add-number">Add Another Number</button>
-                <button class="pay-button">Pay</button>
+                <button type="button" class="add-number">Add Another Forecast</button>
+                <button type="button" class="book-button" data-booking-category="forecast" data-round="forecast_combined">Book Forecast</button>
             </div>
         </section>
 
-        <section class="house-section">
-            <h2>House</h2>
-            <div class="round-section">
+        <!-- House Section (Consolidated heading with sub-sections) -->
+        <section class="house-section" data-booking-type="house">
+            <h2>House Booking</h2>
+            
+            <div class="round-section" data-round-type-binding="first_round"> 
+                <h3>First Round</h3> <!-- Sub-heading for this round -->
+                <div class="booking-closed-overlay" style="display: none;"></div> 
                 <table class="booking-table">
                     <thead>
                         <tr>
-                            <th>Numbers </th>
-                            <th>Amount</th>
+                            <th>House Digit (0-9)</th>
+                            <th>Amount (x10)</th>
+                            <th></th> <!-- For remove button -->
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><input type="number" class="number-input" min="0" max="9" placeholder="Enter number"></td>
-                            <td><input type="number" class="amount-input" min="1" placeholder="Enter amount"></td>
+                            <td><input type="number" class="number-input" min="0" max="9" placeholder="Enter digit"></td>
+                            <td><input type="number" class="amount-input amount-input-x10" min="1" placeholder="Amount"></td>
+                            <td><button type="button" class="remove-number-btn"><i class="fas fa-minus-circle"></i></button></td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr class="total-row" style="display: none;">
                             <td>Total:</td>
-                            <td class="total-amount">0</td>
+                            <td class="total-amount" colspan="2">0.00</td>
                         </tr>
                     </tfoot>
                 </table>
-                <button class="add-number">Add Another Number</button>
-                <button class="pay-button">Pay</button>
+                <button type="button" class="add-number">Add Another House</button>
+                <button type="button" class="book-button" data-booking-category="house" data-round="first_round">Book House FR</button>
+            </div>
+
+            <div class="round-section" data-round-type-binding="second_round"> 
+                <h3>Second Round</h3> <!-- Sub-heading for this round -->
+                <div class="booking-closed-overlay" style="display: none;"></div> 
+                <table class="booking-table">
+                    <thead>
+                        <tr>
+                            <th>House Digit (0-9)</th>
+                            <th>Amount (x10)</th>
+                            <th></th> <!-- For remove button -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="number" class="number-input" min="0" max="9" placeholder="Enter digit"></td>
+                            <td><input type="number" class="amount-input amount-input-x10" min="1" placeholder="Amount"></td>
+                            <td><button type="button" class="remove-number-btn"><i class="fas fa-minus-circle"></i></button></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row" style="display: none;">
+                            <td>Total:</td>
+                            <td class="total-amount" colspan="2">0.00</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <button type="button" class="add-number">Add Another House</button>
+                <button type="button" class="book-button" data-booking-category="house" data-round="second_round">Book House SR</button>
             </div>
         </section>
 
-        <section class="ending-section">
-            <h2>Ending</h2>
-            <div class="round-section">
+        <!-- Ending Section (Consolidated heading with sub-sections) -->
+        <section class="ending-section" data-booking-type="ending">
+            <h2>Ending Booking</h2>
+            
+            <div class="round-section" data-round-type-binding="first_round"> 
+                <h3>First Round</h3> <!-- Sub-heading for this round -->
+                <div class="booking-closed-overlay" style="display: none;"></div> 
+                <table class="booking-table">
+                    <thead>
+                        <tr>
+                            <th>Ending Digit (0-9)</th>
+                            <th>Amount (x10)</th>
+                            <th></th> <!-- For remove button -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="number" class="number-input" min="0" max="9" placeholder="Enter digit"></td>
+                            <td><input type="number" class="amount-input amount-input-x10" min="1" placeholder="Amount"></td>
+                            <td><button type="button" class="remove-number-btn"><i class="fas fa-minus-circle"></i></button></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row" style="display: none;">
+                            <td>Total:</td>
+                            <td class="total-amount" colspan="2">0.00</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <button type="button" class="add-number">Add Another Ending</button>
+                <button type="button" class="book-button" data-booking-category="ending" data-round="first_round">Book Ending FR</button>
+            </div>
+
+            <div class="round-section" data-round-type-binding="second_round"> 
+                <h3>Second Round</h3> <!-- Sub-heading for this round -->
+                <div class="booking-closed-overlay" style="display: none;"></div> 
+                <table class="booking-table">
+                    <thead>
+                        <tr>
+                            <th>Ending Digit (0-9)</th>
+                            <th>Amount (x10)</th>
+                            <th></th> <!-- For remove button -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="number" class="number-input" min="0" max="9" placeholder="Enter digit"></td>
+                            <td><input type="number" class="amount-input amount-input-x10" min="1" placeholder="Amount"></td>
+                            <td><button type="button" class="remove-number-btn"><i class="fas fa-minus-circle"></i></button></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row" style="display: none;">
+                            <td>Total:</td>
+                            <td class="total-amount" colspan="2">0.00</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <button type="button" class="add-number">Add Another Ending</button>
+                <button type="button" class="book-button" data-booking-category="ending" data-round="second_round">Book Ending SR</button>
+            </div>
+        </section>
+
+       <!-- All Pair Section (Consolidated heading with sub-sections) -->
+       <section class="allpair-section" data-booking-type="pair">
+            <h2>All Pair Booking</h2>
+            
+            <div class="round-section" data-round-type-binding="first_round"> 
+                <h3>First Round</h3> <!-- Sub-heading for this round -->
+                <div class="booking-closed-overlay" style="display: none;"></div> 
                 <table class="booking-table">
                     <thead>
                         <tr>
                             <th>Numbers</th>
-                            <th>Amount</th>
+                            <th>Amount (x10)</th>
+                            <th></th> <!-- For remove button -->
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><input type="number" class="number-input" min="0" max="9" placeholder="Enter number"></td>
-                            <td><input type="number" class="amount-input" min="1" placeholder="Enter amount"></td>
+                            <td class="pair-numbers-display">00, 11, 22, 33, 44, 55, 66, 77, 88, 99</td>
+                            <td><input type="number" class="amount-input amount-input-x10" min="1" placeholder="Amount"></td>
+                            <td><button type="button" class="remove-number-btn"><i class="fas fa-minus-circle"></i></button></td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr class="total-row" style="display: none;">
-                            <td>Total:</td>
-                            <td class="total-amount">0</td>
+                            <td colspan="2">Total (10 numbers):</td>
+                            <td class="total-amount" colspan="1">0.00</td>
                         </tr>
                     </tfoot>
                 </table>
-                <button class="add-number">Add Another Number</button>
-                <button class="pay-button">Pay</button>
+                <button type="button" class="add-number">Add Another Pair</button>
+                <button type="button" class="book-button" data-booking-category="pair" data-round="first_round">Book Pair FR</button>
             </div>
-        </section>
-        <section class="allpair-section">
-            <h2>All Pair</h2>
-            <div class="round-section">
+
+            <div class="round-section" data-round-type-binding="second_round"> 
+                <h3>Second Round</h3> <!-- Sub-heading for this round -->
+                <div class="booking-closed-overlay" style="display: none;"></div> 
                 <table class="booking-table">
                     <thead>
                         <tr>
-                            <th>Numbers </th>
-                            <th>Amount </th>
+                            <th>Numbers</th>
+                            <th>Amount (x10)</th>
+                            <th></th> <!-- For remove button -->
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="pair-numbers">00,11,22,33,44,55,66,77,88,99</td>
-                            <td><input type="number" class="amount-input" min="1" placeholder="Enter amount"></td>
+                            <td class="pair-numbers-display">00, 11, 22, 33, 44, 55, 66, 77, 88, 99</td>
+                            <td><input type="number" class="amount-input amount-input-x10" min="1" placeholder="Amount"></td>
+                            <td><button type="button" class="remove-number-btn"><i class="fas fa-minus-circle"></i></button></td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr class="total-row" style="display: none;">
-                            <td>Total (10 numbers):</td>
-                            <td class="total-amount">0</td>
+                            <td colspan="2">Total (10 numbers):</td>
+                            <td class="total-amount" colspan="1">0.00</td>
                         </tr>
                     </tfoot>
                 </table>
-                <button class="pay-button">Pay</button>
+                <button type="button" class="add-number">Add Another Pair</button>
+                <button type="button" class="book-button" data-booking-category="pair" data-round="second_round">Book Pair SR</button>
             </div>
         </section>
-        <section class="booking-section">
-            <h2>Night Teer</h2>
-            <div class="round-section">
+
+
+        <section class="booking-section" data-booking-type="night_teer">
+            <h2>Night Teer Booking</h2>
+            <div class="round-section" data-round-type-binding="night_teer_fr">
                 <h3>First Round</h3>
-                <table class="booking-table">
+                <div class="booking-closed-overlay" style="display: none;"></div> 
+                <table class="booking-table night-teer-table">
                     <thead>
                         <tr>
-                            <th>Numbers</th>
+                            <th>Numbers (2 digits)</th>
                             <th>Amount</th>
+                            <th></th> <!-- For remove button -->
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><input type="number" class="number-input" min="0" max="99" placeholder="Enter number"></td>
                             <td><input type="number" class="amount-input" min="1" placeholder="Enter amount"></td>
+                            <td><button type="button" class="remove-number-btn"><i class="fas fa-minus-circle"></i></button></td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr class="total-row" style="display: none;">
                             <td>Total:</td>
-                            <td class="total-amount">0</td>
+                            <td class="total-amount" colspan="2">0.00</td>
                         </tr>
                     </tfoot>
                 </table>
-                <button class="add-number">Add Another Number</button>
-                <button class="pay-button">Pay</button>
+                <button type="button" class="add-number" data-round-section="night_teer_fr">Add Another Number</button>
+                <button type="button" class="book-button" data-booking-category="night_teer" data-round="night_teer_fr">Book Night Teer FR</button>
             </div>
 
-            <div class="round-section">
+            <div class="round-section" data-round-type-binding="night_teer_sr">
                 <h3>Second Round</h3>
-                <table class="booking-table">
+                <div class="booking-closed-overlay" style="display: none;"></div> 
+                <table class="booking-table night-teer-table">
                     <thead>
                         <tr>
-                            <th>Numbers</th>
+                            <th>Numbers (2 digits)</th>
                             <th>Amount</th>
+                            <th></th> <!-- For remove button -->
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><input type="number" class="number-input" min="0" max="99" placeholder="Enter number"></td>
                             <td><input type="number" class="amount-input" min="1" placeholder="Enter amount"></td>
+                            <td><button type="button" class="remove-number-btn"><i class="fas fa-minus-circle"></i></button></td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr class="total-row" style="display: none;">
                             <td>Total:</td>
-                            <td class="total-amount">0</td>
+                            <td class="total-amount" colspan="2">0.00</td>
                         </tr>
                     </tfoot>
                 </table>
-                <button class="add-number">Add Another Number</button>
-                <button class="pay-button">Pay</button>
+                <button type="button" class="add-number" data-round-section="night_teer_sr">Add Another Number</button>
+                <button type="button" class="book-button" data-booking-category="night_teer" data-round="night_teer_sr">Book Night Teer SR</button>
             </div>
         </section>
 
@@ -309,94 +619,584 @@
         <div class="footer-left">
             <p>&copy; 2025 FrankyTeer. All rights reserved.</p>
             <p class="footer-links">
-                <a href="privacy-policy.html">Privacy Policy</a> | 
-                <a href="termsandcondition.html">Terms and Conditions</a> | 
-                <a href="refundpolicy.html">Refund Policy</a>
+                <a href="privacy/privacy-policy.html">Privacy Policy</a> | 
+                <a href="terms/termsandcondition.html">Terms and Conditions</a> | 
+                <a href="refund/refundpolicy.html">Refund Policy</a>
             </p>
     </footer> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-                document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle
-            const hamburger = document.querySelector('.hamburger');
-            const mobileNav = document.querySelector('.mobile-nav');
-            
-            hamburger.addEventListener('click', function() {
-                mobileNav.classList.toggle('active');
-                this.classList.toggle('active');
-            });
-            
-            // Close menu when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.mobile-nav') && !e.target.closest('.hamburger')) {
-                    mobileNav.classList.remove('active');
-                    hamburger.classList.remove('active');
-                }
-            });
-            
-            // Add row functionality
-            document.querySelectorAll('.add-number').forEach(button => {
-                button.addEventListener('click', function() {
-                    const tbody = this.closest('.round-section').querySelector('tbody');
-                    const newRow = tbody.firstElementChild.cloneNode(true);
-                    
-                    // Clear input values
-                    newRow.querySelectorAll('input').forEach(input => {
-                        input.value = '';
-                    });
-                    
-                    tbody.appendChild(newRow);
-                    calculateTotal(tbody.closest('table'));
-                });
-            });
-            
-            // Calculate totals when amounts change
-            document.addEventListener('input', function(e) {
-                if (e.target.classList.contains('amount-input')) {
-                    const table = e.target.closest('table');
-                    calculateTotal(table);
-                }
-            });
-            
-            // Restrict number inputs
-            document.addEventListener('input', function(e) {
-                if (e.target.classList.contains('number-input')) {
-                    // For House and Ending (single digit)
-                    if (e.target.max === '9') {
-                        e.target.value = e.target.value.slice(0, 1);
-                    }
-                    // For other sections (two digits)
-                    else {
-                        
-                        e.target.value = e.target.value.slice(0, 2);
-                    }
-                }
-            });
-            
-            // Calculate total function
-            function calculateTotal(table) {
-                const amountInputs = table.querySelectorAll('.amount-input');
-                let total = 0;
-                
-                // Check which section we're in
-                const sectionTitle = table.closest('.round-section').querySelector('h3').textContent;
-                const isMultipliedSection = ['House', 'Ending', 'All Pair'].includes(sectionTitle);
-                
-                amountInputs.forEach(input => {
-                    const amount = parseFloat(input.value) || 0;
-                    total += isMultipliedSection ? amount * 10 : amount;
-                });
-                
-                const totalRow = table.querySelector('.total-row');
-                const totalAmountCell = table.querySelector('.total-amount');
-                
-                if (total > 0) {
-                    totalRow.style.display = '';
-                    totalAmountCell.textContent = total.toFixed(2);
-                } else {
-                    totalRow.style.display = 'none';
-                }
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const mobileNav = document.querySelector('.mobile-nav');
+        
+        hamburger.addEventListener('click', function() {
+            mobileNav.classList.toggle('active');
+            this.classList.toggle('active');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.mobile-nav') && !e.target.closest('.hamburger')) {
+                mobileNav.classList.remove('active');
+                hamburger.classList.remove('active');
             }
         });
-    </script>
+        
+        // --- NEW/MODIFIED JAVASCRIPT FOR BOOKING SECTION ---
+        let currentBalance = 0; // Will be fetched from backend
+        let bookingSettings = {}; // Store booking enable/disable settings
+
+        // Helper function to display messages
+        function displayMessage(type, message, redirectUrl = null) { // Added redirectUrl parameter
+            const messageBox = $('#bookingMessageBox');
+            messageBox.removeClass('success error').addClass(type).text(message).show();
+            console.log(`Displaying message: Type=${type}, Message=${message}, Redirect URL=${redirectUrl}`);
+
+            if (redirectUrl) {
+                console.log(`Redirecting to: ${redirectUrl} in 2 seconds...`);
+                setTimeout(() => { window.location.href = redirectUrl; }, 2000);
+            } else {
+                // Optional: Hide after a few seconds if no redirect
+                setTimeout(() => messageBox.fadeOut(), 5000);
+            }
+        }
+
+        // Function to fetch user balance
+        function fetchUserBalance() {
+            $.ajax({
+                url: 'mybalance/get_user_balance.php', // Path from index.html
+                method: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    console.log('get_user_balance.php Success Response:', response);
+                    if (response.success) {
+                        currentBalance = parseFloat(response.balance);
+                        $('#currentBalance').text(currentBalance.toFixed(2));
+                    } else {
+                        // If not logged in, redirect
+                        if (response.redirect) {
+                            displayMessage('error', response.message + ' Redirecting to login...', response.redirect);
+                        } else {
+                            displayMessage('error', "Error fetching balance: " + response.message);
+                            $('#currentBalance').text('Error');
+                        }
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error("Error fetching user balance:", jqXHR.responseText);
+                    // This error typically means server is unreachable or returned non-JSON.
+                    // The PHP script itself should handle user not logged in with a JSON response.
+                    displayMessage('error', "Could not fetch balance. Server error or invalid response."); 
+                }
+            });
+        }
+
+        // NEW: Function to fetch and apply booking settings
+        function fetchAndApplyBookingSettings() {
+            console.log('--- fetchAndApplyBookingSettings called ---');
+            $.ajax({
+                url: 'get_booking_settings.php', // Publicly accessible script
+                method: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    console.log('API Response for get_booking_settings.php (raw):', response); // LOG THIS
+                    if (response.success && response.settings) {
+                        bookingSettings = response.settings;
+                        console.log('Updated bookingSettings (parsed):', bookingSettings); // LOG THIS
+                        applyBookingSectionStates(); // Apply states to all relevant sections
+                    } else {
+                        console.error("Error fetching booking settings:", response.message);
+                        displayMessage('error', 'Could not fetch booking rules. Some options might be unavailable.');
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error("AJAX Error fetching booking settings:", {jqXHR, textStatus, errorThrown});
+                    displayMessage('error', 'Failed to load booking rules. Please refresh.');
+                }
+            });
+        }
+
+        // Helper function to format round types for display
+        function formatRoundTypeForDisplay(roundType) {
+            switch (roundType) {
+                case 'first_round':
+                    return 'First Round';
+                case 'second_round':
+                    return 'Second Round';
+                case 'forecast':
+                    return 'Forecast';
+                case 'night_teer_fr':
+                    return 'Night Teer First Round';
+                case 'night_teer_sr':
+                    return 'Night Teer Second Round';
+                default:
+                    return 'Round'; // Fallback
+            }
+        }
+
+        // NEW: Function to apply enable/disable states to booking sections and their elements
+        function applyBookingSectionStates() {
+            console.log('--- applyBookingSectionStates called ---');
+            console.log('Current bookingSettings (inside applyBookingSectionStates):', bookingSettings);
+
+            const allRoundSections = document.querySelectorAll('.round-section');
+            // These are the individual round keys that are toggled in the admin panel and returned by get_booking_settings.php
+            const individualBookingToggleKeys = ['first_round', 'second_round', 'night_teer_fr', 'night_teer_sr', 'forecast']; 
+
+            allRoundSections.forEach(sectionDiv => {
+                const overlay = sectionDiv.querySelector('.booking-closed-overlay');
+                const formElements = sectionDiv.querySelectorAll('input, button.book-button, button.add-number, button.remove-number-btn');
+                
+                const parentSectionType = $(sectionDiv).closest('section').data('booking-type'); 
+                const boundRoundType = sectionDiv.dataset.roundTypeBinding; 
+
+                let sectionId = parentSectionType + ' -> ' + boundRoundType || 'N/A';
+                console.log('\nProcessing sectionDiv:', sectionId, sectionDiv);
+
+                let sectionShouldBeDisabled = false;
+                let overlayMessage = 'Booking Closed'; // Default message
+
+                if (individualBookingToggleKeys.includes(boundRoundType)) {
+                    console.log('  -> Section bound to specific key:', boundRoundType);
+                    const isBookingEnabled = bookingSettings[boundRoundType];
+                    console.log(`    -> bookingSettings['${boundRoundType}'] is: ${isBookingEnabled} (type: ${typeof isBookingEnabled})`);
+
+                    if (isBookingEnabled === false) { 
+                        sectionShouldBeDisabled = true;
+                        // Set specific message for the overlay
+                        overlayMessage = formatRoundTypeForDisplay(boundRoundType) + ' Booking Closed';
+                        console.log('    -> DISABLING: Booking for', boundRoundType, 'is FALSE in settings. Overlay Message:', overlayMessage);
+                    } else {
+                        console.log('    -> ENABLING: Booking for', boundRoundType, 'is TRUE/undefined in settings.');
+                    }
+                } else {
+                    console.log('  -> WARNING: Section did not match any expected toggle key. Section ID:', sectionId, '. Data-round-type-binding:', boundRoundType);
+                    sectionShouldBeDisabled = false; 
+                }
+
+                // Apply the determined state to the section
+                if (sectionShouldBeDisabled) {
+                    overlay.textContent = overlayMessage; // Set the specific message
+                    overlay.style.display = 'flex'; // Show overlay
+                    formElements.forEach(element => {
+                        element.disabled = true; // Disable elements
+                        console.log('    -> Element disabled:', element);
+                    });
+                    $(sectionDiv).find('.total-row').hide(); // Hide total if section is disabled
+                    console.log('  -> Final state: OVERLAY SHOWN, elements DISABLED.');
+                } else {
+                    overlay.style.display = 'none'; // Hide overlay
+                    formElements.forEach(element => {
+                         element.disabled = false; // Enable elements
+                        console.log('    -> Element enabled:', element);
+                    });
+                    calculateTotal($(sectionDiv).find('.booking-table'));
+                    console.log('  -> Final state: OVERLAY HIDDEN, elements ENABLED.');
+                }
+            });
+        }
+
+
+        // Call balance fetch and booking settings fetch on page load
+        fetchUserBalance();
+        fetchAndApplyBookingSettings(); 
+
+        // Add row functionality
+        $(document).on('click', '.add-number', function() {
+            const tbody = $(this).siblings('.booking-table').find('tbody');
+            const newRow = tbody.find('tr:first').clone(true, true); 
+
+            newRow.find('input').val('');
+            
+            newRow.find('.remove-number-btn').show(); // Ensure remove button is visible on new row
+
+            tbody.append(newRow);
+            calculateTotal($(this).siblings('.booking-table'));
+
+            // After adding a new row, re-apply the disabled state to new elements if the section is disabled
+            const sectionDiv = $(this).closest('.round-section'); 
+            const overlay = sectionDiv[0].querySelector('.booking-closed-overlay'); // Corrected: Access native DOM element
+            if (overlay && overlay.style.display === 'flex') { 
+                newRow.find('input, button').prop('disabled', true); 
+            } 
+        });
+        
+        // Remove row functionality
+        $(document).on('click', '.remove-number-btn', function() {
+            const tableBody = $(this).closest('tbody');
+            if (tableBody.find('tr').length > 1) { 
+                $(this).closest('tr').remove();
+                calculateTotal(tableBody.closest('table'));
+            } else {
+                displayMessage('error', 'Cannot remove the last row. Please clear inputs instead.');
+                $(this).closest('tr').find('input').val(''); 
+                calculateTotal(tableBody.closest('table')); 
+            }
+        });
+        
+        // Calculate totals when amounts or numbers change
+        $(document).on('input', '.amount-input, .number-input', function() { 
+            const table = $(this).closest('.booking-table');
+            calculateTotal(table);
+        });
+        
+        // Restrict number inputs to 1 or 2 digits and enforce min/max
+        $(document).on('input', '.number-input', function() {
+            let value = $(this).val();
+            const min = parseInt($(this).attr('min'));
+            const max = parseInt($(this).attr('max'));
+
+            if ($(this).attr('max') === '9') { 
+                if (value.length > 1) {
+                    value = value.slice(0, 1);
+                }
+            } else { 
+                if (value.length > 2) {
+                    value = value.slice(0, 2);
+                }
+            }
+
+            const numVal = parseInt(value);
+            if (!isNaN(numVal)) {
+                if (numVal < min) value = min;
+                if (numVal > max) value = max;
+            }
+            $(this).val(value);
+        });
+
+        // Calculate total function for each table
+        function calculateTotal(table) {
+            const section = $(table).closest('section'); 
+            const bookingType = section.data('booking-type'); 
+            
+            let total = 0;
+
+            $(table).find('tbody tr').each(function() {
+                // If the input in this row is disabled, skip it.
+                if ($(this).find('input').prop('disabled')) {
+                    return true; 
+                }
+
+                const amountInput = $(this).find('.amount-input');
+                let amount = parseFloat(amountInput.val()) || 0;
+
+                if (isNaN(amount) || amount <= 0) {
+                    return true; 
+                }
+                
+                let current_row_total = amount; 
+
+                // Determine multiplier based on booking type.
+                if (bookingType === 'house' || bookingType === 'ending' || bookingType === 'pair') {
+                    current_row_total = amount * 10; 
+                }
+                
+                total += current_row_total; 
+            });
+            
+            const totalRow = $(table).find('.total-row');
+            const totalAmountCell = $(table).find('.total-amount');
+            
+            if (total > 0) {
+                totalRow.show();
+                totalAmountCell.text(total.toFixed(2));
+            } else {
+                totalRow.hide();
+                totalAmountCell.text('0.00');
+            }
+        }
+
+        // --- BOOK BUTTON (Pay Button) Handler ---
+        $(document).on('click', '.book-button', function() { 
+            const button = $(this);
+            const section = button.closest('section'); 
+            const roundSectionDiv = button.closest('.round-section'); 
+
+            const bookingCategory = button.data('booking-category'); 
+            const roundTypeFromButton = button.data('round'); 
+
+            console.log('Book button clicked!');
+            console.log('Booking Category:', bookingCategory);
+            console.log('Round Type (from button):', roundTypeFromButton);
+
+            // Initial check: if the entire section is visually disabled by the overlay
+            const overlay = roundSectionDiv[0].querySelector('.booking-closed-overlay'); // Corrected: Access native DOM element
+            if (overlay && overlay.style.display === 'flex') {
+                displayMessage('error', 'Booking for this section is currently closed.'); // Keep general error here if they somehow bypass JS disable
+                console.log('Booking closed, preventing submission.');
+                return;
+            }
+
+            const table = roundSectionDiv.find('.booking-table');
+            const rows = table.find('tbody tr');
+            
+            let bets_to_send = [];
+            let hasValidBet = false;
+            let totalAmountForThisSection = 0; 
+
+            rows.each(function() {
+                const amountInput = $(this).find('.amount-input');
+                let amount_per_unit = parseFloat(amountInput.val()) || 0;
+
+                if (amountInput.prop('disabled')) {
+                    console.log('Skipping disabled row.');
+                    return true; 
+                }
+
+                if (isNaN(amount_per_unit) || amount_per_unit <= 0) {
+                    console.log('Skipping row with invalid or empty amount:', amountInput.val());
+                    return true; 
+                }
+                
+                let bet_data = { 
+                    amount_per_unit: amount_per_unit,
+                    round_type: roundTypeFromButton // Direct round type from button's data-round
+                };
+                let current_row_total = amount_per_unit; 
+
+                // Get the number input value for single, house, ending, night teer
+                if (['single', 'night_teer', 'house', 'ending'].includes(bookingCategory)) {
+                    const numberInput = $(this).find('.number-input');
+                    const number = numberInput.val().trim();
+                    if (!number) { // Check if number is empty
+                        displayMessage('error', 'Please enter a number for each bet.');
+                        hasValidBet = false; return false; // Break out of .each
+                    }
+                    if (bookingCategory === 'single' || bookingCategory === 'night_teer') {
+                        if (!/^\d{2}$/.test(number) || parseInt(number) < 0 || parseInt(number) > 99) {
+                            displayMessage('error', 'Numbers must be 2 digits (00-99).');
+                            hasValidBet = false; return false;
+                        }
+                    } else if (bookingCategory === 'house' || bookingCategory === 'ending') {
+                        if (!/^\d{1}$/.test(number) || parseInt(number) < 0 || parseInt(number) > 9) {
+                            displayMessage('error', ucfirst(bookingCategory) + ' digit must be a single digit (0-9).');
+                            hasValidBet = false; return false;
+                        }
+                        // For house/ending, 'number' in bet_data is actually the single digit
+                        bet_data.single_digit = number; 
+                    }
+                    bet_data.number = number; // Store the number/digit
+                }
+                
+                if (bookingCategory === 'forecast') {
+                    const frInput = $(this).find('.fr-input');
+                    const srInput = $(this).find('.sr-input');
+                    const fr_number = frInput.val().trim();
+                    const sr_number = srInput.val().trim();
+
+                    if (!fr_number && !sr_number) { 
+                         console.log('Skipping forecast row with no FR or SR number.');
+                         return true; // Skip row if both are empty
+                    }
+                    
+                    let hasValidForecastNumber = false;
+                    if (fr_number) {
+                        if (!/^\d{2}$/.test(fr_number) || parseInt(fr_number) < 0 || parseInt(fr_number) > 99) {
+                            displayMessage('error', 'Forecast First Round number must be 2 digits (00-99).');
+                            hasValidBet = false; return false;
+                        }
+                        bet_data.number_fr = fr_number;
+                        hasValidForecastNumber = true;
+                    }
+                    if (sr_number) {
+                        if (!/^\d{2}$/.test(sr_number) || parseInt(sr_number) < 0 || parseInt(sr_number) > 99) {
+                            displayMessage('error', 'Forecast Second Round number must be 2 digits (00-99).');
+                            hasValidBet = false; return false;
+                        }
+                        bet_data.number_sr = sr_number;
+                        hasValidForecastNumber = true;
+                    }
+                    
+                    if (!hasValidForecastNumber) { 
+                        displayMessage('error', 'Please enter at least one valid number (F/R or S/R) for each Forecast bet.');
+                        hasValidBet = false; return false;
+                    }
+                    current_row_total = amount_per_unit; 
+                    
+                    bet_data.forecast_numbers = []; 
+                    if(fr_number) bet_data.forecast_numbers.push({round: 'first_round', number: fr_number});
+                    if(sr_number) bet_data.forecast_numbers.push({round: 'second_round', number: sr_number});
+
+
+                } else if (bookingCategory === 'pair') {
+                    bet_data.numbers = ["00", "11", "22", "33", "44", "55", "66", "77", "88", "99"]; 
+                    current_row_total = amount_per_unit * 10; 
+                }
+                
+                hasValidBet = true; 
+                bets_to_send.push(bet_data);
+                totalAmountForThisSection += current_row_total; 
+            });
+
+            console.log('Bets to send (pre-validation):', bets_to_send);
+            console.log('Has Valid Bet:', hasValidBet);
+            console.log('Total Amount for This Section:', totalAmountForThisSection);
+
+            if (!hasValidBet || bets_to_send.length === 0) {
+                displayMessage('error', 'Please add at least one valid booking row.');
+                console.log('No valid bets found, preventing submission.');
+                return; 
+            }
+            
+            if (totalAmountForThisSection > currentBalance) {
+                displayMessage('error', 'Insufficient balance. Your current balance is ₹' + currentBalance.toFixed(2));
+                console.log('Insufficient balance, preventing submission. Current balance:', currentBalance);
+                return;
+            }
+
+            const formData = {
+                booking_type: bookingCategory, // Main category for backend ('single', 'forecast', 'house', etc.)
+                total_amount: totalAmountForThisSection,
+                bets: JSON.stringify(bets_to_send) // JSON.stringify the bets array
+            };
+
+            console.log('Sending formData to PHP:', formData);
+            
+            $.ajax({
+                url: 'booking/submit_booking.php', 
+                method: 'POST',
+                dataType: 'json',
+                data: formData,
+                success: function(response) {
+                    console.log('PHP Response:', response);
+                    if (response.success) {
+                        displayMessage('success', response.message);
+                        if (response.new_balance !== undefined) {
+                            currentBalance = parseFloat(response.new_balance);
+                            $('#currentBalance').text(currentBalance.toFixed(2));
+                        }
+                        rows.each(function(index) {
+                            if (index > 0) { 
+                                $(this).remove();
+                            } else { 
+                                $(this).find('input').val('');
+                            }
+                        });
+                        calculateTotal(table); 
+                    } else {
+                        // Check for redirect explicitly in the success callback too (though error is more likely for not logged in)
+                        if (response.redirect) {
+                            displayMessage('error', response.message, response.redirect);
+                        } else {
+                            displayMessage('error', response.message);
+                        }
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error("AJAX error submitting booking:", jqXHR.responseText, status, errorThrown);
+                    // This error typically means server is unreachable or returned non-JSON.
+                    displayMessage('error', "An unexpected error occurred during booking submission. Please try again.");
+                }
+            });
+        });
+
+        // Helper function for capitalizing first letter
+        function ucfirst(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        // To fetch and display Today's results on page load
+        fetch('get_todays_results.php')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success && data.results && data.results.length > 0) {
+                    const frResultBox = document.querySelector('.todays-result .result-box:nth-child(1) .result-number');
+                    const srResultBox = document.querySelector('.todays-result .result-box:nth-child(2) .result-number');
+                    
+                    // Reset text content before assigning
+                    frResultBox.textContent = '--';
+                    srResultBox.textContent = '--';
+
+                    data.results.forEach(result => {
+                        if (result.round_type === 'first_round') {
+                            frResultBox.textContent = result.result_number;
+                        } else if (result.round_type === 'second_round') {
+                            srResultBox.textContent = result.result_number;
+                        }
+                    });
+
+                } else {
+                    console.log(data.message || 'No results found for today.');
+                    document.querySelector('.todays-result .result-box:nth-child(1) .result-number').textContent = '--';
+                    document.querySelector('.todays-result .result-box:nth-child(2) .result-number').textContent = '--';
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching today\'s results:', error);
+                document.querySelector('.todays-result .result-box:nth-child(1) .result-number').textContent = '--';
+                document.querySelector('.todays-result .result-box:nth-child(2) .result-number').textContent = '--';
+            });
+        
+        // Initial calculation for all tables on page load
+        document.querySelectorAll('.booking-table').forEach(table => {
+            calculateTotal(table);
+        });
+
+        // --- Start of NEW Login/Logout JavaScript Logic ---
+        // Function to check login status and update UI
+        function checkLoginStatus() {
+            console.log("Checking login status..."); // Debugging log
+            $.ajax({
+                url: 'check_login_status.php', // Path to your new PHP script
+                method: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    console.log("check_login_status.php Response:", response); // Debugging log
+                    const loginLogoutLink = $('#login-logout-link');
+                    const mobileLoginLogoutLink = $('#mobile-login-logout-link');
+                    const mobileUserGreetingLi = $('#mobile-user-greeting-li');
+                    const mobileUserGreeting = mobileUserGreetingLi.find('.user-greeting-mobile');
+
+                    if (response.isLoggedIn) {
+                        // Change to Logout
+                        loginLogoutLink.text('Logout').attr('href', 'login/logout.php').off('click').on('click', function(e) {
+                            e.preventDefault(); // Prevent default link behavior
+                            if (confirm('Are you sure you want to log out?')) {
+                                window.location.href = 'login/logout.php';
+                            }
+                        });
+                        mobileLoginLogoutLink.text('Logout').attr('href', 'login/logout.php').off('click').on('click', function(e) {
+                            e.preventDefault();
+                            if (confirm('Are you sure you want to log out?')) {
+                                window.location.href = 'login/logout.php';
+                            }
+                        });
+
+                        // Display username if available in mobile nav
+                        if (response.username) {
+                            mobileUserGreeting.text('Hello, ' + response.username + '!').show();
+                            mobileUserGreetingLi.show();
+                        }
+
+                    } else {
+                        // Keep as Login
+                        loginLogoutLink.text('Login').attr('href', 'login/login.html').off('click'); // Remove any previous logout click handler
+                        mobileLoginLogoutLink.text('Login').attr('href', 'login/login.html').off('click');
+                        mobileUserGreetingLi.hide(); // Hide mobile greeting
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error("Error checking login status:", jqXHR.responseText);
+                    // Default to Login state on error
+                    $('#login-logout-link').text('Login').attr('href', 'login/login.html');
+                    $('#mobile-login-logout-link').text('Login').attr('href', 'login/login.html');
+                    $('#mobile-user-greeting-li').hide();
+                }
+            });
+        }
+
+        // Call the function on page load
+        checkLoginStatus();
+        // --- End of NEW Login/Logout JavaScript Logic ---
+
+    });
+</script>
 </body>
 </html>

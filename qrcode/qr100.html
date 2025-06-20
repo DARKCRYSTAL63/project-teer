@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recharge ₹100</title>
+  <link rel="stylesheet" href="qr.css" />
+</head>
+<body>
+      <div class="qr-container">
+        <h2>Recharge ₹100</h2>
+        <img id="qrImage" src="qr100.jpeg" alt="QR Code for ₹100">
+
+         <button onclick="downloadQRCode()">Download QR Code</button>
+        <button onclick="shareQRCode()">Share QR Code</button>
+        <p>If you have finished recharging from GPay, click below to confirm:</p>
+        <form action="confirm_recharge.php" method="POST">
+            <input type="hidden" name="amount" value="100">
+            <button type="submit">Confirm Recharge</button>
+        </form>
+
+       
+    </div>
+
+    <script>
+        function downloadQRCode() {
+            const link = document.createElement('a');
+            link.href = document.getElementById('qrImage').src;
+            link.download = 'qr100.jpeg';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function shareQRCode() {
+            const imgURL = document.getElementById('qrImage').src;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Online Housie QR Recharge ₹100',
+                    text: 'Scan this QR code to recharge ₹100 for Online Housie!',
+                    url: imgURL
+                }).catch(err => console.error('Share failed:', err));
+            } else {
+                alert('Sharing is not supported on this device.');
+            }
+        }
+    </script>
+</body>
+</html>

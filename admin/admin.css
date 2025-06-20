@@ -1,0 +1,850 @@
+/* General Body and Container Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5; /* Light background similar to your login page */
+    display: flex; /* Flexbox for navigation and main content layout */
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Navigation Column - FIXED POSITIONING */
+.nav-column {
+    width: 250px;
+    background-color: #ffffff; /* White background for navigation */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    padding: 20px 0;
+    flex-shrink: 0; /* Prevent shrinking on small screens */
+    border-right: 1px solid #eee; /* Separator */
+    
+    position: fixed; /* Keep the navigation column fixed on scroll */
+    height: 100vh;   /* Make it take full viewport height */
+    top: 0;          /* Align to the top of the viewport */
+    left: 0;         /* Align to the left of the viewport */
+    z-index: 1000;   /* Ensure it stays on top of other content if any overlap */
+    overflow-y: auto; /* Allow scrolling within the nav if content is long */
+}
+
+.nav-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0 20px;
+}
+
+.nav-header h2 {
+    color: #ff5252; /* Accent color from login.css */
+    font-size: 1.5rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 25px;
+    color: #555;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 4px; /* Rounded corners for nav items */
+    margin: 5px 15px; /* Spacing between nav items */
+}
+
+.nav-menu li a:hover,
+.nav-menu li a.active {
+    background-color: #ff5252; /* Accent background on hover/active */
+    color: white;
+    box-shadow: 0 4px 8px rgba(255, 82, 82, 0.2); /* Soft shadow on active */
+}
+
+.nav-menu li a i {
+    font-size: 1.1rem;
+}
+
+/* Pending Count Badges (Superscript) */
+.pending-count-badge {
+    background-color: #ff5252; /* Red color as requested */
+    color: white;
+    font-size: 0.7em;
+    padding: 2px 6px;
+    border-radius: 12px;
+    position: relative;
+    top: -8px; /* Adjust vertical position */
+    left: 5px; /* Adjust horizontal position */
+    display: inline-block;
+    min-width: 15px; /* Ensures a circle for single digits */
+    text-align: center;
+    line-height: 1; /* For vertical alignment of text */
+}
+
+/* Hide badge if count is 0 or empty */
+.pending-count-badge[data-count="0"],
+.pending-count-badge:empty {
+    display: none;
+}
+
+
+/* Main Content Area - ADDED MARGIN TO PREVENT OVERLAP */
+.main-content {
+    flex-grow: 1; /* Takes up remaining space */
+    padding: 30px;
+    background-color: #f0f2f5;
+    margin-left: 250px; /* NEW: Offset the width of the fixed nav-column */
+}
+
+.admin-container {
+    max-width: 1200px; /* Max width for content, centers it */
+    margin: 0 auto;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    background-color: #ffffff;
+    padding: 20px 25px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.admin-header h1 {
+    font-size: 1.8rem;
+    color: #333;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px; /* Rounded buttons */
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-primary {
+    background-color: #007bff; /* Blue for primary actions */
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+}
+
+.btn-success {
+    background-color: #28a745; /* Green for success actions */
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Red for danger actions */
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
+}
+
+.btn-warning {
+    background-color: #ffc107; /* Orange for warning actions */
+    color: #333;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    transform: translateY(-1px);
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+}
+
+/* Panel Styling */
+.panel {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    padding: 25px;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.panel-header h2 {
+    font-size: 1.3rem;
+    color: #ff5252; /* Accent color for section headers */
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.panel-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Date Range Picker Styling */
+.date-range-picker {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.date-range-picker input {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    flex-grow: 1;
+}
+
+/* Round Update Boxes */
+.round-update-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.round-update-box {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.round-update-box h3 {
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.input-box {
+    margin-bottom: 15px;
+}
+
+.input-box label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #666;
+}
+
+.input-box input[type="number"] {
+    width: calc(100% - 20px); /* Adjust for padding */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden; /* Ensures rounded corners on table */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+table thead {
+    background-color: #ff5252; /* Header background */
+    color: white;
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Zebra striping */
+}
+
+table tbody tr:hover {
+    background-color: #ffeaea; /* Light red hover effect */
+}
+
+table tfoot {
+    background-color: #f0f2f5;
+    font-weight: bold;
+}
+
+table tfoot td {
+    padding: 15px;
+    color: #333;
+}
+
+/* Status Badges */
+.status-pending {
+    color: #ffc107; /* Warning orange */
+    font-weight: bold;
+}
+
+.status-approved {
+    color: #28a745; /* Success green */
+    font-weight: bold;
+}
+
+.status-rejected {
+    color: #dc3545; /* Danger red */
+    font-weight: bold;
+}
+
+.user-status-active {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.user-status-inactive {
+    color: #6c757d; /* Grey for inactive */
+    font-weight: bold;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 5px;
+}
+
+.pagination button {
+    background-color: #ff5252;
+    color: white;
+    border: 1px solid #e04141;
+    border-radius: 4px;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.pagination button:hover:not(.active),
+.pagination button i {
+    background-color: #e04141;
+}
+
+.pagination button.active {
+    background-color: #333; /* Darker accent for active page */
+    cursor: default;
+    transform: none;
+}
+
+/* Tab Container */
+.tab-container {
+    margin-top: 20px;
+}
+
+.tab-buttons {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+}
+
+.tab-btn {
+    padding: 12px 20px;
+    border: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #666;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    transition: background-color 0.3s, color 0.3s;
+    margin-right: 5px; /* Space between tabs */
+    margin-bottom: -2px; /* Overlap border */
+}
+
+.tab-btn:hover:not(.active) {
+    background-color: #e6e6e6;
+}
+
+.tab-btn.active {
+    background-color: #ffffff;
+    color: #ff5252;
+    border-bottom: 2px solid #ff5252; /* Active tab indicator */
+    cursor: default;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Winning Number Display (Results section) */
+.winning-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff5252;
+    margin-left: 20px;
+    padding: 5px 10px;
+    background-color: #fff0f0;
+    border-radius: 5px;
+    border: 1px solid #ffdcdc;
+}
+
+/* Modal Styling (for export modal) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 25px;
+    border-radius: 8px;
+    width: 90%; /* Responsive width */
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.close-modal {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: #ff5252;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="number"],
+.form-group input[type="password"],
+.form-group select {
+    width: calc(100% - 22px); /* Adjust for padding and border */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.modal-footer {
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* New dashboard card styles */
+.dashboard-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between cards */
+    margin-top: 20px; /* Spacing from panel header */
+    margin-bottom: 20px; /* Spacing below the dashboard section */
+}
+
+.dashboard-card {
+    background-color: #f8f9fa; /* Light background */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Internal padding */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    text-align: center;
+    transition: transform 0.2s ease-in-out; /* Subtle hover effect */
+    color: #333; /* Default text color */
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.dashboard-card.wallet {
+    background: linear-gradient(to right, #4CAF50, #81C784); /* Green gradient for wallet */
+    color: white; /* White text for better contrast on green */
+}
+
+.dashboard-card.users {
+    background: linear-gradient(to right, #2196F3, #64B5F6); /* Blue gradient for users */
+    color: white; /* White text for better contrast on blue */
+}
+
+.dashboard-card h3 {
+    font-size: 1.2em; /* Title font size */
+    margin-bottom: 10px;
+    opacity: 0.9; /* Slightly faded title */
+}
+
+.dashboard-card .value {
+    font-size: 2.5em; /* Large value font size */
+    font-weight: bold;
+}
+
+/* Responsive adjustments for dashboard cards */
+@media (max-width: 768px) {
+    /* Mobile Responsiveness (existing) */
+    body {
+        flex-direction: column; /* Stack navigation and main content */
+    }
+
+    .nav-column {
+        width: 100%;
+        padding: 15px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        position: static; /* Override fixed for mobile, allow scrolling with page */
+        height: auto;
+        overflow-y: visible;
+    }
+
+    .nav-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .nav-menu {
+        display: flex;
+        flex-wrap: wrap; /* Allow nav items to wrap */
+        justify-content: center; /* Center items */
+        margin-top: 15px;
+    }
+
+    .nav-menu li a {
+        padding: 10px 15px;
+        margin: 3px 5px; /* Smaller margins for mobile nav */
+        font-size: 0.9rem;
+        gap: 8px;
+    }
+
+    .main-content {
+        padding: 20px;
+        margin-left: 0; /* REMOVED margin-left for mobile */
+    }
+
+    .admin-header {
+        flex-direction: column; /* Stack header elements */
+        align-items: flex-start;
+        gap: 15px;
+        padding: 15px 20px;
+    }
+
+    .admin-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .header-actions {
+        width: 100%; /* Make buttons full width */
+        justify-content: space-around;
+    }
+
+    .btn {
+        padding: 8px 15px;
+        font-size: 0.85rem;
+    }
+
+    .panel {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .panel-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    .panel-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .date-range-picker {
+        width: 100%;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .date-range-picker input,
+    .date-range-picker button {
+        width: 100%;
+    }
+
+    .round-update-section {
+        grid-template-columns: 1fr; /* Single column on mobile */
+    }
+
+    table {
+        font-size: 0.85rem;
+    }
+
+    table th,
+    table td {
+        padding: 8px 10px;
+    }
+
+    .tab-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .tab-btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+        margin-right: 3px;
+        margin-bottom: 5px;
+    }
+
+    .winning-number {
+        font-size: 1.2rem;
+        margin-left: 10px;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+
+    /* Dashboard cards specific mobile adjustments */
+    .dashboard-card-grid {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+        gap: 15px;
+    }
+    .dashboard-card .value {
+        font-size: 2em; /* Smaller font on mobile */
+    }
+}
+
+/* Smallest Screens */
+@media (max-width: 480px) {
+    .nav-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .nav-menu li a {
+        font-size: 0.8rem;
+        padding: 8px 10px;
+        gap: 5px;
+    }
+
+    .admin-header h1 {
+        font-size: 1.3rem;
+    }
+
+    .panel-header h2 {
+        font-size: 1rem;
+    }
+
+    .btn {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+
+    table th,
+    table td {
+        font-size: 0.75rem;
+        padding: 6px 8px;
+    }
+
+    .tab-btn {
+        font-size: 0.8rem;
+        padding: 8px 10px;
+    }
+
+    .winning-number {
+        font-size: 1rem;
+    }
+}
+/* Basic CSS for the pending badges */
+        .pending-count-badge {
+            background-color: #ff5252; /* Red color */
+            color: white;
+            font-size: 0.7em;
+            padding: 2px 6px;
+            border-radius: 12px;
+            position: relative;
+            top: -8px; /* Adjust vertical position */
+            left: 5px; /* Adjust horizontal position */
+            display: inline-block;
+            min-width: 15px; /* Ensures a circle for single digits */
+            text-align: center;
+            line-height: 1; /* For vertical alignment of text */
+        }
+        /* Hide badge if count is 0 */
+        .pending-count-badge:empty, .pending-count-badge[data-count="0"] {
+            display: none;
+        }
+
+        /* NEW CSS for Admin Bookings Filters and Modal */
+        .filter-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.03);
+        }
+
+        .filter-options .form-group {
+            margin-bottom: 0; /* Remove default form-group margin */
+        }
+
+        .filter-options label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .filter-options .form-control {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+        }
+        .filter-options .btn {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            align-self: end; /* Align buttons to the bottom of their grid cell */
+        }
+
+        /* Modal specific styling (already existing in your template, just ensuring they are here) */
+        .modal {
+            display: none; /* CRITICAL FIX: Hide modals by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
+        }
+        .modal .modal-body {
+            padding: 20px;
+        }
+        .modal .modal-body h4 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #ff5252;
+            font-size: 1.1rem;
+        }
+        #detail-numbers-booked-json {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap; /* Preserve whitespace and wrap long lines */
+            max-height: 200px; /* Limit height */
+            overflow-y: auto; /* Add scroll if content overflows */
+        }
+        .mt-3 {
+            margin-top: 15px;
+        }

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="login.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="container">
+        <h2>Register New Account</h2>
+
+        <form action="#" method="post" id="registerForm">
+            <div class="input-section">
+                <input type="tel" id="regPhone" name="phone" required placeholder="Enter your phone number">
+            </div>
+            <div class="input-section">
+                <input type="text" id="regUsername" name="username" required placeholder="Choose a username">
+            </div>
+            
+            <button type="submit">Register & Generate Password</button>
+
+            <div id="passwordDisplaySection" class="input-section" style="display:none; margin-top: 20px; border: 1px solid #ddd; padding: 10px; border-radius: 4px; background-color: #f9f9f9;">
+                <p><strong>Your Auto-Generated Password:</strong></p>
+                <input type="text" id="generatedPassword" readonly style="border: none; background: transparent; font-weight: bold; cursor: text;">
+                <button type="button" id="copyPassword" style="background-color: #007bff;">Copy Password</button>
+            </div>
+        </form>
+
+       
+
+        <div class="footer">
+            <p>Already have an account? <a href="login.html">Login here</a></p>
+            <a href="#">Contact Us</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const registerForm = document.getElementById("registerForm");
+            const regPhoneInput = document.getElementById("regPhone");
+            const regUsernameInput = document.getElementById("regUsername");
+            const passwordDisplaySection = document.getElementById("passwordDisplaySection");
+            const generatedPasswordInput = document.getElementById("generatedPassword");
+            const copyPasswordButton = document.getElementById("copyPassword");
+
+            registerForm.addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                const phoneNumber = regPhoneInput.value.trim();
+                const username = regUsernameInput.value.trim();
+
+                if (phoneNumber === "" || username === "") {
+                    alert("Please fill in both phone number and username.");
+                    return;
+                }
+
+                // Corrected URL for project-teer
+                fetch('/project-teer/login/register.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        phone: phoneNumber,
+                        username: username
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.message);
+                        generatedPasswordInput.value = data.password;
+                        passwordDisplaySection.style.display = "block";
+                        copyPasswordButton.focus();
+                    } else {
+                        alert("Error: " + data.message);
+                        passwordDisplaySection.style.display = "none";
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An unexpected error occurred during registration. Please try again.');
+                    passwordDisplaySection.style.display = "none";
+                });
+            });
+
+            copyPasswordButton.addEventListener("click", function() {
+                generatedPasswordInput.select();
+                generatedPasswordInput.setSelectionRange(0, 99999);
+                document.execCommand("copy");
+                alert("Password copied to clipboard!");
+            });
+        });
+    </script>
+</body>
+</html>

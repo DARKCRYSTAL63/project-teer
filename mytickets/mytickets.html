@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tickets - FrankyTeer</title>
+    <link rel="stylesheet" href="mytickets.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Additional CSS for messages/loading, adjust as needed */
+        .message-box {
+            margin-top: 20px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            text-align: center;
+            display: none; /* Hidden by default */
+        }
+        .message-box.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .message-box.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6fb;
+        }
+        .message-box.info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        /* Specific styles for "Won" status in tables */
+        .status-won {
+            color: #28a745; /* Green */
+            font-weight: bold;
+        }
+        .status-lost {
+            color: #dc3545; /* Red */
+        }
+        .status-pending {
+            color: #ffc107; /* Orange/Yellow */
+        }
+        .status-active {
+            color: #007bff; /* Blue */
+        }
+        .status-cancelled {
+            color: #6c757d; /* Grey */
+        }
+
+        /* Specific style for "Numbers" column to break long strings */
+        .tickets-table td.numbers-column {
+            word-break: break-all;
+            white-space: normal;
+        }
+        
+        /* Flexbox for the purchased tickets sections to allow refresh button */
+        .purchased-tickets h2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .purchased-tickets h2 .refresh-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+        }
+        .purchased-tickets h2 .refresh-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Styling for empty table rows */
+        .empty-table-row td {
+            text-align: center;
+            font-style: italic;
+            color: #777;
+            padding: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="../index.html" class="logo">
+                <svg class="logo-svg" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#333" stroke-width="3" fill="none"/>
+                    <circle cx="50" cy="50" r="30" stroke="#333" stroke-width="2" fill="none"/>
+                    <circle cx="50" cy="50" r="20" stroke="#333" stroke-width="2" fill="none"/>
+                    <circle cx="50" cy="50" r="10" stroke="#333" stroke-width="2" fill="#ff5252"/>
+                    <line x1="10" y1="50" x2="30" y2="50" stroke="#333" stroke-width="2"/>
+                    <line x1="70" y1="50" x2="90" y2="50" stroke="#333" stroke-width="2"/>
+                    <line x1="50" y1="10" x2="50" y2="30" stroke="#333" stroke-width="2"/>
+                    <line x1="50" y1="70" x2="50" y2="90" stroke="#333" stroke-width="2"/>
+                </svg>
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="mytickets.html">MyTickets</a></li>
+                    <li><a href="../mybalance/mybalance.html">My Balance</a></li>
+                    <li><a href="../dreamnumber/dreamnumber.html">Dream Numbers</a></li>
+                    <li><a href="../previousresult/previousresults.html">Previous Results</a></li>
+                    <li><a href="../aboutus/aboutus.html">About Us</a></li>
+                    <li><a href="../login/login.html">Login</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button class="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="mytickets.html">MyTickets</a></li>
+                <li><a href="../mybalance/mybalance.html">My Balance</a></li>
+                <li><a href="../dreamnumber/dreamnumber.html">Dream Numbers</a></li>
+                <li><a href="../previousresult/previousresults.html">Previous Results</a></li>
+                <li><a href="../aboutus/aboutus.html">About Us</a></li>
+                <li><a href="../login/login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="tickets-container">
+        <h1>My Tickets</h1>
+        
+        <!-- Message Box for AJAX messages -->
+        <div id="ticketsMessageBox" class="message-box"></div>
+
+        <section class="purchased-tickets">
+            <h2>
+                <i class="fas fa-ticket-alt"></i> Today's Purchased Tickets
+                <button class="refresh-btn" id="refreshTodayTickets"><i class="fas fa-redo-alt"></i> Refresh</button>
+            </h2>
+            <div class="table-container">
+                <table class="tickets-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Round</th>
+                            <th>Numbers</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Booked At</th>
+                        </tr>
+                    </thead>
+                    <tbody id="today-purchased-tickets-tbody">
+                        <tr class="empty-table-row"><td colspan="6">Loading today's tickets...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="purchased-tickets">
+            <h2>
+                <i class="fas fa-history"></i> Previous Purchased Tickets
+                <button class="refresh-btn" id="refreshPreviousTickets"><i class="fas fa-redo-alt"></i> Refresh</button>
+            </h2>
+            <div class="table-container">
+                <table class="tickets-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Round</th>
+                            <th>Numbers</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Booked At</th>
+                        </tr>
+                    </thead>
+                    <tbody id="previous-purchased-tickets-tbody">
+                        <tr class="empty-table-row"><td colspan="6">Loading previous tickets...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <section class="winning-tickets">
+            <h2>
+                <i class="fas fa-trophy"></i> Winning Tickets
+                <button class="refresh-btn" id="refreshWinningTickets"><i class="fas fa-redo-alt"></i> Refresh</button>
+            </h2>
+            <div class="table-container">
+                <table class="tickets-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Round</th>
+                            <th>Numbers</th>
+                            <th>Amount Booked</th>
+                            <th>Winning Amount</th>
+                            <th>Date Won</th>
+                        </tr>
+                    </thead>
+                    <tbody id="winning-tickets-tbody">
+                        <tr class="empty-table-row"><td colspan="6">Loading winning tickets...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy;2025 FrankyTeer. All rights reserved.</p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileNav = document.querySelector('.mobile-nav');
+            
+            hamburger.addEventListener('click', function() {
+                mobileNav.classList.toggle('active');
+                this.classList.toggle('active');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.mobile-nav') && !e.target.closest('.hamburger')) {
+                    mobileNav.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            });
+
+            // Helper function to display messages
+            function displayMessage(type, message, redirectUrl = null) {
+                const messageBox = $('#ticketsMessageBox');
+                messageBox.removeClass('success error info').addClass(type).text(message).show();
+                if (redirectUrl) {
+                    setTimeout(() => { window.location.href = redirectUrl; }, 2000);
+                } else {
+                    setTimeout(() => messageBox.fadeOut(), 5000);
+                }
+            }
+
+            // Helper function to format round types for display
+            function formatRoundType(roundType) {
+                if (!roundType) return 'N/A';
+                return roundType.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+            }
+
+            // Function to fetch and display user tickets
+            function fetchUserTickets() {
+                displayMessage('info', 'Loading tickets...');
+                $.ajax({
+                    url: 'get_user_tickets.php',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log('get_user_tickets.php Response:', response);
+                        if (response.success) {
+                            displayMessage('success', response.message);
+                            renderTickets(response.today_purchased_tickets, '#today-purchased-tickets-tbody', 'purchased');
+                            renderTickets(response.previous_purchased_tickets, '#previous-purchased-tickets-tbody', 'purchased');
+                            renderTickets(response.winning_tickets, '#winning-tickets-tbody', 'winning');
+                        } else {
+                            if (response.redirect) {
+                                displayMessage('error', response.message + ' Redirecting to login...', response.redirect);
+                            } else {
+                                displayMessage('error', response.message);
+                                // Clear tables and show error message
+                                $('#today-purchased-tickets-tbody').html('<tr class="empty-table-row"><td colspan="6">' + response.message + '</td></tr>');
+                                $('#previous-purchased-tickets-tbody').html('<tr class="empty-table-row"><td colspan="6">' + response.message + '</td></tr>');
+                                $('#winning-tickets-tbody').html('<tr class="empty-table-row"><td colspan="6">' + response.message + '</td></tr>');
+                            }
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error("Error fetching user tickets:", jqXHR.responseText);
+                        displayMessage('error', "Failed to load tickets. Server error.");
+                        $('#today-purchased-tickets-tbody').html('<tr class="empty-table-row"><td colspan="6">Failed to load tickets.</td></tr>');
+                        $('#previous-purchased-tickets-tbody').html('<tr class="empty-table-row"><td colspan="6">Failed to load tickets.</td></tr>');
+                        $('#winning-tickets-tbody').html('<tr class="empty-table-row"><td colspan="6">Failed to load tickets.</td></tr>');
+                    }
+                });
+            }
+
+            // Function to render tickets into a specific tbody
+            function renderTickets(tickets, tbodySelector, type) {
+                const tbody = $(tbodySelector);
+                tbody.empty(); // Clear existing rows
+
+                if (tickets.length === 0) {
+                    tbody.append('<tr class="empty-table-row"><td colspan="6">No tickets found.</td></tr>');
+                    return;
+                }
+
+                tickets.forEach(ticket => {
+                    const statusClass = `status-${ticket.status || 'unknown'}`;
+                    const bookedAtDate = new Date(ticket.booked_at);
+                    const formattedDate = bookedAtDate.toLocaleDateString('en-GB') + ' ' + bookedAtDate.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+
+                    let rowHtml = `<tr>
+                        <td>${formatRoundType(ticket.booking_type)}</td>
+                        <td>${formatRoundType(ticket.round_type)}</td>
+                        <td class="numbers-column">${ticket.formatted_numbers}</td>`;
+                    
+                    if (type === 'purchased') {
+                        rowHtml += `
+                            <td>₹${parseFloat(ticket.total_amount).toFixed(2)}</td>
+                            <td class="${statusClass}">${ticket.status.charAt(0).toUpperCase() + ticket.status.slice(1)}</td>
+                            <td>${formattedDate}</td>
+                        </tr>`;
+                    } else if (type === 'winning') {
+                        rowHtml += `
+                            <td>₹${parseFloat(ticket.total_amount).toFixed(2)}</td>
+                            <td class="status-won">₹${parseFloat(ticket.win_amount).toFixed(2)}</td>
+                            <td>${bookedAtDate.toLocaleDateString('en-GB')}</td> <!-- Date of the ticket, assuming it's date of win -->
+                        </tr>`;
+                    }
+                    tbody.append(rowHtml);
+                });
+            }
+
+            // Attach refresh button listeners
+            $('#refreshTodayTickets').on('click', fetchUserTickets);
+            $('#refreshPreviousTickets').on('click', fetchUserTickets);
+            $('#refreshWinningTickets').on('click', fetchUserTickets);
+
+            // Initial fetch on page load
+            fetchUserTickets();
+        });
+    </script>
+</body>
+</html>

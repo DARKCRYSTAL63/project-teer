@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Balance - FrankyTeer</title>
+    <link rel="stylesheet" href="../index.css"> <!-- Assuming index.css is in the parent directory -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Existing CSS from index.css or your current styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        main {
+            flex-grow: 1;
+            padding: 20px;
+            max-width: 800px; /* Adjusted max-width for content */
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+            font-weight: 700;
+        }
+        section {
+            background-color: #fcfcfc;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            transition: all 0.3s ease-in-out; /* For collapse/expand effect */
+        }
+        h2 {
+            color: #4a4a4a;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            display: inline-block;
+            width: 100%; /* Ensure border-bottom spans full width */
+        }
+        .info-card {
+            background-color: #e0f7fa; /* Light blue */
+            border: 1px solid #b2ebf2;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .info-card strong {
+            color: #0056b3;
+        }
+        .message-box {
+            margin-top: 20px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            text-align: center;
+            display: none; /* Hidden by default */
+        }
+        .message-box.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .message-box.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6fb;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+            display: inline-block; /* Allows buttons to sit next to each other */
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        .btn-warning {
+            background-color: #ffc107;
+            color: #212529; /* Dark text for light background */
+        }
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        .text-center {
+            text-align: center;
+        }
+
+        /* NEW CSS for Bank Details Section */
+        #bank-details-content {
+            display: none; /* Hidden by default when collapsed */
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            margin-top: 15px;
+        }
+        #viewBankDetailsBtn {
+            margin-bottom: 15px;
+            display: block; /* Make it a block button */
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .bank-account-item {
+            background-color: #f0f8ff;
+            border: 1px solid #cceeff;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95em;
+        }
+        .bank-account-item span {
+            flex-basis: 48%; /* Adjust for two columns on larger screens */
+            margin-bottom: 5px;
+        }
+        .bank-account-item .actions {
+            flex-basis: 100%; /* Buttons on new line for better touch targets */
+            text-align: right;
+            margin-top: 10px;
+        }
+        .bank-account-item .actions .btn {
+            margin-left: 5px;
+            padding: 5px 10px;
+            font-size: 0.85em;
+            margin-top: 0;
+        }
+        #addBankAccountBtn {
+            margin-top: 20px;
+        }
+        .no-bank-accounts-message {
+            text-align: center;
+            color: #777;
+            font-style: italic;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Modal Styles (for withdrawal selection) */
+        .modal {
+            display: none; /* FIX: Hidden by default (instead of flex) */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .modal-header {
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: #333;
+        }
+
+        .close-modal-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal-btn:hover,
+        .close-modal-btn:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .modal-footer {
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            text-align: right;
+            margin-top: 15px;
+        }
+        .modal-footer .btn {
+            margin-left: 10px;
+        }
+
+        .bank-account-option {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+        }
+        .bank-account-option:hover {
+            background-color: #e9e9e9;
+        }
+        .bank-account-option input[type="radio"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        .bank-account-option label {
+            margin: 0;
+            font-weight: normal;
+            flex-grow: 1;
+        }
+        .bank-account-option strong {
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .bank-account-item span {
+                flex-basis: 100%;
+            }
+            .bank-account-item .actions {
+                text-align: center;
+            }
+            .bank-account-item .actions .btn {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 8px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <svg class="logo-svg" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#333" stroke-width="3" fill="none"/>
+                    <circle cx="50" cy="50" r="30" stroke="#333" stroke-width="2" fill="none"/>
+                    <circle cx="50" cy="50" r="20" stroke="#333" stroke-width="2" fill="none"/>
+                    <circle cx="50" cy="50" r="10" stroke="#333" stroke-width="2" fill="#ff5252"/>
+                    <line x1="10" y1="50" x2="30" y2="50" stroke="#333" stroke-width="2"/>
+                    <line x1="70" y1="50" x2="90" y2="50" stroke="#333" stroke-width="2"/>
+                    <line x1="50" y1="10" x2="50" y2="30" stroke="#333" stroke-width="2"/>
+                    <line x1="50" y1="70" x2="50" y2="90" stroke="#333" stroke-width="2"/>
+                </svg>
+            </a>
+            
+            <nav class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../mytickets/mytickets.html">MyTickets</a></li>
+                    <li><a href="mybalance.html">Mybalance</a></li>
+                    <li><a href="../dreamnumber/dreamnumber.html">Dream Numbers</a></li>
+                    <li><a href="../previousresult/previousresults.html">Previous Results</a></li>
+                    <li><a href="../aboutus/aboutus.html">About Us</a></li>
+                    <li><a href="../login/login.html">Login</a></li>
+                </ul>
+            </nav>
+            
+            <div class="mobile-menu">
+                <button class="hamburger" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../mytickets/mytickets.html">MyTickets</a></li>
+                <li><a href="mybalance.html">My Balance</a></li>
+                <li><a href="../dreamnumber/dreamnumber.html">Dream Numbers</a></li>
+                <li><a href="../previousresult/previousresults.html">Previous Results</a></li>
+                <li><a href="../aboutus/aboutus.html">About Us</a></li>
+                <li><a href="../login/login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1><i class="fas fa-wallet"></i> My Balance & Bank Details</h1>
+
+        <!-- Consolidated Message Box -->
+        <div id="balanceMessageBox" class="message-box"></div>
+
+        <section id="current-balance-section">
+            <h2>Current Balance</h2>
+            <div class="info-card">
+                Your Current Wallet Balance: <strong>₹<span id="currentBalance">0.00</span></strong>
+            </div>
+        </section>
+
+        <section id="bank-details-section">
+            <h2><i class="fas fa-bank"></i> My Bank Details</h2>
+            
+            <button class="btn btn-primary" id="viewBankDetailsBtn"><i class="fas fa-eye"></i> View/Edit Bank Details</button>
+
+            <div id="bank-details-content">
+                <div id="bankAccountsList">
+                    <!-- Saved bank accounts will be rendered here -->
+                    <p class="no-bank-accounts-message">No bank accounts saved yet.</p>
+                </div>
+
+                <h3>Add New Bank Account</h3>
+                <div class="form-group">
+                    <label for="bankName">Bank Name:</label>
+                    <input type="text" id="bankName" placeholder="e.g., State Bank of India">
+                </div>
+                <div class="form-group">
+                    <label for="accountHolder">Account Holder Name:</label>
+                    <input type="text" id="accountHolder" placeholder="Your name as per bank records">
+                </div>
+                <div class="form-group">
+                    <label for="accountNumber">Account Number:</label>
+                    <input type="text" id="accountNumber" placeholder="Your account number">
+                </div>
+                <div class="form-group">
+                    <label for="ifscCode">IFSC Code:</label>
+                    <input type="text" id="ifscCode" placeholder="e.g., SBIN0000001">
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-success" id="addBankAccountBtn"><i class="fas fa-plus-circle"></i> Add Bank Account</button>
+                    <button class="btn btn-primary" id="updateBankAccountBtn" style="display:none;"><i class="fas fa-edit"></i> Update Account</button>
+                    <button class="btn btn-danger" id="cancelEditBtn" style="display:none;"><i class="fas fa-times-circle"></i> Cancel Edit</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="withdraw-funds-section">
+            <h2><i class="fas fa-money-bill-transfer"></i> Withdraw Funds</h2>
+            <div class="form-group">
+                <label for="withdrawalAmount">Withdrawal Amount (₹):</label>
+                <input type="number" id="withdrawalAmount" min="1" placeholder="Enter amount to withdraw">
+            </div>
+            <div class="text-center">
+                <button class="btn btn-success" id="submitWithdrawalBtn"><i class="fas fa-paper-plane"></i> Request Withdrawal</button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-left">
+            <p>&copy; 2025 FrankyTeer. All rights reserved.</p>
+            <p class="footer-links">
+                <a href="../privacy/privacy-policy.html">Privacy Policy</a> | 
+                <a href="../terms/termsandcondition.html">Terms and Conditions</a> | 
+                <a href="../refund/refundpolicy.html">Refund Policy</a>
+            </p>
+        </div>
+    </footer> 
+
+    <!-- Withdrawal Account Selection Modal -->
+    <div id="withdrawalAccountModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Select Bank Account for Withdrawal</h3>
+                <span class="close-modal-btn">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="bankAccountSelectionList">
+                    <!-- Bank account options will be rendered here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger close-modal-btn">Cancel</button>
+                <button class="btn btn-success" id="confirmWithdrawalBtn">Confirm Withdrawal</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const mobileNav = document.querySelector('.mobile-nav');
+        
+        hamburger.addEventListener('click', function() {
+            mobileNav.classList.toggle('active');
+            this.classList.toggle('active');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.mobile-nav') && !e.target.closest('.hamburger')) {
+                mobileNav.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+
+        let currentBalance = 0; // Global variable to store current balance
+        let savedBankAccounts = []; // Array to store fetched bank accounts
+        let editingAccountId = null; // To track which account is being edited
+
+        // Helper function to display messages
+        function displayMessage(type, message, redirectUrl = null) {
+            const messageBox = $('#balanceMessageBox');
+            messageBox.removeClass('success error').addClass(type).text(message).show();
+            if (redirectUrl) {
+                setTimeout(() => { window.location.href = redirectUrl; }, 2000);
+            } else {
+                setTimeout(() => messageBox.fadeOut(), 5000);
+            }
+        }
+
+        // Function to fetch user details (balance and bank details)
+        function fetchUserDetails() {
+            console.log("Fetching user details...");
+            $.ajax({
+                url: 'get_user_balance.php',
+                method: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    console.log('get_user_balance.php Response:', response);
+                    if (response.success) {
+                        currentBalance = parseFloat(response.balance);
+                        $('#currentBalance').text(currentBalance.toFixed(2));
+                        savedBankAccounts = response.bank_accounts || []; // Ensure it's an array
+
+                        renderBankAccounts(); // Render the list of accounts
+                        
+                        // Initialize UI state based on whether accounts exist
+                        if (savedBankAccounts.length > 0) {
+                            $('#viewBankDetailsBtn').show();
+                            $('#bank-details-content').hide(); // Keep collapsed by default
+                            $('.no-bank-accounts-message').hide();
+                        } else {
+                            $('#viewBankDetailsBtn').hide();
+                            $('#bank-details-content').show(); // Show form if no accounts
+                            $('.no-bank-accounts-message').show();
+                        }
+                        resetBankForm(); // Clear form after fetching
+                    } else {
+                        if (response.redirect) {
+                            displayMessage('error', response.message + ' Redirecting to login...', response.redirect);
+                        } else {
+                            displayMessage('error', "Error fetching details: " + response.message);
+                            $('#currentBalance').text('Error');
+                        }
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error("Error fetching user details:", jqXHR.responseText);
+                    displayMessage('error', "Could not fetch user details. Server error.");
+                }
+            });
+        }
+
+        // Renders the list of saved bank accounts
+        function renderBankAccounts() {
+            const listContainer = $('#bankAccountsList');
+            listContainer.empty(); // Clear previous list
+
+            if (savedBankAccounts.length === 0) {
+                listContainer.append('<p class="no-bank-accounts-message">No bank accounts saved yet.</p>');
+                $('#withdraw-funds-section .btn').prop('disabled', true); // Disable withdraw if no accounts
+            } else {
+                $('.no-bank-accounts-message').hide();
+                $('#withdraw-funds-section .btn').prop('disabled', false); // Enable withdraw if accounts exist
+
+                savedBankAccounts.forEach(account => {
+                    listContainer.append(`
+                        <div class="bank-account-item" data-id="${account.id}">
+                            <span><strong>Bank:</strong> ${account.bank_name}</span>
+                            <span><strong>A/C Holder:</strong> ${account.account_holder}</span>
+                            <span><strong>A/C No.:</strong> ${account.account_number}</span>
+                            <span><strong>IFSC:</strong> ${account.ifsc_code}</span>
+                            <div class="actions">
+                                <button class="btn btn-warning btn-sm edit-bank-account" data-id="${account.id}"><i class="fas fa-edit"></i> Edit</button>
+                                <button class="btn btn-danger btn-sm delete-bank-account" data-id="${account.id}"><i class="fas fa-trash"></i> Delete</button>
+                            </div>
+                        </div>
+                    `);
+                });
+            }
+        }
+
+        // Resets the add/edit bank form
+        function resetBankForm() {
+            $('#bankName').val('');
+            $('#accountHolder').val('');
+            $('#accountNumber').val('');
+            $('#ifscCode').val('');
+            $('#addBankAccountBtn').show();
+            $('#updateBankAccountBtn').hide();
+            $('#cancelEditBtn').hide();
+            editingAccountId = null;
+        }
+
+        // Validation function for bank details
+        function validateBankDetails(bankName, accountHolder, accountNumber, ifscCode) {
+            if (!bankName || !accountHolder || !accountNumber || !ifscCode) {
+                displayMessage('error', 'All bank details fields are required.');
+                return false;
+            }
+            if (accountNumber.length < 5 || accountNumber.length > 20) { // Example length
+                displayMessage('error', 'Account number seems invalid (min 5, max 20 digits).');
+                return false;
+            }
+            if (!/^[A-Z]{4}0[A-Z0-9]{6,7}$/.test(ifscCode)) { // Basic IFSC regex for 6 or 7 alphanumeric last part
+                 displayMessage('error', 'IFSC Code format is invalid. (e.g., ABCD0123456 or ABCD01234567)');
+                 return false;
+            }
+            return true;
+        }
+
+        // Event listener for Add Bank Account button
+        $('#addBankAccountBtn').on('click', function() {
+            console.log("Add Bank Account button clicked.");
+            const bankName = $('#bankName').val().trim();
+            const accountHolder = $('#accountHolder').val().trim();
+            const accountNumber = $('#accountNumber').val().trim();
+            const ifscCode = $('#ifscCode').val().trim();
+
+            if (!validateBankDetails(bankName, accountHolder, accountNumber, ifscCode)) {
+                return;
+            }
+
+            $.ajax({
+                url: 'add_bank_account.php',
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    bank_name: bankName,
+                    account_holder: accountHolder,
+                    account_number: accountNumber,
+                    ifsc_code: ifscCode
+                },
+                success: function(response) {
+                    console.log('add_bank_account.php Response:', response);
+                    if (response.success) {
+                        displayMessage('success', response.message);
+                        fetchUserDetails(); // Re-fetch to update list and UI state
+                    } else {
+                        displayMessage('error', response.message);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error("Error adding bank account:", jqXHR.responseText);
+                    displayMessage('error', "An error occurred while adding bank account.");
+                }
+            });
+        });
+
+        // Event listener for Update Bank Account button
+        $('#updateBankAccountBtn').on('click', function() {
+            console.log("Update Bank Account button clicked for ID:", editingAccountId);
+            if (!editingAccountId) {
+                displayMessage('error', 'No account selected for update.');
+                return;
+            }
+
+            const bankName = $('#bankName').val().trim();
+            const accountHolder = $('#accountHolder').val().trim();
+            const accountNumber = $('#accountNumber').val().trim();
+            const ifscCode = $('#ifscCode').val().trim();
+
+            if (!validateBankDetails(bankName, accountHolder, accountNumber, ifscCode)) {
+                return;
+            }
+
+            $.ajax({
+                url: 'update_bank_account.php',
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    account_id: editingAccountId,
+                    bank_name: bankName,
+                    account_holder: accountHolder,
+                    account_number: accountNumber,
+                    ifsc_code: ifscCode
+                },
+                success: function(response) {
+                    console.log('update_bank_account.php Response:', response);
+                    if (response.success) {
+                        displayMessage('success', response.message);
+                        fetchUserDetails(); // Re-fetch to update list and UI state
+                    } else {
+                        displayMessage('error', response.message);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error("Error updating bank account:", jqXHR.responseText);
+                    displayMessage('error', "An error occurred while updating bank account.");
+                }
+            });
+        });
+
+        // Event listener for Delete Bank Account button (delegated)
+        $(document).on('click', '.delete-bank-account', function() {
+            const accountId = $(this).data('id');
+            console.log("Delete Bank Account button clicked for ID:", accountId);
+
+            if (!confirm('Are you sure you want to delete this bank account?')) {
+                return;
+            }
+
+            $.ajax({
+                url: 'delete_bank_account.php',
+                method: 'POST',
+                dataType: 'json',
+                data: { account_id: accountId },
+                success: function(response) {
+                    console.log('delete_bank_account.php Response:', response);
+                    if (response.success) {
+                        displayMessage('success', response.message);
+                        fetchUserDetails(); // Re-fetch to update list and UI state
+                    } else {
+                        displayMessage('error', response.message);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error("Error deleting bank account:", jqXHR.responseText);
+                    displayMessage('error', "An error occurred while deleting bank account.");
+                }
+            });
+        });
+
+        // Event listener for Edit Bank Account button (delegated)
+        $(document).on('click', '.edit-bank-account', function() {
+            const accountId = $(this).data('id');
+            const account = savedBankAccounts.find(acc => acc.id == accountId); // Use == for loose comparison if IDs are mixed types
+
+            if (account) {
+                editingAccountId = accountId;
+                $('#bankName').val(account.bank_name);
+                $('#accountHolder').val(account.account_holder);
+                $('#accountNumber').val(account.account_number);
+                $('#ifscCode').val(account.ifsc_code);
+
+                $('#addBankAccountBtn').hide();
+                $('#updateBankAccountBtn').show();
+                $('#cancelEditBtn').show();
+                $('#bank-details-content').slideDown(); // Ensure form is visible
+                $('#viewBankDetailsBtn').html('<i class="fas fa-eye-slash"></i> Hide Bank Details'); // Change button text
+                $('html, body').animate({
+                    scrollTop: $('#bank-details-section').offset().top // Scroll to form
+                }, 500);
+            } else {
+                displayMessage('error', 'Account not found for editing.');
+            }
+        });
+
+        // Event listener for Cancel Edit button
+        $('#cancelEditBtn').on('click', function() {
+            resetBankForm();
+            // If there are still accounts, collapse the section.
+            // Otherwise, leave it open for adding new.
+            if (savedBankAccounts.length > 0) {
+                 $('#bank-details-content').slideUp();
+                 $('#viewBankDetailsBtn').html('<i class="fas fa-eye"></i> View/Edit Bank Details');
+            }
+        });
+
+
+        // Toggle bank details section visibility
+        $('#viewBankDetailsBtn').on('click', function() {
+            const content = $('#bank-details-content');
+            if (content.is(':visible')) {
+                content.slideUp();
+                $(this).html('<i class="fas fa-eye"></i> View/Edit Bank Details');
+                resetBankForm(); // Also reset form when hiding
+            } else {
+                content.slideDown();
+                $(this).html('<i class="fas fa-eye-slash"></i> Hide Bank Details');
+                // Make sure form is in "add new" state by default when opening
+                resetBankForm();
+            }
+        });
+
+        // Event listener for Request Withdrawal button
+        $('#submitWithdrawalBtn').on('click', function() {
+            console.log("Request Withdrawal button clicked.");
+            const withdrawalAmount = parseFloat($('#withdrawalAmount').val());
+
+            if (isNaN(withdrawalAmount) || withdrawalAmount <= 0) {
+                displayMessage('error', 'Please enter a valid withdrawal amount.');
+                return;
+            }
+
+            if (withdrawalAmount > currentBalance) {
+                displayMessage('error', 'Insufficient balance for withdrawal. Your current balance is ₹' + currentBalance.toFixed(2));
+                return;
+            }
+
+            if (savedBankAccounts.length === 0) {
+                displayMessage('error', 'Please add at least one bank account before requesting a withdrawal.');
+                return;
+            }
+
+            if (savedBankAccounts.length === 1) {
+                // If only one account, proceed directly
+                const account = savedBankAccounts[0];
+                if (!confirm(`Confirm withdrawal of ₹${withdrawalAmount.toFixed(2)} to ${account.bank_name} (${account.account_number})?`)) {
+                    return;
+                }
+                submitWithdrawal(withdrawalAmount, account);
+            } else {
+                // If multiple accounts, show modal
+                populateWithdrawalModal(withdrawalAmount);
+                $('#withdrawalAccountModal').css('display', 'flex'); // Show as flex to center
+            }
+        });
+
+        // Populate and show the withdrawal selection modal
+        function populateWithdrawalModal(amount) {
+            const selectionList = $('#bankAccountSelectionList');
+            selectionList.empty();
+
+            savedBankAccounts.forEach(account => {
+                selectionList.append(`
+                    <div class="bank-account-option">
+                        <input type="radio" id="acc_${account.id}" name="selected_withdrawal_account" value="${account.id}" data-bank-name="${account.bank_name}" data-account-holder="${account.account_holder}" data-account-number="${account.account_number}" data-ifsc-code="${account.ifsc_code}">
+                        <label for="acc_${account.id}">
+                            <strong>${account.bank_name}</strong><br>
+                            A/C: ${account.account_number}<br>
+                            IFSC: ${account.ifsc_code}
+                        </label>
+                    </div>
+                `);
+            });
+            // Automatically select the first account if none are selected
+            if ($('input[name="selected_withdrawal_account"]:checked').length === 0 && savedBankAccounts.length > 0) {
+                $(`#acc_${savedBankAccounts[0].id}`).prop('checked', true);
+            }
+        }
+
+        // Confirm Withdrawal from Modal button
+        $('#confirmWithdrawalBtn').on('click', function() {
+            const selectedRadio = $('input[name="selected_withdrawal_account"]:checked');
+            if (selectedRadio.length === 0) {
+                displayMessage('error', 'Please select a bank account.');
+                return;
+            }
+
+            const withdrawalAmount = parseFloat($('#withdrawalAmount').val());
+            const selectedAccount = {
+                id: selectedRadio.val(),
+                bank_name: selectedRadio.data('bank-name'),
+                account_holder: selectedRadio.data('account-holder'),
+                account_number: selectedRadio.data('account-number'),
+                ifsc_code: selectedRadio.data('ifsc-code')
+            };
+
+            $('#withdrawalAccountModal').hide(); // Hide modal before final confirmation
+
+            if (!confirm(`Confirm withdrawal of ₹${withdrawalAmount.toFixed(2)} to ${selectedAccount.bank_name} (${selectedAccount.account_number})?`)) {
+                return;
+            }
+            submitWithdrawal(withdrawalAmount, selectedAccount);
+        });
+
+        // Function to submit withdrawal request (common for single and multi-account flow)
+        function submitWithdrawal(amount, accountDetails) {
+            $.ajax({
+                url: 'submit_withdrawal_request.php', 
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    amount: amount,
+                    bank_name: accountDetails.bank_name,
+                    account_holder: accountDetails.account_holder,
+                    account_number: accountDetails.account_number,
+                    ifsc_code: accountDetails.ifsc_code
+                },
+                success: function(response) {
+                    console.log('submit_withdrawal_request.php Response:', response);
+                    if (response.success) {
+                        displayMessage('success', response.message);
+                        $('#withdrawalAmount').val(''); 
+                        fetchUserDetails(); // Refresh balance and accounts
+                    } else {
+                        displayMessage('error', response.message);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error("Error submitting withdrawal request:", jqXHR.responseText);
+                    displayMessage('error', "An error occurred while submitting withdrawal request.");
+                }
+            });
+        }
+
+        // Close modal buttons
+        $('.close-modal-btn').on('click', function() {
+            $(this).closest('.modal').hide();
+        });
+
+        // Close modal when clicking outside of modal-content
+        $(window).on('click', function(event) {
+            if ($(event.target).is('.modal')) {
+                $('.modal').hide();
+            }
+        });
+
+
+        // Initial fetch when the page loads
+        fetchUserDetails();
+    });
+    </script>
+</body>
+</html>

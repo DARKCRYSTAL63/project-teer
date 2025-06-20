@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Numbers - FrankyTeer</title>
+    <link rel="stylesheet" href="dreamnumber.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <svg class="logo-svg" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="#333" stroke-width="3" fill="none"/>
+                    <circle cx="50" cy="50" r="30" stroke="#333" stroke-width="2" fill="none"/>
+                    <circle cx="50" cy="50" r="20" stroke="#333" stroke-width="2" fill="none"/>
+                    <circle cx="50" cy="50" r="10" stroke="#333" stroke-width="2" fill="#ff5252"/>
+                    <line x1="10" y1="50" x2="30" y2="50" stroke="#333" stroke-width="2"/>
+                    <line x1="70" y1="50" x2="90" y2="50" stroke="#333" stroke-width="2"/>
+                    <line x1="50" y1="10" x2="50" y2="30" stroke="#333" stroke-width="2"/>
+                    <line x1="50" y1="70" x2="50" y2="90" stroke="#333" stroke-width="2"/>
+                </svg>
+            </a>
+        <div class="nav-container">    
+            <nav class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="mytickets.html">MyTickets</a></li>
+                    <li><a href="mybalance.html">My Balance</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="common-numbers.html">Common Numbers</a></li>
+                    <li><a href="dreamnumber.html">Dream Numbers</a></li>
+                    <li><a href="previousresults.html">Previous Results</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="log in.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>    
+            <div class="mobile-menu">
+                <button class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="mytickets.html">MyTickets</a></li>
+                <li><a href="mybalance.html">My Balance</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="common-numbers.html">Common Numbers</a></li>
+                <li><a href="dreamnumber.html">Dream Numbers</a></li>
+                <li><a href="previousresults.html">Previous Results</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="log in.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="lucky-numbers-container">
+        <h1>Dream Numbers</h1>
+        <p class="subtitle">Dream interpretations and their corresponding lucky numbers</p>
+        
+        <div class="table-container">
+            <table class="lucky-numbers-table">
+                <thead>
+                    <tr>
+                        <th>Dream</th>
+                        <th>Direct</th>
+                        <th>House</th>
+                        <th>Ending</th>
+                    </tr>
+                </thead>
+                <tbody id="numbers-data"></tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 FrankyTeer. All rights reserved.</p>
+    </footer>
+    <script>
+       // Mobile navigation toggle
+       document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileNav = document.querySelector('.mobile-nav');
+            
+            hamburger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileNav.classList.toggle('active');
+            });
+            
+            document.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+            });
+            
+            mobileNav.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+            // Lucky numbers data (randomized order)
+            const numbersData = [
+                {dream: "Quarrel between husband and wife", direct: "03, 08, 13, 37, 40, 73", house: "", ending: "3"},
+                {dream: "Erotic dream", direct: "17, 40, 53, 59, 60, 83", house: "", ending: ""},
+                {dream: "Bathing in the open", direct: "08, 18, 28, 48, 78, 98", house: "", ending: "8"},
+                { dream: "Travelling", direct: "08, 14, 18, 52, 64, 68, 74, 78, 98", house: "", ending: "8"},
+                {dream: "Travelling in an aeroplane", direct: "23, 43, 53, 63, 68, 73, 83, 93", house: "", ending: "3"},
+                {dream: "Taking a walk", direct: "", house: "", ending: "0,1"},
+                { dream: "Studying", direct: "", house: "", ending: "5"},
+                {dream: "Corpse", direct: "", house: "9", ending: "9"},
+                {dream: "Playing", direct: "00, 27, 40, 50, 57, 60", house: "", ending: ""},
+                {dream: "Talking over the phone", direct: "98, 96, 94", house: "", ending: ""},
+                { dream: "Eating", direct: "01, 02, 05, 15, 16, 45, 75, 85, 95", house: "", ending: ""},
+                { dream: "Breast Feeding", direct: "02, 03, 05, 12, 20, 52, 53", house: "", ending: ""},
+                { dream: "Male", direct: "6", house: "6", ending: ""},
+                { dream: "Female", direct: "5", house: "5", ending: ""},
+                { dream: "Child", direct: "2,3", house: "2,3", ending: ""},
+                { dream: "Police", direct: "7, 87, 8", house: "", ending: ""},
+                { dream: "Wild Pig", direct: "46", house: "", ending: ""},
+                {dream: "Snake or ilea fish", direct: "09, 17, 37, 57, 77, 99", house: "", ending: "7"},
+                { dream: "Cow, goat or buffalo", direct: "12, 18, 19, 22, 24, 34, 42, 54, 72, 74, 84, 94, 97", house: "", ending: ""},
+                { dream: "Cow", direct: "4", house: "4", ending: ""},
+                { dream: "Tiger", direct: "9", house: "9", ending: ""},
+                { dream: "Dog", direct: "4,5,6", house: "4", ending: ""},
+                { dream: "Horse", direct: "8", house: "8", ending: ""},
+                { dream: "Bird", direct: "2", house: "2", ending: ""},
+                {dream: "Elephant", direct: "9", house: "9", ending: ""},
+                { dream: "Snail", direct: "0", house: "0", ending: "0"},
+                { dream: "Turtle", direct: "9", house: "9", ending: ""},
+                { dream: "Crab", direct: "6, 2", house: "6", ending: "2"},
+                { dream: "Spider", direct: "6, 12", house: "", ending: ""},
+                { dream: "Honey bee", direct: "74, 24, 14, 04, 94", house: "", ending: "4"},
+                { dream: "Insect", direct: "37, 21", house: "", ending: ""},
+                { dream: "Sour fruits", direct: "00, 03, 11, 12, 13, 23, 32, 43, 53, 63, 70, 73, 79, 93", house: "", ending: ""},
+                { dream: "Paddy field", direct: "24, 38, 52, 54, 64, 68, 74", house: "", ending: ""},
+                { dream: "Pumpkin", direct: "28, 35, 48, 53, 58, 68, 78, 88, 98", house: "", ending: ""},
+                { dream: "Bamboo", direct: "0, 1", house: "", ending: ""},
+                { dream: "Big Tree", direct: "8, 9", house: "", ending: ""},
+                { dream: "Small tree", direct: "2, 3, 8", house: "", ending: ""},
+                { dream: "Banana", direct: "11, 3", house: "", ending: ""},
+                { dream: "Jackfruit", direct: "4", house: "", ending: "4"},
+                { dream: "Papaya", direct: "1, 12", house: "1", ending: ""},
+                { dream: "Orange", direct: "8,9", house: "", ending: ""},
+                { dream: "Chilli", direct: "1, 2", house: "1", ending: "2"},
+                { dream: "Bamboo Shoot", direct: "1, 11", house: "1", ending: "1"},
+                { dream: "Tool used to cut wood", direct: "1, 57, 61, 67", house: "", ending: "6"},
+                { dream: "Tools: cutter, chopper, hammer", direct: "07, 17, 27, 47, 67, 71, 87", house: "", ending: "7"},
+                { dream: "An event or a shopping place", direct: "18, 28, 38, 52, 58, 62", house: "", ending: "8"},
+                { dream: "Money", direct: "00, 14, 15, 20, 25, 35, 50", house: "", ending: "0, 5"},
+                { dream: "Small water body", direct: "00, 01, 02, 80, 90", house: "4,7", ending: "0"},
+                { dream: "Tools: cutter, chopper, hammer", direct: "07, 17, 27, 47, 67, 71, 87", house: "", ending: "7"},
+                { dream: "An event or a shopping place", direct: "18, 28, 38, 52, 58, 62", house: "4,7", ending: "0"},
+                { dream: "Footpath or a road made of bricks", direct: "19, 61, 71, 91", house: "", ending: ""},
+                { dream: "Automobile: 4 wheeler", direct: "21, 24, 54, 62, 64", house: "8", ending: "4"},
+                { dream: "Automobile: 2/3 wheeler", direct: "52, 53, 54, 58, 60, 62, 68", house: "", ending: ""},
+                { dream: "God", direct: "09, 13, 29, 89", house: "", ending: ""},
+                { dream: "Book, pen, paper", direct: "00, 02, 05", house: "0", ending: "3"},
+                { dream: "Earthquake", direct: "00, 07, 08, 14, 41, 75, 95", house: "", ending: ""},
+                { dream: "Ghost or apparition", direct: "52, 54, 58, 62, 64, 68", house: "9", ending: "9"},
+                { dream: "Oven, kiln, fireplace", direct: "12, 31, 63, 66, 68", house: "", ending: ""},
+                { dream: "Fire", direct: "", house: "", ending: "0"},
+                { dream: "Hand Pump", direct: "2, 3, 7, 17, 18, 20, 71", house: "", ending: ""},
+                { dream: "Water Carrier", direct: "8", house: "8", ending: "8"},
+                { dream: "Lake", direct: "6", house: "", ending: ""},
+                { dream: "Boat", direct: "3", house: "", ending: ""},
+                { dream: "Rice Chopper", direct: "8", house: "", ending: ""},
+                { dream: "Big river", direct: "8", house: "", ending: ""},
+                { dream: "Cooking pan", direct: "2", house: "", ending: ""},
+                { dream: "Shoe", direct: "8", house: "", ending: ""},
+                { dream: "Train", direct: "9", house: "", ending: ""},
+                { dream: "Temple", direct: "1, 2, 9", house: "", ending: ""},
+                { dream: "Umbrella", direct: "1", house: "1", ending: "1"},
+                { dream: "Pencil", direct: "7, 77, 79", house: "7", ending: "7"}
+            ];
+
+            // Randomize the order
+            const randomizedData = numbersData.sort(() => Math.random() - 0.5);
+            
+            // Insert data into table
+            const tableBody = document.getElementById('numbers-data');
+            randomizedData.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.dream}</td>
+                    <td>${item.direct || '-'}</td>
+                    <td>${item.house || '-'}</td>
+                    <td>${item.ending || '-'}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+    </script>
+</body>
+</html>
