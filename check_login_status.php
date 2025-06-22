@@ -1,5 +1,6 @@
 <?php
 // File: project-teer/check_login_status.php
+session_name("USER_SESSION"); // Set session name for user
 session_start(); // Start the session
 header('Content-Type: application/json'); // Respond with JSON
 

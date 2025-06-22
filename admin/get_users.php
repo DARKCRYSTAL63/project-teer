@@ -1,7 +1,7 @@
 <?php
 // get_users.php
 // This script fetches all registered users from the database.
-
+session_name("ADMIN_SESSION"); // Set session name for admin
 session_start(); // THIS MUST BE THE FIRST EXECUTABLE LINE AFTER <?php
 
 include '../db_connect.php'; 
@@ -20,8 +20,8 @@ $success = false;
 $message = "";
 
 try {
-    // SQL query to select user data (excluding password_hash for security)
-    $sql = "SELECT id, phone_number, username, balance, status FROM users ORDER BY username ASC";
+    // === IMPORTANT: Ensure 'role' is selected here ===
+    $sql = "SELECT id, phone_number, username, balance, role, status FROM users ORDER BY username ASC";
     
     $result = $conn->query($sql);
 

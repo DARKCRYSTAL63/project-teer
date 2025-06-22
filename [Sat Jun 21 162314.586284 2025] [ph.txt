@@ -1,0 +1,670 @@
+[Sat Jun 21 16:23:14.586284 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 56, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.587303 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 56. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.587303 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 55, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.587303 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 55. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.587303 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 54, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.587303 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 54. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.588302 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 53, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.588302 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 53. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.588302 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 52, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.588302 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 52. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.589296 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 51, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.589296 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 51. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.589296 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 50, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.589296 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 50. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.590293 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 49, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.590293 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 49. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.590293 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 48, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.590293 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 48. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.590293 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 47, Status: 'won', Raw Win Amount: '700', Cast to float: 700, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.590293 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ADDING booking ID 47 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.590293 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 46, Status: 'won', Raw Win Amount: '900', Cast to float: 900, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.590293 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ADDING booking ID 46 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.591515 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 45, Status: 'won', Raw Win Amount: '600', Cast to float: 600, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.591515 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ADDING booking ID 45 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.591515 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 44, Status: 'won', Raw Win Amount: '800', Cast to float: 800, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.591515 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ADDING booking ID 44 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.591515 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 43, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.591515 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 43. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.591515 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 42, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.591515 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 42. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.593052 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 41, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.593052 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 41. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.593052 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 40, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.593052 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 40. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.593052 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 39, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.593052 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 39. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.593052 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 38, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.593052 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 38. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.593052 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 37, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.593052 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 37. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.593052 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 36, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.594556 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 36. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.594556 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 35, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.594556 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 35. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.594556 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 34, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.594556 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 34. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.594556 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 33, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.594556 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 33. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.594556 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 32, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.594556 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 32. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.594556 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 31, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.594556 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 31. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.595860 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 30, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.595860 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 30. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.595860 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 29, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.595860 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 29. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.595860 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 28, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.595860 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 28. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.595860 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 27, Status: 'won', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.595860 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 27. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.595860 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 26, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.595860 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 26. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.595860 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: ID: 25, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:14.595860 2025] [php:notice] [pid 2364:tid 1896] [client ::1:49225] Winning Ticket Debug: SKIPPING booking ID 25. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.793080 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 56, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.793080 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 56. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.793080 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 55, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.793080 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 55. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.794083 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 54, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.794083 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 54. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.794083 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 53, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.794083 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 53. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.794083 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 52, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.794083 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 52. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.794083 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 51, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.794083 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 51. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.794083 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 50, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.794083 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 50. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.795086 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 49, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.795086 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 49. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.795086 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 48, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.795086 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 48. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.795086 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 47, Status: 'won', Raw Win Amount: '700', Cast to float: 700, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.795086 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ADDING booking ID 47 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.795086 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 46, Status: 'won', Raw Win Amount: '900', Cast to float: 900, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.795086 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ADDING booking ID 46 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.795086 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 45, Status: 'won', Raw Win Amount: '600', Cast to float: 600, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.795086 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ADDING booking ID 45 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.795086 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 44, Status: 'won', Raw Win Amount: '800', Cast to float: 800, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.795086 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ADDING booking ID 44 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.796085 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 43, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.796085 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 43. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.796085 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 42, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.796085 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 42. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.796085 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 41, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.796085 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 41. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.796085 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 40, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.796085 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 40. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.796085 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 39, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.796085 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 39. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.796085 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 38, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.796085 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 38. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.797077 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 37, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.797077 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 37. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.797077 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 36, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.797077 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 36. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.797077 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 35, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.797077 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 35. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.797077 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 34, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.797077 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 34. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.797077 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 33, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.797077 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 33. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.797077 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 32, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.797077 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 32. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.797077 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 31, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.797077 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 31. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.798076 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 30, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.798076 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 30. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.798076 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 29, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.798076 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 29. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.798076 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 28, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.798076 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 28. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.798076 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 27, Status: 'won', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.798076 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 27. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.798076 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 26, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.798076 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 26. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.798076 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: ID: 25, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:24.798076 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49232] Winning Ticket Debug: SKIPPING booking ID 25. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:23:34.302217 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49239] get_user_balance.php: Session ID: 07ptk49lf99ki4a3dq3s8uf1jk, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:23:34.302217 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49239] get_user_balance.php: SESSION_ARRAY: Array\n(\n    [loggedin_user_id] => 10\n    [loggedin_phone_number] => 6909563367\n    [loggedin_username] => solomon\n    [loggedin_balance] => 0.00\n    [loggedin_user_role] => user\n)\n, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:23:34.305218 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49239] get_user_balance.php: Details fetched for user ID: 10, Balance: 43320.00, Bank Accounts Count: 0, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:23:37.631841 2025] [php:notice] [pid 2364:tid 1860] [client ::1:49241] get_user_balance.php: Session ID: 07ptk49lf99ki4a3dq3s8uf1jk, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:23:37.631841 2025] [php:notice] [pid 2364:tid 1860] [client ::1:49241] get_user_balance.php: SESSION_ARRAY: Array\n(\n    [loggedin_user_id] => 10\n    [loggedin_phone_number] => 6909563367\n    [loggedin_username] => solomon\n    [loggedin_balance] => 0.00\n    [loggedin_user_role] => user\n)\n, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:23:37.634093 2025] [php:notice] [pid 2364:tid 1860] [client ::1:49241] get_user_balance.php: Details fetched for user ID: 10, Balance: 43320.00, Bank Accounts Count: 0, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:24:15.583583 2025] [php:notice] [pid 2364:tid 1860] [client ::1:49284] get_user_balance.php: Session ID: 07ptk49lf99ki4a3dq3s8uf1jk, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:24:15.583583 2025] [php:notice] [pid 2364:tid 1860] [client ::1:49284] get_user_balance.php: SESSION_ARRAY: Array\n(\n    [loggedin_user_id] => 10\n    [loggedin_phone_number] => 6909563367\n    [loggedin_username] => solomon\n    [loggedin_balance] => 0.00\n    [loggedin_user_role] => user\n)\n, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:24:15.586601 2025] [php:notice] [pid 2364:tid 1860] [client ::1:49284] get_user_balance.php: Details fetched for user ID: 10, Balance: 43320.00, Bank Accounts Count: 0, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:24:25.793610 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49292] submit_booking.php: Session ID: 07ptk49lf99ki4a3dq3s8uf1jk, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:24:25.793610 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49292] submit_booking.php: SESSION_ARRAY: Array\n(\n    [loggedin_user_id] => 10\n    [loggedin_phone_number] => 6909563367\n    [loggedin_username] => solomon\n    [loggedin_balance] => 0.00\n    [loggedin_user_role] => user\n)\n, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:24:25.793610 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49292] submit_booking.php: User ID from session: 10, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:24:32.318440 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49294] submit_booking.php: Session ID: 07ptk49lf99ki4a3dq3s8uf1jk, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:24:32.318440 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49294] submit_booking.php: SESSION_ARRAY: Array\n(\n    [loggedin_user_id] => 10\n    [loggedin_phone_number] => 6909563367\n    [loggedin_username] => solomon\n    [loggedin_balance] => 0.00\n    [loggedin_user_role] => user\n)\n, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:24:32.318440 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49294] submit_booking.php: User ID from session: 10, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:24:39.782462 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49297] submit_booking.php: Session ID: 07ptk49lf99ki4a3dq3s8uf1jk, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:24:39.782462 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49297] submit_booking.php: SESSION_ARRAY: Array\n(\n    [loggedin_user_id] => 10\n    [loggedin_phone_number] => 6909563367\n    [loggedin_username] => solomon\n    [loggedin_balance] => 0.00\n    [loggedin_user_role] => user\n)\n, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:24:39.783462 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49297] submit_booking.php: User ID from session: 10, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:24:45.637237 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49299] submit_booking.php: Session ID: 07ptk49lf99ki4a3dq3s8uf1jk, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:24:45.638272 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49299] submit_booking.php: SESSION_ARRAY: Array\n(\n    [loggedin_user_id] => 10\n    [loggedin_phone_number] => 6909563367\n    [loggedin_username] => solomon\n    [loggedin_balance] => 0.00\n    [loggedin_user_role] => user\n)\n, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:24:45.638272 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49299] submit_booking.php: User ID from session: 10, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:24:53.422405 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49302] submit_booking.php: Session ID: 07ptk49lf99ki4a3dq3s8uf1jk, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:24:53.422405 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49302] submit_booking.php: SESSION_ARRAY: Array\n(\n    [loggedin_user_id] => 10\n    [loggedin_phone_number] => 6909563367\n    [loggedin_username] => solomon\n    [loggedin_balance] => 0.00\n    [loggedin_user_role] => user\n)\n, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:24:53.422832 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49302] submit_booking.php: User ID from session: 10, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:00.797144 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49305] submit_booking.php: Session ID: 07ptk49lf99ki4a3dq3s8uf1jk, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:00.797144 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49305] submit_booking.php: SESSION_ARRAY: Array\n(\n    [loggedin_user_id] => 10\n    [loggedin_phone_number] => 6909563367\n    [loggedin_username] => solomon\n    [loggedin_balance] => 0.00\n    [loggedin_user_role] => user\n)\n, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:00.798063 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49305] submit_booking.php: User ID from session: 10, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:07.821271 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49312] submit_booking.php: Session ID: 07ptk49lf99ki4a3dq3s8uf1jk, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:07.821271 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49312] submit_booking.php: SESSION_ARRAY: Array\n(\n    [loggedin_user_id] => 10\n    [loggedin_phone_number] => 6909563367\n    [loggedin_username] => solomon\n    [loggedin_balance] => 0.00\n    [loggedin_user_role] => user\n)\n, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:07.821271 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49312] submit_booking.php: User ID from session: 10, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:13.470166 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49316] submit_booking.php: Session ID: 07ptk49lf99ki4a3dq3s8uf1jk, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:13.470166 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49316] submit_booking.php: SESSION_ARRAY: Array\n(\n    [loggedin_user_id] => 10\n    [loggedin_phone_number] => 6909563367\n    [loggedin_username] => solomon\n    [loggedin_balance] => 0.00\n    [loggedin_user_role] => user\n)\n, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:13.471116 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49316] submit_booking.php: User ID from session: 10, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:19.486350 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49318] submit_booking.php: Session ID: 07ptk49lf99ki4a3dq3s8uf1jk, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:19.486350 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49318] submit_booking.php: SESSION_ARRAY: Array\n(\n    [loggedin_user_id] => 10\n    [loggedin_phone_number] => 6909563367\n    [loggedin_username] => solomon\n    [loggedin_balance] => 0.00\n    [loggedin_user_role] => user\n)\n, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:19.486350 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49318] submit_booking.php: User ID from session: 10, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:24.518114 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49320] submit_booking.php: Session ID: 07ptk49lf99ki4a3dq3s8uf1jk, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:24.518114 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49320] submit_booking.php: SESSION_ARRAY: Array\n(\n    [loggedin_user_id] => 10\n    [loggedin_phone_number] => 6909563367\n    [loggedin_username] => solomon\n    [loggedin_balance] => 0.00\n    [loggedin_user_role] => user\n)\n, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:24.519118 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49320] submit_booking.php: User ID from session: 10, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:31.310275 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49323] submit_booking.php: Session ID: 07ptk49lf99ki4a3dq3s8uf1jk, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:31.310275 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49323] submit_booking.php: SESSION_ARRAY: Array\n(\n    [loggedin_user_id] => 10\n    [loggedin_phone_number] => 6909563367\n    [loggedin_username] => solomon\n    [loggedin_balance] => 0.00\n    [loggedin_user_role] => user\n)\n, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:31.310275 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49323] submit_booking.php: User ID from session: 10, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:35.464737 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49323] submit_booking.php: Session ID: 07ptk49lf99ki4a3dq3s8uf1jk, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:35.464737 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49323] submit_booking.php: SESSION_ARRAY: Array\n(\n    [loggedin_user_id] => 10\n    [loggedin_phone_number] => 6909563367\n    [loggedin_username] => solomon\n    [loggedin_balance] => 0.00\n    [loggedin_user_role] => user\n)\n, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:35.464737 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49323] submit_booking.php: User ID from session: 10, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:42.221792 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49326] submit_booking.php: Session ID: 07ptk49lf99ki4a3dq3s8uf1jk, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:42.221792 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49326] submit_booking.php: SESSION_ARRAY: Array\n(\n    [loggedin_user_id] => 10\n    [loggedin_phone_number] => 6909563367\n    [loggedin_username] => solomon\n    [loggedin_balance] => 0.00\n    [loggedin_user_role] => user\n)\n, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:42.221792 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49326] submit_booking.php: User ID from session: 10, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:46.908724 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49326] submit_booking.php: Session ID: 07ptk49lf99ki4a3dq3s8uf1jk, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:46.909763 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49326] submit_booking.php: SESSION_ARRAY: Array\n(\n    [loggedin_user_id] => 10\n    [loggedin_phone_number] => 6909563367\n    [loggedin_username] => solomon\n    [loggedin_balance] => 0.00\n    [loggedin_user_role] => user\n)\n, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:46.909763 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49326] submit_booking.php: User ID from session: 10, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:53.937487 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49329] get_user_balance.php: Session ID: 07ptk49lf99ki4a3dq3s8uf1jk, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:53.937487 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49329] get_user_balance.php: SESSION_ARRAY: Array\n(\n    [loggedin_user_id] => 10\n    [loggedin_phone_number] => 6909563367\n    [loggedin_username] => solomon\n    [loggedin_balance] => 0.00\n    [loggedin_user_role] => user\n)\n, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:25:53.938488 2025] [php:notice] [pid 2364:tid 1852] [client ::1:49329] get_user_balance.php: Details fetched for user ID: 10, Balance: 43180.00, Bank Accounts Count: 0, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:26:06.799413 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49347] get_user_balance.php: Session ID: 07ptk49lf99ki4a3dq3s8uf1jk, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:26:06.799413 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49347] get_user_balance.php: SESSION_ARRAY: Array\n(\n    [loggedin_user_id] => 10\n    [loggedin_phone_number] => 6909563367\n    [loggedin_username] => solomon\n    [loggedin_balance] => 0.00\n    [loggedin_user_role] => user\n)\n, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:26:06.803412 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49347] get_user_balance.php: Details fetched for user ID: 10, Balance: 43180.00, Bank Accounts Count: 0, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:26:17.114018 2025] [php:notice] [pid 2364:tid 1876] [client ::1:49355] get_user_balance.php: Session ID: 07ptk49lf99ki4a3dq3s8uf1jk, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:26:17.115017 2025] [php:notice] [pid 2364:tid 1876] [client ::1:49355] get_user_balance.php: SESSION_ARRAY: Array\n(\n    [loggedin_user_id] => 10\n    [loggedin_phone_number] => 6909563367\n    [loggedin_username] => solomon\n    [loggedin_balance] => 0.00\n    [loggedin_user_role] => user\n)\n, referer: http://localhost/project-teer/index.html
+[Sat Jun 21 16:26:17.119325 2025] [php:notice] [pid 2364:tid 1876] [client ::1:49355] get_user_balance.php: Details fetched for user ID: 10, Balance: 43180.00, Bank Accounts Count: 0, referer: http://localhost/project-teer/index.html
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Starting winner calculation for date: 2025-06-21
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Fetched today's results: Array
+(
+    [first_round] => 60
+    [second_round] => 78
+)
+
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Transaction started.
+[21-Jun-2025 12:56:29 Europe/Berlin] --- Processing booking ID: 57 (User: solomon) ---
+[21-Jun-2025 12:56:29 Europe/Berlin] Booking Type: single, Round: first_round, Amount Per Unit: 10.00
+[21-Jun-2025 12:56:29 Europe/Berlin] Numbers JSON: [{"number":"60","round":"first_round"}]
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Decoded booked numbers: Array
+(
+    [0] => Array
+        (
+            [number] => 60
+            [round] => first_round
+        )
+
+)
+
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Current results in memory - FR: 60, SR: 78, NT FR: N/A, NT SR: N/A
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Target round result for booking ID 57 (first_round): '60' (Type: string)
+[21-Jun-2025 12:56:29 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\project-teer\admin\find_winners.php on line 178
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Single/Night Teer Logic - Booked: 'Array', Result: '60'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Single/Night Teer - No match: booked 'Array' vs result '60'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 57 is a LOSER (Status: lost).
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 57 final status set to 'lost'. Win Amount stored: 0
+[21-Jun-2025 12:56:29 Europe/Berlin] --- Processing booking ID: 58 (User: solomon) ---
+[21-Jun-2025 12:56:29 Europe/Berlin] Booking Type: single, Round: first_round, Amount Per Unit: 10.00
+[21-Jun-2025 12:56:29 Europe/Berlin] Numbers JSON: [{"number":"45","round":"first_round"}]
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Decoded booked numbers: Array
+(
+    [0] => Array
+        (
+            [number] => 45
+            [round] => first_round
+        )
+
+)
+
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Current results in memory - FR: 60, SR: 78, NT FR: N/A, NT SR: N/A
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Target round result for booking ID 58 (first_round): '60' (Type: string)
+[21-Jun-2025 12:56:29 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\project-teer\admin\find_winners.php on line 178
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Single/Night Teer Logic - Booked: 'Array', Result: '60'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Single/Night Teer - No match: booked 'Array' vs result '60'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 58 is a LOSER (Status: lost).
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 58 final status set to 'lost'. Win Amount stored: 0
+[21-Jun-2025 12:56:29 Europe/Berlin] --- Processing booking ID: 59 (User: solomon) ---
+[21-Jun-2025 12:56:29 Europe/Berlin] Booking Type: single, Round: second_round, Amount Per Unit: 10.00
+[21-Jun-2025 12:56:29 Europe/Berlin] Numbers JSON: [{"number":"78","round":"second_round"}]
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Decoded booked numbers: Array
+(
+    [0] => Array
+        (
+            [number] => 78
+            [round] => second_round
+        )
+
+)
+
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Current results in memory - FR: 60, SR: 78, NT FR: N/A, NT SR: N/A
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Target round result for booking ID 59 (second_round): '78' (Type: string)
+[21-Jun-2025 12:56:29 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\project-teer\admin\find_winners.php on line 178
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Single/Night Teer Logic - Booked: 'Array', Result: '78'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Single/Night Teer - No match: booked 'Array' vs result '78'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 59 is a LOSER (Status: lost).
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 59 final status set to 'lost'. Win Amount stored: 0
+[21-Jun-2025 12:56:29 Europe/Berlin] --- Processing booking ID: 60 (User: solomon) ---
+[21-Jun-2025 12:56:29 Europe/Berlin] Booking Type: single, Round: second_round, Amount Per Unit: 10.00
+[21-Jun-2025 12:56:29 Europe/Berlin] Numbers JSON: [{"number":"23","round":"second_round"}]
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Decoded booked numbers: Array
+(
+    [0] => Array
+        (
+            [number] => 23
+            [round] => second_round
+        )
+
+)
+
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Current results in memory - FR: 60, SR: 78, NT FR: N/A, NT SR: N/A
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Target round result for booking ID 60 (second_round): '78' (Type: string)
+[21-Jun-2025 12:56:29 Europe/Berlin] PHP Warning:  Array to string conversion in C:\xampp\htdocs\project-teer\admin\find_winners.php on line 178
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Single/Night Teer Logic - Booked: 'Array', Result: '78'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Single/Night Teer - No match: booked 'Array' vs result '78'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 60 is a LOSER (Status: lost).
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 60 final status set to 'lost'. Win Amount stored: 0
+[21-Jun-2025 12:56:29 Europe/Berlin] --- Processing booking ID: 61 (User: solomon) ---
+[21-Jun-2025 12:56:29 Europe/Berlin] Booking Type: forecast, Round: forecast_combined, Amount Per Unit: 10.00
+[21-Jun-2025 12:56:29 Europe/Berlin] Numbers JSON: [{"round":"first_round","number":"60"},{"round":"second_round","number":"78"}]
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Decoded booked numbers: Array
+(
+    [0] => Array
+        (
+            [round] => first_round
+            [number] => 60
+        )
+
+    [1] => Array
+        (
+            [round] => second_round
+            [number] => 78
+        )
+
+)
+
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Current results in memory - FR: 60, SR: 78, NT FR: N/A, NT SR: N/A
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Target round result for booking ID 61 (forecast_combined): 'N/A' (Type: NULL)
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 61 - No result found for its round type (forecast_combined). Marking as lost.
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 61 is a LOSER (Status: lost).
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 61 final status set to 'lost'. Win Amount stored: 0
+[21-Jun-2025 12:56:29 Europe/Berlin] --- Processing booking ID: 62 (User: solomon) ---
+[21-Jun-2025 12:56:29 Europe/Berlin] Booking Type: forecast, Round: forecast_combined, Amount Per Unit: 10.00
+[21-Jun-2025 12:56:29 Europe/Berlin] Numbers JSON: [{"round":"first_round","number":"12"},{"round":"second_round","number":"11"}]
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Decoded booked numbers: Array
+(
+    [0] => Array
+        (
+            [round] => first_round
+            [number] => 12
+        )
+
+    [1] => Array
+        (
+            [round] => second_round
+            [number] => 11
+        )
+
+)
+
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Current results in memory - FR: 60, SR: 78, NT FR: N/A, NT SR: N/A
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Target round result for booking ID 62 (forecast_combined): 'N/A' (Type: NULL)
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 62 - No result found for its round type (forecast_combined). Marking as lost.
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 62 is a LOSER (Status: lost).
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 62 final status set to 'lost'. Win Amount stored: 0
+[21-Jun-2025 12:56:29 Europe/Berlin] --- Processing booking ID: 63 (User: solomon) ---
+[21-Jun-2025 12:56:29 Europe/Berlin] Booking Type: house, Round: first_round, Amount Per Unit: 10.00
+[21-Jun-2025 12:56:29 Europe/Berlin] Numbers JSON: [{"digit":"6","round":"first_round"}]
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Decoded booked numbers: Array
+(
+    [0] => Array
+        (
+            [digit] => 6
+            [round] => first_round
+        )
+
+)
+
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Current results in memory - FR: 60, SR: 78, NT FR: N/A, NT SR: N/A
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Target round result for booking ID 63 (first_round): '60' (Type: string)
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: House Logic - Booked Digit: '6', Target Result: '60'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: House - Booked Digit: '6' vs Result First Digit: '6'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: House - WINNER! Amount: 800
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: User ID 10 balance updated by 800
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 63 final status set to 'won'. Win Amount stored: 800
+[21-Jun-2025 12:56:29 Europe/Berlin] --- Processing booking ID: 64 (User: solomon) ---
+[21-Jun-2025 12:56:29 Europe/Berlin] Booking Type: house, Round: first_round, Amount Per Unit: 10.00
+[21-Jun-2025 12:56:29 Europe/Berlin] Numbers JSON: [{"digit":"4","round":"first_round"}]
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Decoded booked numbers: Array
+(
+    [0] => Array
+        (
+            [digit] => 4
+            [round] => first_round
+        )
+
+)
+
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Current results in memory - FR: 60, SR: 78, NT FR: N/A, NT SR: N/A
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Target round result for booking ID 64 (first_round): '60' (Type: string)
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: House Logic - Booked Digit: '4', Target Result: '60'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: House - Booked Digit: '4' vs Result First Digit: '6'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: House - No match.
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 64 is a LOSER (Status: lost).
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 64 final status set to 'lost'. Win Amount stored: 0
+[21-Jun-2025 12:56:29 Europe/Berlin] --- Processing booking ID: 65 (User: solomon) ---
+[21-Jun-2025 12:56:29 Europe/Berlin] Booking Type: house, Round: second_round, Amount Per Unit: 10.00
+[21-Jun-2025 12:56:29 Europe/Berlin] Numbers JSON: [{"digit":"7","round":"second_round"}]
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Decoded booked numbers: Array
+(
+    [0] => Array
+        (
+            [digit] => 7
+            [round] => second_round
+        )
+
+)
+
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Current results in memory - FR: 60, SR: 78, NT FR: N/A, NT SR: N/A
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Target round result for booking ID 65 (second_round): '78' (Type: string)
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: House Logic - Booked Digit: '7', Target Result: '78'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: House - Booked Digit: '7' vs Result First Digit: '7'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: House - WINNER! Amount: 600
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: User ID 10 balance updated by 600
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 65 final status set to 'won'. Win Amount stored: 600
+[21-Jun-2025 12:56:29 Europe/Berlin] --- Processing booking ID: 66 (User: solomon) ---
+[21-Jun-2025 12:56:29 Europe/Berlin] Booking Type: house, Round: second_round, Amount Per Unit: 10.00
+[21-Jun-2025 12:56:29 Europe/Berlin] Numbers JSON: [{"digit":"5","round":"second_round"}]
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Decoded booked numbers: Array
+(
+    [0] => Array
+        (
+            [digit] => 5
+            [round] => second_round
+        )
+
+)
+
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Current results in memory - FR: 60, SR: 78, NT FR: N/A, NT SR: N/A
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Target round result for booking ID 66 (second_round): '78' (Type: string)
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: House Logic - Booked Digit: '5', Target Result: '78'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: House - Booked Digit: '5' vs Result First Digit: '7'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: House - No match.
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 66 is a LOSER (Status: lost).
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 66 final status set to 'lost'. Win Amount stored: 0
+[21-Jun-2025 12:56:29 Europe/Berlin] --- Processing booking ID: 67 (User: solomon) ---
+[21-Jun-2025 12:56:29 Europe/Berlin] Booking Type: ending, Round: first_round, Amount Per Unit: 10.00
+[21-Jun-2025 12:56:29 Europe/Berlin] Numbers JSON: [{"digit":"0","round":"first_round"}]
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Decoded booked numbers: Array
+(
+    [0] => Array
+        (
+            [digit] => 0
+            [round] => first_round
+        )
+
+)
+
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Current results in memory - FR: 60, SR: 78, NT FR: N/A, NT SR: N/A
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Target round result for booking ID 67 (first_round): '60' (Type: string)
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Ending Logic - Booked Digit: '0', Target Result: '60'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Ending - Booked Digit: '0' vs Result Second Digit: '0'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Ending - WINNER! Amount: 900
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: User ID 10 balance updated by 900
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 67 final status set to 'won'. Win Amount stored: 900
+[21-Jun-2025 12:56:29 Europe/Berlin] --- Processing booking ID: 68 (User: solomon) ---
+[21-Jun-2025 12:56:29 Europe/Berlin] Booking Type: ending, Round: first_round, Amount Per Unit: 10.00
+[21-Jun-2025 12:56:29 Europe/Berlin] Numbers JSON: [{"digit":"1","round":"first_round"}]
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Decoded booked numbers: Array
+(
+    [0] => Array
+        (
+            [digit] => 1
+            [round] => first_round
+        )
+
+)
+
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Current results in memory - FR: 60, SR: 78, NT FR: N/A, NT SR: N/A
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Target round result for booking ID 68 (first_round): '60' (Type: string)
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Ending Logic - Booked Digit: '1', Target Result: '60'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Ending - Booked Digit: '1' vs Result Second Digit: '0'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Ending - No match.
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 68 is a LOSER (Status: lost).
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 68 final status set to 'lost'. Win Amount stored: 0
+[21-Jun-2025 12:56:29 Europe/Berlin] --- Processing booking ID: 69 (User: solomon) ---
+[21-Jun-2025 12:56:29 Europe/Berlin] Booking Type: ending, Round: second_round, Amount Per Unit: 10.00
+[21-Jun-2025 12:56:29 Europe/Berlin] Numbers JSON: [{"digit":"8","round":"second_round"}]
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Decoded booked numbers: Array
+(
+    [0] => Array
+        (
+            [digit] => 8
+            [round] => second_round
+        )
+
+)
+
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Current results in memory - FR: 60, SR: 78, NT FR: N/A, NT SR: N/A
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Target round result for booking ID 69 (second_round): '78' (Type: string)
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Ending Logic - Booked Digit: '8', Target Result: '78'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Ending - Booked Digit: '8' vs Result Second Digit: '8'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Ending - WINNER! Amount: 700
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: User ID 10 balance updated by 700
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 69 final status set to 'won'. Win Amount stored: 700
+[21-Jun-2025 12:56:29 Europe/Berlin] --- Processing booking ID: 70 (User: solomon) ---
+[21-Jun-2025 12:56:29 Europe/Berlin] Booking Type: ending, Round: second_round, Amount Per Unit: 10.00
+[21-Jun-2025 12:56:29 Europe/Berlin] Numbers JSON: [{"digit":"5","round":"second_round"}]
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Decoded booked numbers: Array
+(
+    [0] => Array
+        (
+            [digit] => 5
+            [round] => second_round
+        )
+
+)
+
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Current results in memory - FR: 60, SR: 78, NT FR: N/A, NT SR: N/A
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Target round result for booking ID 70 (second_round): '78' (Type: string)
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Ending Logic - Booked Digit: '5', Target Result: '78'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Ending - Booked Digit: '5' vs Result Second Digit: '8'
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Ending - No match.
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 70 is a LOSER (Status: lost).
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Booking ID 70 final status set to 'lost'. Win Amount stored: 0
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Transaction committed successfully.
+[21-Jun-2025 12:56:29 Europe/Berlin] find_winners.php: Script finished.
+[Sat Jun 21 16:27:21.301701 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 70, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.301701 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 70. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.301701 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 69, Status: 'won', Raw Win Amount: '700', Cast to float: 700, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.301701 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ADDING booking ID 69 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.301701 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 68, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.301701 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 68. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.303074 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 67, Status: 'won', Raw Win Amount: '900', Cast to float: 900, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.303074 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ADDING booking ID 67 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.303074 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 66, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.303074 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 66. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.303074 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 65, Status: 'won', Raw Win Amount: '600', Cast to float: 600, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.303074 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ADDING booking ID 65 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.303074 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 64, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.303074 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 64. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.304084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 63, Status: 'won', Raw Win Amount: '800', Cast to float: 800, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.304084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ADDING booking ID 63 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.304084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 62, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.304084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 62. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.304084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 61, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.304084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 61. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.305082 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 60, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.305082 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 60. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.305082 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 59, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.305082 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 59. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.305082 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 58, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.305082 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 58. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.305082 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 57, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.305082 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 57. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.306083 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 56, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.306083 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 56. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.306083 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 55, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.306083 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 55. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.306083 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 54, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.306083 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 54. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.306083 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 53, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.306083 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 53. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.306083 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 52, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.307084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 52. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.307084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 51, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.307084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 51. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.307084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 50, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.307084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 50. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.307084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 49, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.308084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 49. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.308084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 48, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.308084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 48. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.308084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 47, Status: 'won', Raw Win Amount: '700', Cast to float: 700, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.308084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ADDING booking ID 47 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.309084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 46, Status: 'won', Raw Win Amount: '900', Cast to float: 900, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.309084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ADDING booking ID 46 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.309084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 45, Status: 'won', Raw Win Amount: '600', Cast to float: 600, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.309084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ADDING booking ID 45 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.309084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 44, Status: 'won', Raw Win Amount: '800', Cast to float: 800, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.309084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ADDING booking ID 44 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.309084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 43, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.309084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 43. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.309084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 42, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.309084 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 42. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.310438 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 41, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.310438 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 41. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.310438 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 40, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.310438 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 40. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.310438 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 39, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.310438 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 39. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.310438 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 38, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.310438 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 38. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.311448 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 37, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.311448 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 37. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.311448 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 36, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.311448 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 36. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.311448 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 35, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.311448 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 35. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.312448 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 34, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.312448 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 34. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.312448 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 33, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.312448 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 33. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.312448 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 32, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.312448 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 32. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.313449 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 31, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.313449 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 31. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.313449 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 30, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.313449 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 30. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.313449 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 29, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.313449 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 29. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.313449 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 28, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.314868 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 28. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.314868 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 27, Status: 'won', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.314868 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 27. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.314868 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 26, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.314868 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 26. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.314868 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: ID: 25, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:21.315882 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49375] Winning Ticket Debug: SKIPPING booking ID 25. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.102664 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 70, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.102664 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 70. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.102664 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 69, Status: 'won', Raw Win Amount: '700', Cast to float: 700, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.103742 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ADDING booking ID 69 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.103742 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 68, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.103742 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 68. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.103742 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 67, Status: 'won', Raw Win Amount: '900', Cast to float: 900, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.103742 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ADDING booking ID 67 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.103742 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 66, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.103742 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 66. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.103742 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 65, Status: 'won', Raw Win Amount: '600', Cast to float: 600, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.103742 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ADDING booking ID 65 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.103742 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 64, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.104738 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 64. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.104738 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 63, Status: 'won', Raw Win Amount: '800', Cast to float: 800, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.104738 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ADDING booking ID 63 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.104738 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 62, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.104738 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 62. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.104738 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 61, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.104738 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 61. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.104738 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 60, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.104738 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 60. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.104738 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 59, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.105740 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 59. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.105740 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 58, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.105740 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 58. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.105740 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 57, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.105740 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 57. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.105740 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 56, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.105740 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 56. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.105740 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 55, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.105740 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 55. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.105740 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 54, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.105740 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 54. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.106747 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 53, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.106747 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 53. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.106747 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 52, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.106747 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 52. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.106747 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 51, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.106747 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 51. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.106747 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 50, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.106747 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 50. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.106747 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 49, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.106747 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 49. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.106747 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 48, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.106747 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 48. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.107742 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 47, Status: 'won', Raw Win Amount: '700', Cast to float: 700, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.107742 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ADDING booking ID 47 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.107742 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 46, Status: 'won', Raw Win Amount: '900', Cast to float: 900, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.107742 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ADDING booking ID 46 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.107742 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 45, Status: 'won', Raw Win Amount: '600', Cast to float: 600, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.107742 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ADDING booking ID 45 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.107742 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 44, Status: 'won', Raw Win Amount: '800', Cast to float: 800, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.107742 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ADDING booking ID 44 to winning_tickets array., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.107742 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 43, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.107742 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 43. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.107742 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 42, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.108752 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 42. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.108752 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 41, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.108752 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 41. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.108752 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 40, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.108752 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 40. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.108752 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 39, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.108752 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 39. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.108752 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 38, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.108752 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 38. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.108752 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 37, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.108752 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 37. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.108752 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 36, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.108752 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 36. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.109748 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 35, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.109748 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 35. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.109748 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 34, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.109748 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 34. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.109748 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 33, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.109748 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 33. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.109748 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 32, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.109748 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 32. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.109748 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 31, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.109748 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 31. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.109748 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 30, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.109748 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 30. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.109748 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 29, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.109748 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 29. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.110752 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 28, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.110752 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 28. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.110752 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 27, Status: 'won', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.110752 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 27. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.110752 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 26, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.110752 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 26. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.110752 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: ID: 25, Status: 'lost', Raw Win Amount: '0', Cast to float: 0, referer: http://localhost/project-teer/mytickets/mytickets.html
+[Sat Jun 21 16:27:23.110752 2025] [php:notice] [pid 2364:tid 1904] [client ::1:49388] Winning Ticket Debug: SKIPPING booking ID 25. Condition failed., referer: http://localhost/project-teer/mytickets/mytickets.html

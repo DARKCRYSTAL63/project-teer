@@ -1,5 +1,6 @@
 <?php
 // File: project-teer/admin/set_booking_settings.php
+session_name("ADMIN_SESSION"); // Set session name for admin
 session_start(); // Start the session, crucial for admin authentication
 
 header('Content-Type: application/json'); // Respond with JSON

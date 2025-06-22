@@ -1,7 +1,7 @@
 <?php
 // File: project-teer/mybalance/submit_recharge_request.php (or /qrcode/submit_recharge_request.php)
 // Handles submission of recharge requests from the user side.
-
+session_name("USER_SESSION"); // Set session name for user
 session_start(); // MUST BE THE FIRST EXECUTABLE LINE AFTER <?php
 
 include '../db_connect.php'; // Correct path: Go up one level to reach db_connect.php

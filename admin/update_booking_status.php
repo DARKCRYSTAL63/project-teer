@@ -1,7 +1,7 @@
 <?php
 // File: project-teer/admin/update_booking_status.php
 // Updates the status of a specific booking.
-
+session_name("ADMIN_SESSION"); // Set session name for admin
 session_start(); // Start the session
 
 header('Content-Type: application/json'); // Set content type to JSON

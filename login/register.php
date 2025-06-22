@@ -1,7 +1,12 @@
 <?php
 // register.php
 // Handles new user registration.
+error_reporting(E_ALL); // Report all errors
+ini_set('display_errors', 0); // Do NOT display errors in the browser output
+ini_set('log_errors', 1); // Log errors to the error log
+ini_set('error_log', __DIR__ . '/php_error.log'); // Or remove this line to log to Apache's error.log
 
+session_name("USER_SESSION"); // Set session name for user
 session_start(); // Added session_start for consistency; can be removed if not directly using sessions in registration flow.
 
 include '../db_connect.php'; // Ensure this file exists and connects to your database
@@ -49,7 +54,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo json_encode($response);
             exit(); // Crucial: Exit immediately after sending response
         }
-        $stmt_check->close(); // Close after use
+        // Removed the redundant $stmt_check->close(); here. It will be closed in the finally block.
+        // $stmt_check->close(); // <--- REMOVED THIS LINE (LINE 78 IN YOUR ERROR LOG)
 
         // Insert new user into the database
         // Assuming initial balance is 0.00 and default role is 'user'
@@ -70,7 +76,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         error_log("Error in register.php: " . $e->getMessage());
         $response = ["success" => false, "message" => "An error occurred during registration: " . $e->getMessage()];
     } finally {
-        if ($stmt_check) $stmt_check->close(); // Ensure statements are closed if they were prepared
+        // These checks are correct, as they only close if the statement object exists and is not null
+        if ($stmt_check) $stmt_check->close();
         if ($stmt_insert) $stmt_insert->close();
         if (isset($conn) && $conn instanceof mysqli) {
             $conn->close();

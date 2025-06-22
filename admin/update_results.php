@@ -1,7 +1,7 @@
 <?php
 // File: project-teer/admin/update_results.php
 // Handles updating First Round and Second Round results from the admin panel.
-
+session_name("ADMIN_SESSION"); // Set session name for admin
 session_start();
 
 header('Content-Type: application/json');

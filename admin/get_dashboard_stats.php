@@ -1,7 +1,7 @@
 <?php
 // File: project-teer/admin/get_dashboard_stats.php
 // Fetches dashboard statistics for the admin panel.
-
+session_name("ADMIN_SESSION"); // Set session name for admin
 session_start(); // THIS MUST BE THE FIRST EXECUTABLE LINE AFTER <?php
 
 include '../db_connect.php'; // Correct path: Go up one level to reach db_connect.php

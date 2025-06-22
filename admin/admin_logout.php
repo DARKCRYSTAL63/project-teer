@@ -1,7 +1,7 @@
 <?php
 // File: project-teer/admin/admin_logout.php
 // Destroys the admin session.
-
+session_name("ADMIN_SESSION"); // Set session name for admin
 session_start(); // MUST BE THE FIRST EXECUTABLE LINE AFTER <?php
 
 header('Content-Type: application/json');

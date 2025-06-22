@@ -1,0 +1,15 @@
+[21-Jun-2025 12:01:56 Europe/Berlin] PHP Fatal error:  Uncaught Error: mysqli_stmt object is already closed in C:\xampp\htdocs\project-teer\login\register.php:75
+Stack trace:
+#0 C:\xampp\htdocs\project-teer\login\register.php(75): mysqli_stmt->close()
+#1 {main}
+  thrown in C:\xampp\htdocs\project-teer\login\register.php on line 75
+[21-Jun-2025 12:06:29 Europe/Berlin] PHP Fatal error:  Uncaught Error: mysqli_stmt object is already closed in C:\xampp\htdocs\project-teer\login\register.php:75
+Stack trace:
+#0 C:\xampp\htdocs\project-teer\login\register.php(75): mysqli_stmt->close()
+#1 {main}
+  thrown in C:\xampp\htdocs\project-teer\login\register.php on line 75
+[21-Jun-2025 12:10:36 Europe/Berlin] PHP Fatal error:  Uncaught Error: mysqli_stmt object is already closed in C:\xampp\htdocs\project-teer\login\register.php:75
+Stack trace:
+#0 C:\xampp\htdocs\project-teer\login\register.php(75): mysqli_stmt->close()
+#1 {main}
+  thrown in C:\xampp\htdocs\project-teer\login\register.php on line 75

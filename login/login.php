@@ -1,7 +1,7 @@
 <?php
 // File: project-teer/login/login.php
 // Handles user login with phone number and password.
-
+session_name("USER_SESSION"); // Set session name for user
 session_start(); // THIS MUST BE THE FIRST EXECUTABLE LINE AFTER <?php
 
 include '../db_connect.php'; // Correct path: Go up one level to reach db_connect.php

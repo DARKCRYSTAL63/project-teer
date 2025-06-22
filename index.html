@@ -202,7 +202,6 @@
                     <li><a href="mybalance/mybalance.html">My Balance</a></li>
                     <li><a href="dreamnumber/dreamnumber.html">Dream Numbers</a></li>
                     <li><a href="previousresult/previousresults.html">Previous Results</a></li>
-                    <li><a href="aboutus/aboutus.html">About Us</a></li>
                     <!-- This list item will be dynamically updated for desktop -->
                     <li id="login-logout-link-container">
                         <a href="login/login.html" id="login-logout-link">Login</a>
@@ -226,7 +225,6 @@
                 <li><a href="mybalance/mybalance.html">My Balance</a></li>
                 <li><a href="dreamnumber/dreamnumber.html">Dream Numbers</a></li>
                 <li><a href="previousresult/previousresults.html">Previous Results</a></li>
-                <li><a href="aboutus/aboutus.html">About Us</a></li>
                 <!-- This list item will be dynamically updated for mobile -->
                 <li id="mobile-login-logout-link-container">
                     <a href="login/login.html" id="mobile-login-logout-link">Login</a>
@@ -608,9 +606,21 @@
         <section class="video-links">
             <h2>Live Draws</h2>
             <div class="video-container">
-                <a href="https://www.youtube.com/watch?v=VzxcyRnA6-0" target="_blank">Live Draw </a>
-                <a href="https://www.youtube.com/@shillongteerlivee" target="_blank">Live Draw </a>
-                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Live Draw </a>
+                <div class="video-thumb">
+    <a href="https://www.youtube.com/watch?v=VzxcyRnA6-0" target="_blank">
+        <img src="https://img.youtube.com/vi/VzxcyRnA6-0/hqdefault.jpg" alt="Live Draw" class="thumb-img">
+    </a>
+</div>
+<div class="video-thumb">
+    <a href="https://www.youtube.com/@shillongteerlivee" target="_blank">
+        <img src="https://img.youtube.com/vi/VzxcyRnA6-0/hqdefault.jpg" alt="Live Draw" class="thumb-img">
+    </a>
+</div>
+<div class="video-thumb">
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Live Draw" class="thumb-img">
+    </a>
+</div>
             </div>
         </section>
     </main>
@@ -618,11 +628,6 @@
     <footer>
         <div class="footer-left">
             <p>&copy; 2025 FrankyTeer. All rights reserved.</p>
-            <p class="footer-links">
-                <a href="privacy/privacy-policy.html">Privacy Policy</a> | 
-                <a href="terms/termsandcondition.html">Terms and Conditions</a> | 
-                <a href="refund/refundpolicy.html">Refund Policy</a>
-            </p>
     </footer> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
@@ -643,7 +648,21 @@
                 hamburger.classList.remove('active');
             }
         });
-        
+        function displayMessage(type, message, redirectUrl = null) {
+    const messageBox = $('#bookingMessageBox');
+    messageBox.removeClass('success error').addClass(type).text(message).show();
+
+    if (type === 'success') {
+        setTimeout(() => {
+            messageBox.fadeOut();
+        }, 4000); // 4 seconds timeout for success message
+    }
+
+    if (redirectUrl) {
+        setTimeout(() => { window.location.href = redirectUrl; }, 2000);
+    }
+}
+
         // --- NEW/MODIFIED JAVASCRIPT FOR BOOKING SECTION ---
         let currentBalance = 0; // Will be fetched from backend
         let bookingSettings = {}; // Store booking enable/disable settings

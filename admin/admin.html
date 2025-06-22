@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - FrankyTeer</title>
-    <link rel="stylesheet" href="admin.css"> <!-- Assuming index.css is in the parent directory -->
+    <link rel="stylesheet" href="admin.css"> <!-- Assuming admin.css is in the same directory -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <!-- Moved jQuery to head as some scripts might depend on it immediately -->
+    <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <style>
-        /* Existing CSS from your provided admin.html, ensuring it's here for completeness */
+        /* Existing CSS from your provided admin.txt (start) */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f4f7f6;
@@ -33,7 +38,7 @@
             font-size: 2.2em;
             font-weight: 700;
         }
-        section {
+        section { /* This rule is likely for the overall page structure, not individual panels */
             background-color: #fcfcfc;
             border: 1px solid #e0e0e0;
             border-radius: 8px;
@@ -66,7 +71,8 @@
         }
         .form-group input[type="text"],
         .form-group input[type="number"],
-        .form-group input[type="password"] {
+        .form-group input[type="password"],
+        .form-group select { /* Added select for form-group styling consistency */
             flex: 2; /* Allow input to grow more */
             padding: 10px 12px;
             border: 1px solid #ccc;
@@ -151,7 +157,7 @@
             background-color: #c82333;
             transform: translateY(-2px);
         }
-        .message-box {
+        .message-box { /* Renamed to .alert-message for consistency with your existing usage */
             margin-top: 20px;
             padding: 10px 15px;
             border-radius: 5px;
@@ -159,12 +165,12 @@
             text-align: center;
             display: none; /* Hidden by default */
         }
-        .message-box.success {
+        .message-box.success { /* Retained for now as existing JS might use it */
             background-color: #d4edda;
             color: #155724;
             border: 1px solid #c3e6cb;
         }
-        .message-box.error {
+        .message-box.error { /* Retained for now as existing JS might use it */
             background-color: #f8d7da;
             color: #721c24;
             border: 1px solid #f5c6fb;
@@ -189,7 +195,7 @@
             display: none;
         }
 
-        /* NEW CSS for Admin Bookings Filters and Modal */
+        /* NEW CSS for Admin Bookings Filters and Modal (already in your admin.txt, but ensuring consistent names) */
         .filter-options {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -197,7 +203,7 @@
             margin-bottom: 20px;
             padding: 15px;
             background-color: #f9f9f9;
-            border-radius: 8m;
+            border-radius: 8px; /* Corrected typo from 8m to 8px */
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.03);
         }
 
@@ -239,7 +245,53 @@
             background-color: rgba(0,0,0,0.4);
             align-items: center; /* Center horizontally */
             justify-content: center; /* Center vertically */
+            backdrop-filter: blur(5px); /* Add blur for better modal effect */
         }
+        .modal .modal-content {
+            background-color: #fefefe;
+            margin: auto; /* For centering */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%; /* Responsive width */
+            max-width: 600px; /* Max width for larger screens */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: relative; /* For close button positioning */
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .modal-header h3 {
+            margin: 0;
+            color: #333;
+        }
+        .modal .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        .modal .close-modal:hover,
+        .modal .close-modal:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .modal-footer {
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            margin-top: 20px;
+            text-align: right;
+        }
+
         .modal .modal-body {
             padding: 20px;
         }
@@ -287,6 +339,9 @@
             padding: 8px;
             text-align: left;
             vertical-align: top; /* Align content to top */
+            /* TEMP DEBUG: Ensure cells are not hidden by default */
+            color: #333; /* Make text visible */
+            background-color: #fff; /* Ensure background is not transparent/hidden */
         }
         #winners-list-table th {
             background-color: #f2f2f2;
@@ -347,6 +402,87 @@
         .status-disabled {
             color: #dc3545; /* Red */
         }
+        /* Message Box Styling (already in your admin.txt, but added a class for visibility) */
+        .alert-message {
+            margin-top: 20px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            text-align: center;
+            display: none; /* Hidden by default */
+        }
+        .alert-message.alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .alert-message.alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6fb;
+        }
+        .alert-message.alert-info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        /* Responsive adjustments for tables */
+        @media (max-width: 768px) {
+            .filter-options {
+                grid-template-columns: 1fr; /* Stack filters on small screens */
+            }
+            .filter-options .btn {
+                width: 100%; /* Full width buttons */
+            }
+            table th, table td {
+                font-size: 12px; /* Smaller font for tables on mobile */
+                padding: 6px;
+            }
+            .modal .modal-content {
+                width: 95%; /* Narrower modal on mobile */
+            }
+        }
+        /* Existing CSS from your provided admin.txt (end) */
+
+        /* Added CSS for responsiveness and specific elements - ONLY if not already present in admin.css */
+        /* Ensure tables within panels are responsive */
+        .panel table {
+            width: 100%; /* Ensure tables within panels take full width */
+            border-collapse: collapse;
+        }
+
+        /* Added for horizontal scrolling of tables on small screens */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+        }
+        /* Action buttons in tables */
+        .action-buttons button, .edit-user, .delete-user, .approve-recharge, .reject-recharge,
+        .approve-withdrawal, .reject-withdrawal, .view-booking-details {
+            margin-right: 5px;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 3px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .edit-user, .view-booking-details { background-color: #17a2b8; color: white; } /* Info blue */
+        .delete-user { background-color: #dc3545; color: white; } /* Danger red */
+        .approve-recharge, .approve-withdrawal { background-color: #28a745; color: white; } /* Success green */
+        .reject-recharge, .reject-withdrawal { background-color: #ffc107; color: #333; } /* Warning yellow */
+
+        .edit-user:hover, .view-booking-details:hover { background-color: #138496; }
+        .delete-user:hover { background-color: #c82333; }
+        .approve-recharge:hover, .approve-withdrawal:hover { background-color: #218838; }
+        .reject-recharge:hover, .reject-withdrawal:hover { background-color: #e0a800; }
+        
+        /* User Status colors (assuming 'user-status-active' etc. are applied) */
+        .user-status-active { color: #28a745; font-weight: bold; }
+        .user-status-suspended { color: #ffc107; font-weight: bold; }
+        .user-status-banned { color: #dc3545; font-weight: bold; }
+
     </style>
 </head>
 <body>
@@ -379,7 +515,7 @@
             </li>
             <li><a href="#users-section"><i class="fas fa-users"></i> Users</a></li>
             <li><a href="#reports-section"><i class="fas fa-chart-bar"></i> Reports</a></li>
-            <li><a href="/project-teer/admin/admin_login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li> <!-- Corrected Logout link -->
+            <li><a href="/project-teer/admin/admin_login.html" id="logout-link-nav"><i class="fas fa-sign-out-alt"></i> Logout</a></li> <!-- Corrected Logout link and added ID -->
         </ul>
     </div>
 
@@ -390,7 +526,7 @@
                 <h1><i class="fas fa-home"></i> Dashboard</h1>
                 <div class="header-actions">
                     <button class="btn btn-primary" id="export-data"><i class="fas fa-file-export"></i> Export</button>
-                    <button class="btn btn-danger" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    <button class="btn btn-danger" id="logout-btn-header"><i class="fas fa-sign-out-alt"></i> Logout</button> <!-- Added ID -->
                 </div>
             </div>
             
@@ -430,18 +566,18 @@
                         <h3><i class="fas fa-flag"></i> First Round</h3>
                         <div class="input-box">
                             <label for="first-round">Result</label>
-                            <input type="number" id="first-round" min="0" max="99" placeholder="Enter result">
+                            <input type="text" id="first-round" minlength="2" maxlength="2" pattern="\d{2}" placeholder="Enter result">
                         </div>
-                        <button class="btn btn-success" id="update-fr"><i class="fas fa-save"></i> Update First Round</button>
+                        <button class="btn btn-success update-result-btn" data-round-type="first_round"><i class="fas fa-save"></i> Update First Round</button>
                     </div>
                     
                     <div class="round-update-box">
                         <h3><i class="fas fa-flag-checkered"></i> Second Round</h3>
                         <div class="input-box">
                             <label for="second-round">Result</label>
-                            <input type="number" id="second-round" min="0" max="99" placeholder="Enter result">
+                            <input type="text" id="second-round" minlength="2" maxlength="2" pattern="\d{2}" placeholder="Enter result">
                         </div>
-                        <button class="btn btn-success" id="update-sr"><i class="fas fa-save"></i> Update Second Round</button>
+                        <button class="btn btn-success update-result-btn" data-round-type="second_round"><i class="fas fa-save"></i> Update Second Round</button>
                     </div>
 
                     <!-- Night Teer Results Input -->
@@ -449,53 +585,53 @@
                         <h3><i class="fas fa-moon"></i> Night Teer FR</h3>
                         <div class="input-box">
                             <label for="night-teer-fr">Result</label>
-                            <input type="number" id="night-teer-fr" min="0" max="99" placeholder="Enter result">
+                            <input type="text" id="night-teer-fr" minlength="2" maxlength="2" pattern="\d{2}" placeholder="Enter result">
                         </div>
-                        <button class="btn btn-success" id="update-night-teer-fr"><i class="fas fa-save"></i> Update Night Teer FR</button>
+                        <button class="btn btn-success update-result-btn" data-round-type="night_teer_fr"><i class="fas fa-save"></i> Update Night Teer FR</button>
                     </div>
                     
                     <div class="round-update-box">
                         <h3><i class="fas fa-moon"></i> Night Teer SR</h3>
                         <div class="input-box">
                             <label for="night-teer-sr">Result</label>
-                            <input type="number" id="night-teer-sr" min="0" max="99" placeholder="Enter result">
+                            <input type="text" id="night-teer-sr" minlength="2" maxlength="2" pattern="\d{2}" placeholder="Enter result">
                         </div>
-                        <button class="btn btn-success" id="update-night-teer-sr"><i class="fas fa-save"></i> Update Night Teer SR</button>
+                        <button class="btn btn-success update-result-btn" data-round-type="night_teer_sr"><i class="fas fa-save"></i> Update Night Teer SR</button>
                     </div>
                 </div>
 
-                <!-- Booking Control Section (NEW) -->
+                <!-- Booking Control Section (Already in your admin.txt) -->
                 <div class="booking-control-section">
                     <div class="booking-control-box">
                         <h3>First Round Booking</h3>
                         <div class="booking-status-indicator" id="fr-booking-status">Status: Loading...</div>
-                        <button class="btn btn-danger" data-round="first_round" data-action="disable">Disable FR Booking</button>
-                        <button class="btn btn-success" data-round="first_round" data-action="enable">Enable FR Booking</button>
+                        <button class="btn btn-danger booking-toggle-btn" data-round="first_round" data-action="disable">Disable FR Booking</button>
+                        <button class="btn btn-success booking-toggle-btn" data-round="first_round" data-action="enable">Enable FR Booking</button>
                     </div>
                     <div class="booking-control-box">
                         <h3>Second Round Booking</h3>
                         <div class="booking-status-indicator" id="sr-booking-status">Status: Loading...</div>
-                        <button class="btn btn-danger" data-round="second_round" data-action="disable">Disable SR Booking</button>
-                        <button class="btn btn-success" data-round="second_round" data-action="enable">Enable SR Booking</button>
+                        <button class="btn btn-danger booking-toggle-btn" data-round="second_round" data-action="disable">Disable SR Booking</button>
+                        <button class="btn btn-success booking-toggle-btn" data-round="second_round" data-action="enable">Enable SR Booking</button>
                     </div>
                     <!-- NEW: Forecast Booking Control -->
                     <div class="booking-control-box">
                         <h3>Forecast Booking</h3>
                         <div class="booking-status-indicator" id="forecast-booking-status">Status: Loading...</div>
-                        <button class="btn btn-danger" data-round="forecast" data-action="disable">Disable Forecast Booking</button>
-                        <button class="btn btn-success" data-round="forecast" data-action="enable">Enable Forecast Booking</button>
+                        <button class="btn btn-danger booking-toggle-btn" data-round="forecast" data-action="disable">Disable Forecast Booking</button>
+                        <button class="btn btn-success booking-toggle-btn" data-round="forecast" data-action="enable">Enable Forecast Booking</button>
                     </div>
                     <div class="booking-control-box">
                         <h3>Night Teer FR Booking</h3>
                         <div class="booking-status-indicator" id="nt-fr-booking-status">Status: Loading...</div>
-                        <button class="btn btn-danger" data-round="night_teer_fr" data-action="disable">Disable NT FR Booking</button>
-                        <button class="btn btn-success" data-round="night_teer_fr" data-action="enable">Enable NT FR Booking</button>
+                        <button class="btn btn-danger booking-toggle-btn" data-round="night_teer_fr" data-action="disable">Disable NT FR Booking</button>
+                        <button class="btn btn-success booking-toggle-btn" data-round="night_teer_fr" data-action="enable">Enable NT FR Booking</button>
                     </div>
                     <div class="booking-control-box">
                         <h3>Night Teer SR Booking</h3>
                         <div class="booking-status-indicator" id="nt-sr-booking-status">Status: Loading...</div>
-                        <button class="btn btn-danger" data-round="night_teer_sr" data-action="disable">Disable NT SR Booking</button>
-                        <button class="btn btn-success" data-round="night_teer_sr" data-action="enable">Enable NT SR Booking</button>
+                        <button class="btn btn-danger booking-toggle-btn" data-round="night_teer_sr" data-action="disable">Disable NT SR Booking</button>
+                        <button class="btn btn-success booking-toggle-btn" data-round="night_teer_sr" data-action="enable">Enable NT SR Booking</button>
                     </div>
                 </div>
             </div>
@@ -506,6 +642,7 @@
                     <h2><i class="fas fa-book"></i> All Bookings</h2>
                     <div class="panel-actions">
                         <button class="btn btn-primary" id="refresh-bookings"><i class="fas fa-redo"></i> Refresh</button>
+                        <button class="btn btn-info" id="export-bookings-pdf"><i class="fas fa-file-pdf"></i> Export PDF</button> <!-- NEW -->
                     </div>
                 </div>
                 
@@ -541,6 +678,7 @@
                             <option value="won">Won</option>
                             <option value="lost">Lost</option>
                             <option value="cancelled">Cancelled</option>
+                            <option value="error_json">JSON Error</option> <!-- Added for debugging -->
                         </select>
                     </div>
                     <div class="form-group">
@@ -548,39 +686,42 @@
                         <input type="text" id="user-search" class="form-control" placeholder="Search User ID or Username">
                     </div>
                     <div class="form-group">
-                        <label for="booking-date-range">Date Range:</label>
-                        <input type="text" id="booking-date-range" class="form-control" placeholder="Select Date Range">
+                        <label for="booking-date-filter">Date:</label> <!-- Changed to single date filter -->
+                        <input type="date" id="booking-date-filter" class="form-control">
                     </div>
                     <button class="btn btn-primary" id="apply-booking-filters"><i class="fas fa-filter"></i> Apply Filters</button>
                     <button class="btn btn-secondary" id="reset-booking-filters"><i class="fas fa-undo"></i> Reset Filters</button>
                 </div>
 
                 <!-- Unified Bookings Table -->
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>User</th>
-                            <th>Booking Type</th>
-                            <th>Round Type</th>
-                            <th>Amt/Unit</th>
-                            <th>Total Amt</th>
-                            <th>Status</th>
-                            <th>Booked At</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="all-bookings-list">
-                        <tr><td colspan="9" style="text-align: center;">Loading bookings...</td></tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="5">Total Bookings Found:</td>
-                            <td id="total-bookings-count">0</td>
-                            <td colspan="3"></td>
-                        </tr>
-                    </tfoot>
-                </table>
+                <div class="table-responsive"> <!-- ADDED this wrapper for responsiveness -->
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Booking No.</th> <!-- Changed from ID -->
+                                <th>User</th>
+                                <th>Booking Type</th>
+                                <th>Round Type</th>
+                                <th>Numbers</th> <!-- NEW column for numbers_booked_json display -->
+                                <th>Amt/Unit</th>
+                                <th>Total Amt</th>
+                                <th>Status</th>
+                                <th>Booked At</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="all-bookings-list">
+                            <tr><td colspan="10" style="text-align: center;">Loading bookings...</td></tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6" style="text-align: right;">Total Booking Amount:</td> <!-- colspan adjusted -->
+                                <td id="total-booking-amount-display">₹0.00</td> <!-- NEW for total amount -->
+                                <td colspan="3"></td> <!-- colspan adjusted -->
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
                 <div class="pagination" id="bookings-pagination">
                     <!-- Pagination buttons will be generated by JS -->
                 </div>
@@ -592,31 +733,43 @@
                     <h2><i class="fas fa-rupee-sign"></i> Recharge Approval</h2>
                     <div class="panel-actions">
                         <button class="btn btn-primary" id="refresh-recharge-requests"><i class="fas fa-redo"></i> Refresh</button>
+                        <button class="btn btn-info" id="export-recharge-pdf"><i class="fas fa-file-pdf"></i> Export PDF</button> <!-- NEW -->
                     </div>
                 </div>
+                <!-- Filter for Recharge Requests -->
+                <div class="filter-options">
+                    <div class="form-group">
+                        <label for="recharge-date-filter">Date:</label>
+                        <input type="date" id="recharge-date-filter" class="form-control">
+                    </div>
+                    <button class="btn btn-primary" id="apply-recharge-filters"><i class="fas fa-filter"></i> Apply Filter</button>
+                    <button class="btn btn-secondary" id="reset-recharge-filters"><i class="fas fa-undo"></i> Reset</button>
+                </div>
                 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Request ID</th>
-                            <th>Username</th>
-                            <th>Phone</th> 
-                            <th>Amount</th>
-                            <th>Status</th>
-                            <th>Request Time</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="recharge-requests-list">
-                        <!-- Recharge requests will be loaded here by JavaScript -->
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="4">Total Pending Requests:</td> 
-                            <td colspan="3" id="total-pending-recharge-requests-summary">0 requests (₹0.00)</td> 
-                        </tr>
-                    </tfoot>
-                </table>
+                <div class="table-responsive"> <!-- ADDED this wrapper for responsiveness -->
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Request ID</th>
+                                <th>Username</th>
+                                <th>Phone</th> 
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Request Time</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recharge-requests-list">
+                            <!-- Recharge requests will be loaded here by JavaScript -->
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4" style="text-align: right;">Total Pending Amount:</td> <!-- Aligned total to right -->
+                                <td colspan="3" id="total-pending-recharge-requests-summary">0 requests (₹0.00)</td> 
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
                 <div class="pagination">
                     <button id="recharge-prev"><i class="fas fa-chevron-left"></i></button>
                     <button class="active">1</button>
@@ -631,34 +784,47 @@
                     <h2><i class="fas fa-money-bill-transfer"></i> Withdrawal Requests</h2>
                     <div class="panel-actions">
                         <button class="btn btn-primary" id="refresh-withdrawal-requests"><i class="fas fa-redo"></i> Refresh</button>
+                        <button class="btn btn-info" id="export-withdrawal-pdf"><i class="fas fa-file-pdf"></i> Export PDF</button> <!-- NEW -->
                     </div>
                 </div>
+                 <!-- Filter for Withdrawal Requests -->
+                <div class="filter-options">
+                    <div class="form-group">
+                        <label for="withdrawal-date-filter">Date:</label>
+                        <input type="date" id="withdrawal-date-filter" class="form-control">
+                    </div>
+                    <button class="btn btn-primary" id="apply-withdrawal-filters"><i class="fas fa-filter"></i> Apply Filter</button>
+                    <button class="btn btn-secondary" id="reset-withdrawal-filters"><i class="fas fa-undo"></i> Reset</button>
+                </div>
                 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Request ID</th>
-                            <th>Username</th>
-                            <th>Phone</th>
-                            <th>Amount</th>
-                            <th>Bank Name</th>
-                            <th>Account No.</th>
-                            <th>IFSC Code</th>
-                            <th>Status</th>
-                            <th>Request Time</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="withdrawal-requests-list">
-                        <!-- Withdrawal requests will be loaded here by JavaScript -->
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="6">Total Pending Requests:</td> 
-                            <td colspan="4" id="total-pending-withdrawal-requests-summary">0 requests (₹0.00)</td> 
-                        </tr>
-                    </tfoot>
-                </table>
+                <div class="table-responsive"> <!-- ADDED this wrapper for responsiveness -->
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Request ID</th>
+                                <th>Username</th>
+                                <th>Phone</th>
+                                <th>Account Holder</th> <!-- ADDED Account Holder -->
+                                <th>Amount</th>
+                                <th>Bank Name</th>
+                                <th>Account No.</th>
+                                <th>IFSC Code</th>
+                                <th>Status</th>
+                                <th>Request Time</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="withdrawal-requests-list">
+                            <!-- Withdrawal requests will be loaded here by JavaScript -->
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6" style="text-align: right;">Total Pending Amount:</td> <!-- colspan adjusted for new column -->
+                                <td colspan="5" id="total-pending-withdrawal-requests-summary">0 requests (₹0.00)</td> <!-- colspan adjusted for new column -->
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
                 <div class="pagination">
                     <button id="withdrawal-prev"><i class="fas fa-chevron-left"></i></button>
                     <button class="active">1</button>
@@ -670,20 +836,32 @@
             <!-- Winners Section -->
             <div class="panel" id="winners-section">
                 <div class="panel-header">
-                    <h2><i class="fas fa-medal"></i> Today's Winners</h2>
+                    <h2><i class="fas fa-medal"></i> Winners List</h2> <!-- Changed title -->
                     <div>
+                        <!-- This will display today's current results, but the winners list below will be filtered by date -->
                         <span class="winning-number" id="fr-result-display">FR: -</span>
                         <span class="winning-number" id="sr-result-display">SR: -</span>
                         <span class="winning-number" id="night-teer-fr-result-display">NT FR: -</span>
                         <span class="winning-number" id="night-teer-sr-result-display">NT SR: -</span>
                     </div>
                     <div class="panel-actions">
-                        <button class="btn btn-success" id="calculate-winners"><i class="fas fa-calculator"></i> Calculate Winners</button>
+                        <!-- Removed manual calculate winners button as it's now automatic -->
                         <button class="btn btn-primary" id="refresh-winners-list"><i class="fas fa-redo"></i> Refresh Winners</button>
+                        <button class="btn btn-info" id="export-winners-pdf"><i class="fas fa-file-pdf"></i> Export PDF</button> <!-- NEW -->
                     </div>
                 </div>
 
                 <div id="winner-calculation-message" class="alert-message" style="display: none;"></div>
+
+                <!-- Filter for Winners -->
+                <div class="filter-options">
+                    <div class="form-group">
+                        <label for="winners-date-filter">Date:</label>
+                        <input type="date" id="winners-date-filter" class="form-control">
+                    </div>
+                    <button class="btn btn-primary" id="apply-winners-filters"><i class="fas fa-filter"></i> Apply Filter</button>
+                    <button class="btn btn-secondary" id="reset-winners-filters"><i class="fas fa-undo"></i> Reset</button>
+                </div>
 
                 <div class="winner-summary-card">
                     Total Bookings Processed: <strong id="total-bookings-processed">0</strong> | 
@@ -693,21 +871,32 @@
                     Total Winnings Distributed: <strong id="total-winnings-distributed">₹0.00</strong>
                 </div>
 
-                <table id="winners-list-table">
-                    <thead>
-                        <tr>
-                            <th>Booking ID</th>
-                            <th>User</th>
-                            <th>Booking Type</th>
-                            <th>Round Type</th>
-                            <th>Amt/Unit</th>
-                            <th>Win Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody id="winners-list-tbody">
-                        <tr><td colspan="6" style="text-align: center;">No winners to display yet.</td></tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive"> <!-- ADDED this wrapper for responsiveness -->
+                    <table id="winners-list-table">
+                        <thead>
+                            <tr>
+                                <th>Booking No.</th> <!-- Changed from Booking ID -->
+                                <th>User</th> <!-- User ID and Username will go here -->
+                                <th>Booking Type</th>
+                                <th>Round Type</th>
+                                <th>Numbers Booked</th> <!-- NEW column for numbers_booked_json -->
+                                <th>Amt/Unit</th>
+                                <th>Win Amount</th>
+                                <th>Status</th> <!-- ADDED Status column to Winners table for better context -->
+                            </tr>
+                        </thead>
+                        <tbody id="winners-list-tbody">
+                            <tr><td colspan="8" style="text-align: center;">No winners to display yet.</td></tr> <!-- colspan adjusted -->
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6" style="text-align: right;">Total Winnings Distributed:</td> <!-- colspan adjusted -->
+                                <td id="total-winnings-distributed-footer">₹0.00</td> <!-- NEW for total amount in footer -->
+                                <td></td> <!-- For the added Status column -->
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
                 <!-- Pagination for winners if needed, but for daily results, it might not be necessary -->
             </div>
             
@@ -720,26 +909,31 @@
                     </div>
                 </div>
                 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>Phone</th>
-                            <th>Balance</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="users-list">
-                        <!-- User data will be loaded here by JavaScript -->
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="4">Total Users:</td>
-                            <td id="total-users-count">0</td>
-                        </tr>
-                    </tfoot>
-                </table>
+                <div class="table-responsive"> <!-- ADDED this wrapper for responsiveness -->
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th> <!-- Added ID column for users table -->
+                                <th>Username</th>
+                                <th>Phone</th>
+                                <th>Balance</th>
+                                <th>Role</th> <!-- Added Role column for users table -->
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-list">
+                            <!-- User data will be loaded here by JavaScript -->
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5">Total Users:</td> <!-- colspan adjusted -->
+                                <td id="total-users-count">0</td>
+                                <td></td> <!-- added empty cell for actions column -->
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
                 <div class="pagination">
                     <button id="users-prev"><i class="fas fa-chevron-left"></i></button>
                     <button class="active">1</button>
@@ -747,38 +941,50 @@
                     <button id="users-next"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
+             <!-- Reports Section (Keep as is, no new functionality requested yet) -->
+            <div class="panel" id="reports-section">
+                <div class="panel-header">
+                    <h2><i class="fas fa-chart-bar"></i> Reports</h2>
+                    <div class="panel-actions">
+                        <button class="btn btn-primary">Generate Report</button>
+                    </div>
+                </div>
+                <div class="panel-content">
+                    <p>Report generation tools will be available here.</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Export Modal -->
+    <!-- Export Modal (existing from your admin.txt) -->
     <div class="modal" id="export-modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h3><i class="fas fa-file-export"></i> Export Data</h3>
                 <button class="close-modal">&times;</button>
             </div>
-            <div class="form-group">
-                <label>Data Type</label>
-                <select id="export-type">
-                    <option value="bookings">Bookings</option>
-                    <option value="winners">Winners</option>
-                    <option value="users">Users</option>
-                    <option value="results">Results</option>
-                    <option value="recharge">Recharge Requests</option>
-                    <option value="withdrawal">Withdrawal Requests</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Date Range</label>
-                <input type="text" id="export-date-range" placeholder="Select date range">
-            </div>
-            <div class="form-group">
-                <label>Format</label>
-                <select id="export-format">
-                    <option value="csv">CSV</option>
-                    <option value="excel">Excel</option>
-                    <option value="pdf">PDF</option>
-                </select>
+            <div class="modal-body"> <!-- Added modal-body wrapper for consistency -->
+                <div class="form-group">
+                    <label>Data Type</label>
+                    <select id="export-type" class="form-control"> <!-- Added form-control class for consistency -->
+                        <option value="bookings">Bookings</option>
+                        <option value="winners">Winners</option>
+                        <option value="users">Users</option>
+                        <option value="recharge">Recharge Requests</option>
+                        <option value="withdrawal">Withdrawal Requests</option>
+                        <!-- Removed 'results' as it's typically a small, daily-only dataset -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Date Range</label>
+                    <input type="text" id="export-date-range" class="form-control" placeholder="Select date range"> <!-- Added form-control class -->
+                </div>
+                <div class="form-group">
+                    <label>Format</label>
+                    <select id="export-format" class="form-control"> <!-- Added form-control class -->
+                        <option value="pdf">PDF</option> <!-- Changed default to PDF, removed CSV/Excel as not implemented -->
+                    </select>
+                </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-danger close-modal">Cancel</button>
@@ -787,7 +993,7 @@
         </div>
     </div>
 
-    <!-- Booking Details Modal - NEW -->
+    <!-- Booking Details Modal - Existing from your admin.txt -->
     <div class="modal" id="booking-details-modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -812,6 +1018,7 @@
                         <option value="won">Won</option>
                         <option value="lost">Lost</option>
                         <option value="cancelled">Cancelled</option>
+                        <option value="error_json">JSON Error</option> <!-- Added for debugging -->
                     </select>
                 </div>
                 <button class="btn btn-success mt-3" id="confirm-update-booking-status" data-booking-id="">Update Status</button>
@@ -824,19 +1031,25 @@
     </div>
 
 
-    <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/daterangepicker@3.1.0/daterangepicker.min.js"></script>
     <script>
+        const { jsPDF } = window.jspdf; // Ensure jsPDF is globally accessible
+
         $(document).ready(function() {
-            // Helper for displaying messages in winner section (reused for general admin messages)
+            // Helper for displaying messages
             function displayAdminMessage(type, message) {
                 const messageDiv = $('#winner-calculation-message'); 
+                // Using winner-calculation-message for general admin alerts, if you want a separate one, create a new div.
                 messageDiv.removeClass('alert-success alert-danger alert-info').addClass('alert-' + type).text(message).show();
                 setTimeout(() => messageDiv.fadeOut(), 5000);
             }
 
-            // Check for admin role on page load
+            // --- Session and Logout Logic ---
+            // Adjusted IDs for logout buttons to match the provided admin.txt
+            $('#logout-link-nav').click(function(e) { e.preventDefault(); handleLogout(); });
+            $('#logout-btn-header').click(function(e) { e.preventDefault(); handleLogout(); });
+
             function checkAdminSession() {
                 console.log('Admin Panel: Checking admin session...');
                 $.ajax({
@@ -845,100 +1058,76 @@
                     dataType: 'json',
                     success: function(response) {
                         console.log('Admin Panel: check_admin_session.php response:', response);
-                        if (!response.is_admin) {
-                            alert("You are not authorized to view this page. Redirecting to admin login.");
-                            window.location.href = '/project-teer/admin/admin_login.html';
+                        // Using 'loggedin' and 'role' properties now, as fixed in check_admin_session.php
+                        if (!response.loggedin || response.role !== 'admin') {
+                            // Using the new message box for this
+                            displayAdminMessage('danger', response.message || "You are not authorized to view this page. Redirecting to admin login.");
+                            setTimeout(() => {
+                                window.location.href = '/project-teer/admin/admin_login.html';
+                            }, 2000);
                         } else {
                             console.log('Admin Panel: Admin session confirmed. Fetching all data...');
-                            // If admin, fetch all data
+                            // If admin, fetch all data with default today's date
+                            const today = new Date().toISOString().split('T')[0];
+                            // Set default date filter values
+                            $('#booking-date-filter').val(today);
+                            $('#winners-date-filter').val(today);
+                            $('#recharge-date-filter').val(today);
+                            $('#withdrawal-date-filter').val(today); // For withdrawal filter
+
                             fetchDashboardStats(); 
-                            fetchRechargeRequests();
-                            fetchWithdrawalRequests();
+                            fetchRechargeRequests(today); // Pass today's date
+                            fetchWithdrawalRequests(today); // Pass today's date
                             fetchUsers();
-                            fetchBookings(); 
+                            fetchBookings(1, today); // Pass today's date and start page 1
                             fetchResultsForAdminPanel(); 
-                            fetchTodaysWinners(); 
-                            fetchBookingSettings(); // NEW: Fetch booking settings on load
+                            fetchTodaysWinners(today); // Pass today's date
+                            fetchBookingSettings(); 
                         }
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         console.error("Admin Panel: Session check failed:", {jqXHR, textStatus, errorThrown, responseText: jqXHR.responseText});
-                        alert("Session check failed. Redirecting to admin login.");
-                        window.location.href = '/project-teer/admin/admin_login.html';
+                        displayAdminMessage('danger', "Session check failed. Redirecting to admin login.");
+                        setTimeout(() => {
+                                window.location.href = '/project-teer/admin/admin_login.html';
+                        }, 2000);
                     }
                 });
             }
             checkAdminSession(); // Call on page load
 
-            // Logout functionality
-            $('#logout-btn').click(function() {
+            function handleLogout() {
                 console.log('Admin Panel: Logout button clicked.');
                 $.ajax({
                     url: '/project-teer/admin/admin_logout.php',
-                    method: 'GET', 
-                    success: function() {
-                        alert('Logged out successfully.');
-                        window.location.href = '/project-teer/admin/admin_login.html'; // Redirect to admin login
+                    method: 'GET', // Or POST if admin_logout.php expects POST
+                    success: function(response) {
+                        if (response.success) {
+                            displayAdminMessage('success', response.message);
+                            setTimeout(() => {
+                                window.location.href = '/project-teer/admin/admin_login.html'; // Redirect to admin login
+                            }, 1000);
+                        } else {
+                            displayAdminMessage('danger', response.message || 'Failed to logout.');
+                        }
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         console.error("Admin Panel: Error logging out:", {jqXHR, textStatus, errorThrown, responseText: jqXHR.responseText});
-                        alert('Error logging out. Please try again.');
+                        displayAdminMessage('danger', 'An error occurred during logout.');
                     }
                 });
-            });
+            }
 
 
-            // Initialize date range pickers
-            $('#date-range').daterangepicker({
-                singleDatePicker: true,
-                showDropdowns: true,
-                opens: 'left',
-                autoUpdateInput: false,
-                locale: {
-                    cancelLabel: 'Clear'
-                }
-            });
-
+            // Initialize date range pickers for the export modal
             $('#export-date-range').daterangepicker({
-                opens: 'left',
                 autoUpdateInput: false,
-                locale: {
-                    cancelLabel: 'Clear'
-                }
+                locale: { cancelLabel: 'Clear' }
             });
-
-            // For the NEW booking date range filter
-            $('#booking-date-range').daterangepicker({
-                opens: 'left',
-                autoUpdateInput: false,
-                locale: {
-                    cancelLabel: 'Clear'
-                }
-            });
-
-
-            $('#date-range').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('MM/DD/YYYY'));
-            });
-
-            $('#date-range').on('cancel.daterangepicker', function(ev, picker) {
-                $(this).val('');
-            });
-
             $('#export-date-range').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+                $(this).val(picker.startDate.format('YYYY-MM-DD') + ' to ' + picker.endDate.format('YYYY-MM-DD'));
             });
-
             $('#export-date-range').on('cancel.daterangepicker', function(ev, picker) {
-                $(this).val('');
-            });
-
-            // For the NEW booking date range filter
-            $('#booking-date-range').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
-            });
-
-            $('#booking-date-range').on('cancel.daterangepicker', function(ev, picker) {
                 $(this).val('');
             });
 
@@ -948,94 +1137,124 @@
                 $(this).closest('.modal').hide();
                 // Clear booking details message on close
                 $('#booking-details-message').hide().removeClass('alert-success alert-danger').text('');
+                // Clear export modal date range input
+                $('#export-date-range').val('');
             });
 
             $('#export-data').click(function() {
                 $('#export-modal').show();
             });
 
-            // Tab functionality (Existing, for existing tabs. Bookings section now uses filters)
-            $('.tab-btn').click(function() {
-                const tabId = $(this).data('tab');
-                
-                const tabContainer = $(this).closest('.tab-container');
-                tabContainer.find('.tab-btn').removeClass('active');
-                tabContainer.find('.tab-content').removeClass('active');
-                
-                $(this).addClass('active');
-                $('#' + tabId + '-tab').addClass('active');
+            // Tab functionality - Your existing logic (should still work as is for the left nav)
+            // No changes needed here based on the new requests, as the new features are added within panels.
+            $('.nav-menu a').click(function(e) {
+                const href = $(this).attr('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = href; 
+                    
+                    const targetElement = $(target); 
+                    if (targetElement.length) { 
+                        // Scroll to the panel, adjusting for fixed header if needed (your current CSS handles this)
+                        // Removed animate scroll as panels are already shown/hidden by JS
+                        // $('html, body').animate({
+                        //     scrollTop: targetElement.offset().top - 20
+                        // }, 500);
+                    } else {
+                        console.warn(`Admin Panel: Attempted to scroll to non-existent element: ${target}`);
+                    }
+                    
+                    $('.nav-menu a').removeClass('active');
+                    $(this).addClass('active');
+
+                    // Show/hide panels based on click
+                    $('.panel').hide();
+                    $(target).show();
+
+                    // Fetch data when navigating to specific sections
+                    // Pass selected date to functions that now accept it
+                    const currentSelectedBookingDate = $('#booking-date-filter').val();
+                    const currentSelectedWinnersDate = $('#winners-date-filter').val();
+                    const currentSelectedRechargeDate = $('#recharge-date-filter').val();
+                    const currentSelectedWithdrawalDate = $('#withdrawal-date-filter').val();
+
+                    if (target === '#dashboard-section') { 
+                        fetchDashboardStats();
+                    } else if (target === '#users-section') {
+                        fetchUsers();
+                    } else if (target === '#recharge-section') {
+                        fetchRechargeRequests(currentSelectedRechargeDate);
+                    } else if (target === '#withdrawal-section') {
+                        fetchWithdrawalRequests(currentSelectedWithdrawalDate);
+                    } else if (target === '#bookings-section') { 
+                        fetchBookings(1, currentSelectedBookingDate); 
+                    } else if (target === '#results-section') { 
+                        fetchResultsForAdminPanel();
+                        fetchBookingSettings(); 
+                    } else if (target === '#winners-section') { 
+                        fetchTodaysWinners(currentSelectedWinnersDate); 
+                    }
+                }
             });
 
-            // --- Update Results Functionality ---
-            function updateRoundResult(roundType, resultNumber) {
-                console.log(`Admin Panel: Attempting to update result for ${roundType} with value ${resultNumber}`);
-                if (!resultNumber) {
-                    displayAdminMessage('danger', 'Please enter result for ' + roundType.replace(/_/g, ' ').toLowerCase());
-                    return;
+
+            // --- Update Results Functionality (Automated Winner Declaration) ---
+            // Changed click handler to use a common class
+            $('.update-result-btn').click(function() {
+                const roundType = $(this).data('round-type');
+                // Correctly derive input ID for both first_round/second_round and night_teer_fr/sr
+                let resultInputId;
+                if (roundType.includes('night_teer')) {
+                    resultInputId = `#${roundType.replace(/_fr|_sr/, '').replace('_', '-')}`; // e.g., #night-teer
+                    if (roundType.endsWith('_fr')) resultInputId += '-fr';
+                    else if (roundType.endsWith('_sr')) resultInputId += '-sr';
+                } else {
+                    resultInputId = `#${roundType.replace('_', '-')}`; // e.g., #first-round, #second-round
                 }
-                
-                // Convert to number for comparison, then back to string for consistent payload
-                const numResult = parseInt(resultNumber);
-                if (isNaN(numResult) || numResult < 0 || numResult > 99) {
+                const resultNumber = $(resultInputId).val();
+
+                console.log(`Admin Panel: Attempting to update result for ${roundType} with value ${resultNumber}`);
+                if (!resultNumber || resultNumber.length !== 2 || !/^\d{2}$/.test(resultNumber)) {
                     displayAdminMessage('danger', 'Result must be a 2-digit number (00-99).');
                     return;
                 }
-                const formattedResult = String(numResult).padStart(2, '0'); // Ensure 2 digits
+                
+                // Disable all update buttons during processing
+                $('.update-result-btn').prop('disabled', true);
+                displayAdminMessage('info', `Updating result for ${roundType.replace(/_/g, ' ')} and calculating winners...`);
 
                 $.ajax({
-                    url: '/project-teer/admin/update_results.php', 
+                    url: '/project-teer/admin/set_result.php', // New script that also triggers find_winners.php
                     method: 'POST',
                     dataType: 'json',
                     data: {
                         round_type: roundType,
-                        result_number: formattedResult // Send formatted result
+                        result_number: resultNumber
                     },
                     success: function(response) {
-                        console.log('Admin Panel: update_results.php response:', response);
+                        console.log('Admin Panel: set_result.php response:', response);
                         if (response.success) {
                             displayAdminMessage('success', response.message); 
-                            // Update display on admin panel
-                            if (roundType === 'first_round') {
-                                $('#first-round').val(formattedResult);
-                                $('#fr-result-display').text('FR: ' + formattedResult);
-                            } else if (roundType === 'second_round') {
-                                $('#second-round').val(formattedResult);
-                                $('#sr-result-display').text('SR: ' + formattedResult);
-                            } else if (roundType === 'night_teer_fr') {
-                                $('#night-teer-fr').val(formattedResult);
-                                $('#night-teer-fr-result-display').text('NT FR: ' + formattedResult);
-                            } else if (roundType === 'night_teer_sr') {
-                                $('#night-teer-sr').val(formattedResult);
-                                $('#night-teer-sr-result-display').text('NT SR: ' + formattedResult);
-                            }
-                            // Re-fetch all results to ensure consistency if other fields update
-                            fetchResultsForAdminPanel();
+                            fetchResultsForAdminPanel(); // Refresh displayed results
+                            fetchTodaysWinners($('#winners-date-filter').val()); // Refresh winners for today
+                            fetchBookings(currentBookingsPage, $('#booking-date-filter').val()); // Refresh bookings
+                            fetchUsers(); // Refresh user balances potentially
+                            fetchDashboardStats(); // Refresh dashboard stats
                         } else {
                             displayAdminMessage('danger', 'Error updating result: ' + response.message);
                         }
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
-                        console.error("Admin Panel: Error updating result:", {jqXHR, textStatus, errorThrown, responseText: jqXHR.responseText});
+                        console.error("Admin Panel: Error updating result via set_result.php:", {jqXHR, textStatus, errorThrown, responseText: jqXHR.responseText});
                         displayAdminMessage('danger', "An error occurred while updating the result. Check console for details.");
+                    },
+                    complete: function() {
+                        $('.update-result-btn').prop('disabled', false); // Re-enable buttons
                     }
                 });
-            }
-
-            $('#update-fr').click(function() {
-                updateRoundResult('first_round', $('#first-round').val());
             });
 
-            $('#update-sr').click(function() {
-                updateRoundResult('second_round', $('#second-round').val());
-            });
-            $('#update-night-teer-fr').click(function() {
-                updateRoundResult('night_teer_fr', $('#night-teer-fr').val());
-            });
-            $('#update-night-teer-sr').click(function() {
-                updateRoundResult('night_teer_sr', $('#night-teer-sr').val());
-            });
-
-            // NEW: Reset Results Button
+            // NEW: Reset Results Button (already in your admin.txt, keeping the same functionality)
             $('#reset-results-btn').click(function() {
                 console.log('Admin Panel: Reset Results button clicked.');
                 if (!confirm("Are you sure you want to reset ALL results for today? This action cannot be undone.")) {
@@ -1046,7 +1265,7 @@
                 $('#reset-results-btn').prop('disabled', true);
 
                 $.ajax({
-                    url: '/project-teer/admin/reset_results.php', // New script
+                    url: '/project-teer/admin/reset_results.php', // Assuming this script exists and works
                     method: 'POST',
                     dataType: 'json',
                     success: function(response) {
@@ -1062,6 +1281,9 @@
                             $('#sr-result-display').text('SR: -');
                             $('#night-teer-fr-result-display').text('NT FR: -');
                             $('#night-teer-sr-result-display').text('NT SR: -');
+                            // Also refresh winners and bookings after reset
+                            fetchTodaysWinners($('#winners-date-filter').val());
+                            fetchBookings(currentBookingsPage, $('#booking-date-filter').val());
                         } else {
                             displayAdminMessage('danger', 'Error resetting results: ' + response.message);
                         }
@@ -1076,13 +1298,12 @@
                 });
             });
 
-            // NEW: Booking Control Buttons (Enable/Disable)
-            $('.booking-control-box .btn').click(function() {
-                const roundType = $(this).data('round'); // e.g., 'first_round', 'forecast'
-                const action = $(this).data('action'); // 'enable' or 'disable'
-                // Key for PHP to understand (e.g., 'first_round', 'forecast')
+            // NEW: Booking Control Buttons (Enable/Disable) - Renamed class to avoid conflict if any
+            $('.booking-toggle-btn').click(function() {
+                const roundType = $(this).data('round'); 
+                const action = $(this).data('action'); 
                 const settingKeyForPHP = roundType; 
-                const settingValueForPHP = (action === 'enable') ? 'true' : 'false'; // Send 'true' or 'false' string
+                const settingValueForPHP = (action === 'enable') ? 'true' : 'false'; 
 
                 const confirmationMsg = `Are you sure you want to ${action} booking for ${roundType.replace(/_/g, ' ').toUpperCase()}?`;
 
@@ -1092,54 +1313,50 @@
 
                 displayAdminMessage('info', `Updating booking status for ${roundType.replace(/_/g, ' ')}...`);
                 // Disable all buttons in this control box while processing
-                $(this).closest('.booking-control-box').find('.btn').prop('disabled', true);
+                $(this).closest('.booking-control-box').find('.booking-toggle-btn').prop('disabled', true);
                 console.log(`Admin Panel: Sending to set_booking_settings.php - Key: ${settingKeyForPHP}, Value: ${settingValueForPHP}`);
 
                 $.ajax({
-                    url: '/project-teer/admin/set_booking_settings.php', // This is the script to save the setting
+                    url: '/project-teer/admin/set_booking_settings.php', // Assuming this script exists
                     method: 'POST',
                     dataType: 'json',
                     data: {
-                        setting_key: settingKeyForPHP, // Send the clean key like 'first_round'
-                        setting_value: settingValueForPHP // Send 'true' or 'false' string
+                        setting_key: settingKeyForPHP, 
+                        setting_value: settingValueForPHP 
                     },
                     success: function(response) {
                         console.log('Admin Panel: set_booking_settings.php response:', response);
                         if (response.success) {
                             displayAdminMessage('success', response.message);
-                            fetchBookingSettings(); // Refresh all booking status indicators after save
+                            fetchBookingSettings(); 
                         } else {
                             displayAdminMessage('danger', 'Error: ' + response.message);
                         }
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
-                        console.error("Admin Panel: Error updating booking status setting:", {jqXHR, textStatus, errorThrown, responseText: jqXHR.responseText});
+                        console.error("Admin Panel: AJAX Error updating booking status setting:", {jqXHR, textStatus, errorThrown, responseText: jqXHR.responseText});
                         displayAdminMessage('danger', "An error occurred while updating booking status. Check console.");
                     },
                     complete: function() {
-                        // Re-enable all buttons in this control box after processing
-                        $(this).closest('.booking-control-box').find('.btn').prop('disabled', false);
-                    }.bind(this) // Bind 'this' to the current button for correct context
+                        $(this).closest('.booking-control-box').find('.booking-toggle-btn').prop('disabled', false);
+                    }.bind(this) 
                 });
             });
 
-            // Function to fetch and display current booking settings
+            // Function to fetch and display current booking settings (already in admin.txt, ensure it works)
             function fetchBookingSettings() {
                 console.log('Admin Panel: Calling fetchBookingSettings to update UI...');
                 $.ajax({
-                    url: '/project-teer/get_booking_settings.php', // Publicly accessible script
+                    url: '/project-teer/get_booking_settings.php', // Assuming this path is correct
                     method: 'GET',
                     dataType: 'json',
                     success: function(response) {
                         console.log('Admin Panel: get_booking_settings.php response (for UI update):', response);
                         if (response.success && response.settings) {
                             const settings = response.settings;
-                            console.log('Admin Panel: Settings received for UI update:', settings);
 
-                            // Helper to update individual status indicators
                             function updateStatusIndicator(idPrefix, settingKey) {
                                 const statusDiv = $(`#${idPrefix}-booking-status`);
-                                // Ensure settings[settingKey] is a boolean, as get_booking_settings.php should return it as such.
                                 const isEnabled = settings[settingKey]; 
                                 const statusText = isEnabled ? 'Enabled' : 'Disabled';
                                 const statusClass = isEnabled ? 'status-enabled' : 'status-disabled';
@@ -1150,7 +1367,6 @@
                                 console.log(`  -> UI Updated: ${idPrefix}-booking-status for ${settingKey} to ${statusText} (${statusClass})`);
                             }
 
-                            // Update each booking status indicator
                             updateStatusIndicator('fr', 'first_round');
                             updateStatusIndicator('sr', 'second_round');
                             updateStatusIndicator('forecast', 'forecast');
@@ -1169,17 +1385,13 @@
                 });
             }
 
-            // --- END Update Results Functionality ---
-
-
-            // Function to fetch and display existing results in the admin panel
+            // Function to fetch and display existing results in the admin panel (already in admin.txt)
             function fetchResultsForAdminPanel() {
                 $.ajax({
-                    url: '/project-teer/get_todays_results.php', 
+                    url: '/project-teer/get_todays_results.php', // Assumed this path is correct for displaying results
                     method: 'GET',
                     dataType: 'json',
                     success: function(response) {
-                        // Reset all result inputs and displays initially
                         $('#first-round').val('');
                         $('#second-round').val('');
                         $('#night-teer-fr').val('');
@@ -1205,8 +1417,6 @@
                                     $('#night-teer-sr-result-display').text('NT SR: ' + result.result_number);
                                 }
                             });
-                        } else {
-                            // If no results, they stay as '--'
                         }
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
@@ -1219,7 +1429,7 @@
                 });
             }
 
-            // --- Dashboard Stats Fetch Function ---
+            // --- Dashboard Stats Fetch Function (already in admin.txt) ---
             function fetchDashboardStats() {
                 $.ajax({
                     url: '/project-teer/admin/get_dashboard_stats.php', 
@@ -1248,9 +1458,10 @@
             }
 
             // --- RECHARGE APPROVAL FUNCTIONALITY ---
-            function fetchRechargeRequests() {
+            function fetchRechargeRequests(date = '') { // Added date parameter
+                console.log("Admin Panel: Fetching recharge requests with date:", date);
                 $.ajax({
-                    url: '/project-teer/admin/get_recharge_requests.php', 
+                    url: `/project-teer/admin/get_recharge_requests.php?date=${date}`, // Pass date
                     method: 'GET',
                     dataType: 'json',
                     success: function(response) {
@@ -1304,7 +1515,21 @@
             }
 
             $('#refresh-recharge-requests').click(function() {
-                fetchRechargeRequests();
+                fetchRechargeRequests($('#recharge-date-filter').val()); // Refresh with current filter
+            });
+
+            // New filter event listeners for Recharge Requests
+            $('#apply-recharge-filters').click(function() {
+                fetchRechargeRequests($('#recharge-date-filter').val());
+            });
+            $('#reset-recharge-filters').click(function() {
+                const today = new Date().toISOString().split('T')[0];
+                $('#recharge-date-filter').val(today);
+                fetchRechargeRequests(today);
+            });
+             // NEW: Export PDF for Recharge Requests
+            $('#export-recharge-pdf').click(function() {
+                exportRechargePdf();
             });
 
             $(document).on('click', '.approve-recharge, .reject-recharge', function() {
@@ -1315,6 +1540,7 @@
                 if (!confirm(confirmationMessage)) {
                     return; 
                 }
+                displayAdminMessage('info', `Processing recharge request ID ${requestId}...`);
 
                 $.ajax({
                     url: '/project-teer/admin/handle_recharge_approval.php',
@@ -1326,12 +1552,12 @@
                     },
                     success: function(response) {
                         if (response.success) {
-                            alert(response.message); 
-                            fetchRechargeRequests(); 
+                            displayAdminMessage('success', response.message); 
+                            fetchRechargeRequests($('#recharge-date-filter').val()); 
                             fetchUsers(); 
                             fetchDashboardStats(); 
                         } else {
-                            alert('Error: ' + response.message); 
+                            displayAdminMessage('danger', 'Error: ' + response.message); 
                         }
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
@@ -1341,16 +1567,17 @@
                         console.error("Error Thrown:", errorThrown);
                         console.error("Response Text:", jqXHR.responseText);
 
-                        alert('An unexpected error occurred while processing the request. Check console for details.');
+                        displayAdminMessage('danger', 'An unexpected error occurred while processing the request. Check console for details.');
                     }
                 });
             });
             // --- END RECHARGE APPROVAL FUNCTIONALITY ---
 
             // --- WITHDRAWAL REQUEST FUNCTIONALITY ---
-            function fetchWithdrawalRequests() {
+            function fetchWithdrawalRequests(date = '') { // Added date parameter
+                console.log("Admin Panel: Fetching withdrawal requests with date:", date);
                 $.ajax({
-                    url: '/project-teer/admin/get_withdrawal_requests.php', 
+                    url: `/project-teer/admin/get_withdrawal_requests.php?date=${date}`, // Pass date
                     method: 'GET',
                     dataType: 'json',
                     success: function(response) {
@@ -1372,6 +1599,7 @@
                                         <td>${request.id}</td>
                                         <td>${request.username}</td>
                                         <td>${request.phone_number}</td>
+                                        <td>${request.account_holder || 'N/A'}</td> <!-- Display Account Holder -->
                                         <td>₹${parseFloat(request.amount).toFixed(2)}</td>
                                         <td>${request.bank_name || 'N/A'}</td>
                                         <td>${request.account_number || 'N/A'}</td>
@@ -1388,7 +1616,7 @@
                                 }
                             });
                         } else {
-                            withdrawalRequestsList.append('<tr><td colspan="10" style="text-align: center;">' + response.message + '</td></tr>'); 
+                            withdrawalRequestsList.append('<tr><td colspan="11" style="text-align: center;">' + response.message + '</td></tr>'); // Adjusted colspan
                         }
                         $('#total-pending-withdrawal-requests-summary').text(`${pendingCount} requests (₹${pendingAmountTotal.toFixed(2)})`);
                         $('#withdrawal-pending-count').text(pendingCount).attr('data-count', pendingCount); 
@@ -1400,14 +1628,28 @@
                         console.error("Error Thrown:", errorThrown);
                         console.error("Response Text:", jqXHR.responseText);
 
-                        $('#withdrawal-requests-list').empty().append('<tr><td colspan="10" style="text-align: center; color: red;">Failed to load withdrawal requests. Check console for details.</td></tr>');
+                        $('#withdrawal-requests-list').empty().append('<tr><td colspan="11" style="text-align: center; color: red;">Failed to load withdrawal requests. Check console for details.</td></tr>'); // Adjusted colspan
                         $('#withdrawal-pending-count').text('!').attr('data-count', '!'); 
                     }
                 });
             }
 
             $('#refresh-withdrawal-requests').click(function() {
-                fetchWithdrawalRequests();
+                fetchWithdrawalRequests($('#withdrawal-date-filter').val()); // Refresh with current filter
+            });
+
+            // New filter event listeners for Withdrawal Requests
+            $('#apply-withdrawal-filters').click(function() {
+                fetchWithdrawalRequests($('#withdrawal-date-filter').val());
+            });
+            $('#reset-withdrawal-filters').click(function() {
+                const today = new Date().toISOString().split('T')[0];
+                $('#withdrawal-date-filter').val(today);
+                fetchWithdrawalRequests(today);
+            });
+            // NEW: Export PDF for Withdrawal Requests
+            $('#export-withdrawal-pdf').click(function() {
+                exportWithdrawalPdf();
             });
 
             $(document).on('click', '.approve-withdrawal, .reject-withdrawal', function() {
@@ -1418,6 +1660,7 @@
                 if (!confirm(confirmationMessage)) {
                     return; 
                 }
+                displayAdminMessage('info', `Processing withdrawal request ID ${requestId}...`);
 
                 $.ajax({
                     url: '/project-teer/admin/handle_withdrawal_approval.php',
@@ -1429,12 +1672,12 @@
                     },
                     success: function(response) {
                         if (response.success) {
-                            alert(response.message); 
-                            fetchWithdrawalRequests(); 
+                            displayAdminMessage('success', response.message); 
+                            fetchWithdrawalRequests($('#withdrawal-date-filter').val()); 
                             fetchUsers(); 
                             fetchDashboardStats(); 
                         } else {
-                            alert('Error: ' + response.message); 
+                            displayAdminMessage('danger', 'Error: ' + response.message); 
                         }
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
@@ -1444,7 +1687,7 @@
                         console.error("Error Thrown:", errorThrown);
                         console.error("Response Text:", jqXHR.responseText);
 
-                        alert('An unexpected error occurred while processing the request. Check console for details.');
+                        displayAdminMessage('danger', 'An unexpected error occurred while processing the request. Check console for details.');
                     }
                 });
             });
@@ -1454,24 +1697,14 @@
             let currentBookingsPage = 1;
             const bookingsPerPage = 10; 
 
-            function fetchBookings(page = 1) {
+            function fetchBookings(page = 1, date = '') { // Added date parameter
                 currentBookingsPage = page;
                 const bookingType = $('#booking-type-filter').val();
                 const roundType = $('#round-type-filter').val();
                 const status = $('#booking-status-filter').val();
                 const userSearch = $('#user-search').val().trim();
-                const dateRange = $('#booking-date-range').val(); 
-
-                let startDate = null;
-                let endDate = null;
-                if (dateRange) {
-                    const dates = dateRange.split(' - ');
-                    if (dates.length === 2) {
-                        startDate = moment(dates[0], 'MM/DD/YYYY').format('YYYY-MM-DD');
-                        endDate = moment(dates[1], 'MM/DD/YYYY').format('YYYY-MM-DD');
-                    }
-                }
-
+                
+                // Construct filters object
                 const filters = {
                     page: page,
                     limit: bookingsPerPage,
@@ -1479,8 +1712,7 @@
                     round_type: roundType,
                     status: status,
                     user_search: userSearch,
-                    start_date: startDate,
-                    end_date: endDate
+                    date: date // Use single date filter
                 };
                 console.log('Admin Panel: Fetching bookings with filters:', filters);
 
@@ -1493,40 +1725,93 @@
                         console.log('Admin Panel: get_bookings.php response:', response);
                         const bookingsList = $('#all-bookings-list');
                         bookingsList.empty();
-                        let totalBookings = 0;
+                        let totalBookings = 0; // Initialize total bookings count
+                        let totalBookingAmount = 0; // Initialize total booking amount
 
                         if (response.success && response.bookings.length > 0) {
                             response.bookings.forEach(booking => {
                                 const statusClass = `status-${booking.status}`;
-                                let displayBookingType = booking.booking_type;
+                                let numbersDisplay = ''; // To show parsed numbers
+                                try {
+                                    const parsedNumbers = JSON.parse(booking.numbers_booked_json);
+                                    if (Array.isArray(parsedNumbers)) {
+                                        // Specific formatting for Pair, House, Ending, Single, Forecast
+                                        if (booking.booking_type === 'pair') {
+                                            // Refined logic for pair: handles objects and strings, pads with '0'
+                                            numbersDisplay = parsedNumbers.map(item => {
+                                                let num;
+                                                if (typeof item === 'object' && item !== null && item.number !== undefined) {
+                                                    num = String(item.number);
+                                                } else {
+                                                    num = String(item);
+                                                }
+                                                return num.padStart(2, '0');
+                                            }).join('-');
+                                        } else if (booking.booking_type === 'house' || booking.booking_type === 'ending') {
+                                            if (parsedNumbers.length > 0 && typeof parsedNumbers[0] === 'object' && parsedNumbers[0].digit) {
+                                                numbersDisplay = parsedNumbers[0].digit;
+                                            } else if (parsedNumbers.length > 0 && typeof parsedNumbers[0] === 'string' && /^\d$/.test(parsedNumbers[0])) {
+                                                numbersDisplay = parsedNumbers[0];
+                                            } else {
+                                                numbersDisplay = JSON.stringify(parsedNumbers); // Fallback
+                                            }
+                                        } else if (booking.booking_type === 'single' || booking.booking_type === 'night_teer') {
+                                            if (parsedNumbers.length > 0 && typeof parsedNumbers[0] === 'object' && parsedNumbers[0].number) {
+                                                numbersDisplay = parsedNumbers[0].number;
+                                            } else if (parsedNumbers.length > 0 && typeof parsedNumbers[0] === 'string' && /^\d{2}$/.test(parsedNumbers[0])) {
+                                                numbersDisplay = parsedNumbers[0];
+                                            } else {
+                                                numbersDisplay = JSON.stringify(parsedNumbers); // Fallback
+                                            }
+                                        } else if (booking.booking_type === 'forecast') {
+                                            const frNum = parsedNumbers.find(item => item.round === 'first_round')?.number || '--';
+                                            const srNum = parsedNumbers.find(item => item.round === 'second_round')?.number || '--';
+                                            numbersDisplay = `FR: ${frNum}, SR: ${srNum}`;
+                                        } else {
+                                            // Default for other types, or if parsing fails to find specific structure
+                                            numbersDisplay = parsedNumbers.join(', ');
+                                        }
+                                    } else {
+                                        numbersDisplay = booking.numbers_booked_json; // Display raw if not array or cannot parse
+                                    }
+                                } catch (e) {
+                                    numbersDisplay = `Error parsing: ${booking.numbers_booked_json}`;
+                                    console.error('Error parsing numbers_booked_json for booking:', e);
+                                }
+
 
                                 bookingsList.append(`
                                     <tr>
-                                        <td>${booking.id}</td>
-                                        <td>${booking.username || 'N/A'} (ID:${booking.user_id})</td>
+                                        <td>${booking.booking_id}</td>
+                                        <td>${booking.username || 'N/A'} (ID:${booking.user_id || 'N/A'})</td>
                                         <td>${booking.booking_type.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}</td>
                                         <td>${booking.round_type ? booking.round_type.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'N/A'}</td>
+                                        <td>${numbersDisplay}</td> <!-- Display parsed numbers -->
                                         <td>₹${parseFloat(booking.amount_per_unit).toFixed(2)}</td>
                                         <td>₹${parseFloat(booking.total_amount).toFixed(2)}</td>
                                         <td class="${statusClass}">${booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}</td>
                                         <td>${new Date(booking.booked_at).toLocaleString()}</td>
                                         <td>
-                                            <button class="btn btn-primary btn-sm view-booking-details" data-id="${booking.id}"><i class="fas fa-eye"></i></button>
+                                            <button class="btn btn-primary btn-sm view-booking-details" data-id="${booking.booking_id}"><i class="fas fa-eye"></i></button>
                                         </td>
                                     </tr>
                                 `);
+                                totalBookingAmount += parseFloat(booking.total_amount);
                             });
-                            totalBookings = response.total_records;
+                            totalBookings = response.total_records; // Assuming get_bookings.php returns total_records
+                            $('#total-booking-amount-display').text('₹' + parseFloat(totalBookingAmount).toFixed(2)); // Display total amount
                         } else {
-                            bookingsList.append('<tr><td colspan="9" style="text-align: center;">' + response.message + '</td></tr>');
+                            bookingsList.append('<tr><td colspan="10" style="text-align: center;">' + response.message + '</td></tr>');
+                            $('#total-booking-amount-display').text('₹0.00'); // Reset total
                         }
-                        $('#total-bookings-count').text(totalBookings);
+                        $('#bookings-pending-count').text(totalBookings).attr('data-count', totalBookings); // Update the badge
                         renderBookingsPagination(totalBookings, page);
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         console.error("Admin Panel: Error fetching bookings:", {jqXHR, textStatus, errorThrown, responseText: jqXHR.responseText});
-                        $('#all-bookings-list').empty().append('<tr><td colspan="9" style="text-align: center; color: red;">Failed to load bookings. Check console for details.</td></tr>');
-                        $('#total-bookings-count').text('Error');
+                        $('#all-bookings-list').empty().append('<tr><td colspan="10" style="text-align: center; color: red;">Failed to load bookings. Check console for details.</td></tr>');
+                        $('#bookings-pending-count').text('Error').attr('data-count', '!');
+                        $('#total-booking-amount-display').text('₹Error');
                     }
                 });
             }
@@ -1565,14 +1850,14 @@
                     }
 
                     paginationContainer.find('button').off('click').on('click', function() {
-                        fetchBookings($(this).data('page'));
+                        fetchBookings($(this).data('page'), $('#booking-date-filter').val());
                     });
                 }
             }
 
             // Apply Filters button click
             $('#apply-booking-filters').click(function() {
-                fetchBookings(1); // Reset to first page when applying filters
+                fetchBookings(1, $('#booking-date-filter').val()); // Reset to first page when applying filters
             });
 
             // Reset Filters button click
@@ -1581,21 +1866,26 @@
                 $('#round-type-filter').val('');
                 $('#booking-status-filter').val('');
                 $('#user-search').val('');
-                $('#booking-date-range').val('');
-                fetchBookings(1); // Fetch all bookings after resetting
+                const today = new Date().toISOString().split('T')[0]; // Set date filter to today
+                $('#booking-date-filter').val(today); 
+                fetchBookings(1, today); 
             });
 
             // Refresh button click
             $('#refresh-bookings').click(function() {
-                fetchBookings(currentBookingsPage); // Refresh current page
+                fetchBookings(currentBookingsPage, $('#booking-date-filter').val()); // Refresh current page
+            });
+            // NEW: Export PDF for Bookings
+            $('#export-bookings-pdf').click(function() {
+                exportBookingsPdf();
             });
 
-            // View Booking Details
+            // View Booking Details (already in admin.txt, ensure it works with new data)
             $(document).on('click', '.view-booking-details', function() {
                 const bookingId = $(this).data('id');
                 console.log(`Admin Panel: Viewing booking details for ID: ${bookingId}`);
                 $.ajax({
-                    url: '/project-teer/admin/get_booking_details.php', 
+                    url: '/project-teer/admin/get_booking_details.php', // Assuming this script exists
                     method: 'GET',
                     dataType: 'json',
                     data: { id: bookingId },
@@ -1608,7 +1898,7 @@
                             const booking = response.booking;
                             $('#detail-booking-id').text(booking.id);
                             $('#detail-username').text(booking.username || 'N/A');
-                            $('#detail-user-id').text(booking.user_id);
+                            $('#detail-user-id').text(booking.user_id || 'N/A'); // Handle undefined user_id
                             $('#detail-booking-type').text(booking.booking_type.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()));
                             $('#detail-round-type').text(booking.round_type ? booking.round_type.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'N/A');
                             $('#detail-amount-per-unit').text(parseFloat(booking.amount_per_unit).toFixed(2));
@@ -1620,31 +1910,42 @@
                                 const numbersJson = JSON.parse(booking.numbers_booked_json);
                                 let formattedNumbers = '';
                                 if (Array.isArray(numbersJson)) {
-                                    // Check if it's an array of objects (like for forecast) or simple numbers
-                                    if (numbersJson.length > 0 && typeof numbersJson[0] === 'object' && numbersJson[0] !== null) {
-                                        if ('round' in numbersJson[0] && 'number' in numbersJson[0]) { // Forecast structure
-                                            numbersJson.forEach(item => {
-                                                const roundDisplay = item.round ? item.round.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'N/A';
-                                                const numberDisplay = item.number ? item.number : 'N/A';
-                                                formattedNumbers += `Round: ${roundDisplay}, Number: ${numberDisplay}\n`;
-                                            });
-                                        } else if ('digit' in numbersJson[0] && 'round' in numbersJson[0]) { // House/Ending structure
-                                            numbersJson.forEach(item => {
-                                                const roundDisplay = item.round ? item.round.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'N/A';
-                                                const digitDisplay = item.digit ? item.digit : 'N/A';
-                                                formattedNumbers += `Round: ${roundDisplay}, Digit: ${digitDisplay}\n`;
-                                            });
-                                        } else if ('numbers' in numbersJson[0] && Array.isArray(numbersJson[0].numbers)) { // Pair structure
-                                            const roundDisplay = numbersJson[0].round ? numbersJson[0].round.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'N/A';
-                                            formattedNumbers += `Round: ${roundDisplay}, Numbers: ${numbersJson[0].numbers.join(', ')}\n`;
-                                        } else { // Fallback for other array of objects
+                                    if (booking.booking_type === 'pair') {
+                                        // Refined logic for pair: handles objects and strings, pads with '0'
+                                        formattedNumbers = numbersJson.map(item => {
+                                            let num;
+                                            if (typeof item === 'object' && item !== null && item.number !== undefined) {
+                                                num = String(item.number);
+                                            } else {
+                                                num = String(item);
+                                            }
+                                            return num.padStart(2, '0');
+                                        }).join('-');
+                                    } else if (booking.booking_type === 'house' || booking.booking_type === 'ending') {
+                                        if (numbersJson.length > 0 && typeof numbersJson[0] === 'object' && numbersJson[0].digit) {
+                                            formattedNumbers = numbersJson[0].digit;
+                                        } else if (numbersJson.length > 0 && typeof numbersJson[0] === 'string' && /^\d$/.test(numbersJson[0])) {
+                                            formattedNumbers = numbersJson[0];
+                                        } else {
                                             formattedNumbers = JSON.stringify(numbersJson, null, 2);
                                         }
-                                    } else { // Simple array of numbers/strings (like single numbers)
-                                        formattedNumbers = numbersJson.join(', ');
+                                    } else if (booking.booking_type === 'single' || booking.booking_type === 'night_teer') {
+                                        if (numbersJson.length > 0 && typeof numbersJson[0] === 'object' && numbersJson[0].number) {
+                                            formattedNumbers = numbersJson[0].number;
+                                        } else if (numbersJson.length > 0 && typeof numbersJson[0] === 'string' && /^\d{2}$/.test(numbersJson[0])) {
+                                            formattedNumbers = numbersJson[0];
+                                        } else {
+                                            formattedNumbers = JSON.stringify(numbersJson, null, 2);
+                                        }
+                                    } else if (booking.booking_type === 'forecast') {
+                                        const frNum = numbersJson.find(item => item.round === 'first_round')?.number || '--';
+                                        const srNum = numbersJson.find(item => item.round === 'second_round')?.number || '--';
+                                        formattedNumbers = `FR: ${frNum}, SR: ${srNum}`;
+                                    } else { 
+                                        formattedNumbers = JSON.stringify(numbersJson, null, 2); // Default for unknown structured array
                                     }
-                                } else { // Not an array, just raw JSON string
-                                    formattedNumbers = JSON.stringify(numbersJson, null, 2);
+                                } else { 
+                                    formattedNumbers = booking.numbers_booked_json; // Display raw if not array
                                 }
                                 $('#detail-numbers-booked-json').text(formattedNumbers);
                             } catch (e) {
@@ -1656,17 +1957,17 @@
                             $('#confirm-update-booking-status').data('booking-id', booking.id);
                             $('#booking-details-modal').show();
                         } else {
-                            alert("Error fetching booking details: " + response.message);
+                            displayAdminMessage('danger', "Error fetching booking details: " + response.message);
                         }
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         console.error("Admin Panel: Error fetching booking details:", {jqXHR, textStatus, errorThrown, responseText: jqXHR.responseText});
-                        alert("An error occurred while fetching details. Check console.");
+                        displayAdminMessage('danger', "An error occurred while fetching details. Check console.");
                     }
                 });
             });
 
-            // Confirm Update Booking Status
+            // Confirm Update Booking Status (already in admin.txt, keep same functionality)
             $('#confirm-update-booking-status').click(function() {
                 const bookingId = $(this).data('booking-id');
                 const newStatus = $('#update-booking-status').val();
@@ -1682,9 +1983,10 @@
                 if (!confirm(`Are you sure you want to change status of booking ID ${bookingId} to "${newStatus.charAt(0).toUpperCase() + newStatus.slice(1)}"?`)) {
                     return;
                 }
+                displayAdminMessage('info', `Updating status for booking ID ${bookingId}...`);
 
                 $.ajax({
-                    url: '/project-teer/admin/update_booking_status.php', 
+                    url: '/project-teer/admin/update_booking_status.php', // Assuming this script exists
                     method: 'POST',
                     dataType: 'json',
                     data: {
@@ -1695,9 +1997,9 @@
                         console.log('Admin Panel: update_booking_status.php response:', response);
                         if (response.success) {
                             messageDiv.addClass('alert-success').text(response.message).show();
-                            fetchBookings(currentBookingsPage); 
+                            fetchBookings(currentBookingsPage, $('#booking-date-filter').val()); 
                             $('#detail-status').text(newStatus.charAt(0).toUpperCase() + newStatus.slice(1)).removeClass().addClass(`status-${newStatus}`);
-                            fetchTodaysWinners(); // Refresh winner list and summary
+                            fetchTodaysWinners($('#winners-date-filter').val()); // Refresh winner list and summary
                         } else {
                             messageDiv.addClass('alert-danger').text(response.message).show();
                         }
@@ -1711,147 +2013,146 @@
             // --- END BOOKINGS MANAGEMENT FUNCTIONALITY ---
 
             // --- WINNER CALCULATION AND DISPLAY LOGIC ---
-            $('#calculate-winners').click(function() {
-                console.log('Admin Panel: Calculate Winners button clicked.');
-                if (!confirm("Are you sure you want to calculate winners for today? This will update booking statuses and user balances.")) {
-                    return;
-                }
+            // Removed manual calculate winners button click handler because it's now automated via set_result.php
 
-                displayAdminMessage('info', 'Calculating winners...');
-                $('#calculate-winners').prop('disabled', true); 
+            // Function to fetch and display today's winners from DB (Updated to accept date and use get_winners.php)
+            function fetchTodaysWinners(date = '') {
+                console.log('Admin Panel: Fetching winners and summary for date:', date);
+                displayAdminMessage('info', 'Fetching winners and summary...');
+                const winnersListTbody = $('#winners-list-tbody'); // Declared here for scope
 
                 $.ajax({
-                    url: '/project-teer/admin/find_winners.php', 
-                    method: 'POST', 
-                    dataType: 'json',
-                    success: function(response) {
-                        console.log('Admin Panel: find_winners.php response:', response);
-                        if (response.success) {
-                            displayAdminMessage('success', response.message);
-                            fetchTodaysWinners(); 
-                            fetchBookings(currentBookingsPage); 
-                            fetchUsers(); 
-                            fetchDashboardStats(); 
-                        } else {
-                            displayAdminMessage('danger', response.message);
-                        }
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        console.error("Admin Panel: Error calculating winners:", {jqXHR, textStatus, errorThrown, responseText: jqXHR.responseText});
-                        displayAdminMessage('danger', "An error occurred during winner calculation. Check console.");
-                    },
-                    complete: function() {
-                        $('#calculate-winners').prop('disabled', false); 
-                    }
-                });
-            });
-
-            // Function to fetch and display today's winners from DB
-            function fetchTodaysWinners() {
-                console.log('Admin Panel: Fetching today\'s winners and summary...');
-                displayAdminMessage('info', 'Fetching today\'s winners and summary...');
-                $.ajax({
-                    url: '/project-teer/admin/get_todays_winners_list.php', 
+                    url: `/project-teer/admin/get_winners.php?date=${date}`, // Use the new get_winners.php with date
                     method: 'GET',
                     dataType: 'json',
                     success: function(response) {
-                        console.log('Admin Panel: get_todays_winners_list.php response:', response);
+                        console.log('Admin Panel: get_winners.php response:', response); // Changed from get_todays_winners_list.php
                         if (response.success) {
                             displayAdminMessage('success', response.message);
                             // Update summary card
-                            $('#total-bookings-processed').text(response.summary.total_bookings_processed);
-                            $('#winners-count').text(response.summary.winners_count);
-                            $('#losers-count').text(response.summary.losers_count);
-                            $('#active-bookings-count').text(response.summary.active_count); 
-                            $('#total-winnings-distributed').text('₹' + parseFloat(response.summary.total_winnings_distributed).toFixed(2));
+                            // Note: get_winners.php only returns 'winners' and 'total_winnings'.
+                            // The full summary (total_bookings_processed, losers_count, active_bookings_count)
+                            // needs to come from get_bookings.php or a dedicated summary script if you want it here.
+                            // For now, I'll update what's available from get_winners.php response.
+                            $('#winners-count').text(response.winners ? response.winners.length : '0'); // Count from fetched winners
+                            $('#total-winnings-distributed').text('₹' + parseFloat(response.total_winnings || 0).toFixed(2)); // Total from fetched winners
+                            $('#total-winnings-distributed-footer').text('₹' + parseFloat(response.total_winnings || 0).toFixed(2)); // Update footer as well
 
-                            const winnersListTbody = $('#winners-list-tbody');
+                            // These summary fields depend on more comprehensive data, ideally from a dashboard summary API
+                            // For now, setting to 0 or 'N/A' if not explicitly returned by get_winners.php
+                            $('#total-bookings-processed').text(response.total_bookings_processed || '0');
+                            $('#losers-count').text(response.losers_count || '0');
+                            $('#active-bookings-count').text(response.active_bookings_count || '0');
+
+
                             winnersListTbody.empty();
 
-                            if (response.winners && response.winners.length > 0) {
-                                response.winners.forEach(winner => {
+                            if (response.winners && response.winners.length > 0) { // Check if winners array exists and has data
+                                console.log(`Admin Panel: Found ${response.winners.length} winners to display.`);
+                                response.winners.forEach((winner, index) => {
+                                    let numbersDisplay = ''; // To show parsed numbers
+                                    try {
+                                        const parsedNumbers = JSON.parse(winner.numbers_booked_json);
+                                        if (Array.isArray(parsedNumbers)) {
+                                            // Specific formatting for Pair, House, Ending, Single, Forecast
+                                            if (winner.booking_type === 'pair') {
+                                                // Refined logic for pair: handles objects and strings, pads with '0'
+                                                numbersDisplay = parsedNumbers.map(item => {
+                                                    let num;
+                                                    if (typeof item === 'object' && item !== null && item.number !== undefined) {
+                                                        num = String(item.number);
+                                                    } else {
+                                                        num = String(item);
+                                                    }
+                                                    return num.padStart(2, '0');
+                                                }).join('-');
+                                            } else if (winner.booking_type === 'house' || winner.booking_type === 'ending') {
+                                                if (parsedNumbers.length > 0 && typeof parsedNumbers[0] === 'object' && parsedNumbers[0].digit) {
+                                                    numbersDisplay = parsedNumbers[0].digit;
+                                                } else if (parsedNumbers.length > 0 && typeof parsedNumbers[0] === 'string' && /^\d$/.test(parsedNumbers[0])) {
+                                                    numbersDisplay = parsedNumbers[0];
+                                                } else {
+                                                    numbersDisplay = JSON.stringify(parsedNumbers); // Fallback
+                                                }
+                                            } else if (winner.booking_type === 'single' || winner.booking_type === 'night_teer') {
+                                                if (parsedNumbers.length > 0 && typeof parsedNumbers[0] === 'object' && parsedNumbers[0].number) {
+                                                    numbersDisplay = parsedNumbers[0].number;
+                                                } else if (parsedNumbers.length > 0 && typeof parsedNumbers[0] === 'string' && /^\d{2}$/.test(parsedNumbers[0])) {
+                                                    numbersDisplay = parsedNumbers[0];
+                                                } else {
+                                                    numbersDisplay = JSON.stringify(parsedNumbers); // Fallback
+                                                }
+                                            } else if (winner.booking_type === 'forecast') {
+                                                const frNum = parsedNumbers.find(item => item.round === 'first_round')?.number || '--';
+                                                const srNum = parsedNumbers.find(item => item.round === 'second_round')?.number || '--';
+                                                numbersDisplay = `FR: ${frNum}, SR: ${srNum}`;
+                                            } else {
+                                                numbersDisplay = JSON.stringify(parsedNumbers); // Default for unknown structured array
+                                            }
+                                        } else {
+                                            numbersDisplay = winner.numbers_booked_json;
+                                        }
+                                    } catch (e) {
+                                        // LOGGING THE ERROR HERE
+                                        console.error(`Error parsing numbers_booked_json for winner index ${index}, booking ID ${winner.booking_id || 'N/A'}:`, e, `Raw JSON: ${winner.numbers_booked_json}`);
+                                        numbersDisplay = `JSON Error: ${e.message}`; // Show error message in the cell
+                                    }
+
                                     winnersListTbody.append(`
                                         <tr>
                                             <td>${winner.booking_id}</td>
-                                            <td>${winner.username || 'N/A'} (ID:${winner.user_id})</td>
+                                            <td>${winner.username || 'N/A'} (ID:${winner.user_id || 'N/A'})</td> <!-- Display User ID -->
                                             <td>${winner.booking_type.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}</td>
                                             <td>${winner.round_type ? winner.round_type.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'N/A'}</td>
-                                            <td>₹${parseFloat(winner.amount_per_unit).toFixed(2)}</td>
-                                            <td>₹${parseFloat(winner.win_amount).toFixed(2)}</td>
+                                            <td>${numbersDisplay}</td>
+                                            <td>₹${parseFloat(winner.amount_per_unit || 0).toFixed(2)}</td>
+                                            <td>₹${parseFloat(winner.win_amount || 0).toFixed(2)}</td>
+                                            <td><span class="status-badge status-${winner.status}">${winner.status ? (winner.status.charAt(0).toUpperCase() + winner.status.slice(1)) : 'N/A'}</span></td>
                                         </tr>
                                     `);
                                 });
                             } else {
-                                winnersListTbody.append('<tr><td colspan="6" style="text-align: center;">No winners recorded for today yet.</td></tr>');
+                                winnersListTbody.append('<tr><td colspan="8" style="text-align: center;">No winners recorded for this date yet.</td></tr>');
                             }
                         } else {
                             displayAdminMessage('danger', response.message);
-                            // Clear display if error
-                            $('#total-bookings-processed').text('0');
                             $('#winners-count').text('0');
-                            $('#losers-count').text('0');
-                            $('#active-bookings-count').text('0');
                             $('#total-winnings-distributed').text('₹0.00');
-                            $('#winners-list-tbody').empty().append('<tr><td colspan="6" style="text-align: center;">Failed to load winners.</td></tr>');
+                            $('#total-winnings-distributed-footer').text('₹0.00');
+                            winnersListTbody.empty().append('<tr><td colspan="8" style="text-align: center;">Failed to load winners.</td></tr>');
                         }
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
-                        console.error("Admin Panel: Error fetching winners list:", {jqXHR, textStatus, errorThrown, responseText: jqXHR.responseText});
-                        displayAdminMessage('danger', "An error occurred while fetching winners list. Check console.");
-                        // Clear display if error
-                        $('#total-bookings-processed').text('Error');
+                        console.error("Admin Panel: Error fetching winners list:", {jqXHR, textStatus, errorThrown, responseText: jqXHR.responseText}); // Log responseText
+                        displayAdminMessage('danger', "An error occurred while fetching winners list. Check console for details.");
                         $('#winners-count').text('Error');
-                        $('#losers-count').text('Error');
-                        $('#active-bookings-count').text('Error');
                         $('#total-winnings-distributed').text('₹Error');
-                        $('#winners-list-tbody').empty().append('<tr><td colspan="6" style="text-align: center;">Error loading winners.</td></tr>');
+                        $('#total-winnings-distributed-footer').text('₹Error');
+                        // Ensure winnersListTbody is cleared even on error
+                        winnersListTbody.empty().append('<tr><td colspan="8" style="text-align: center;">Error loading winners.</td></tr>');
                     }
                 });
             }
 
             $('#refresh-winners-list').click(function() {
-                fetchTodaysWinners(); 
+                fetchTodaysWinners($('#winners-date-filter').val()); 
             });
 
-
-            $('.nav-menu a').click(function(e) {
-                const href = $(this).attr('href');
-                if (href.startsWith('#')) {
-                    e.preventDefault();
-                    const target = href; 
-                    
-                    const targetElement = $(target); 
-                    if (targetElement.length) { 
-                        $('html, body').animate({
-                            scrollTop: targetElement.offset().top - 20
-                        }, 500);
-                    } else {
-                        console.warn(`Admin Panel: Attempted to scroll to non-existent element: ${target}`);
-                    }
-                    
-                    $('.nav-menu a').removeClass('active');
-                    $(this).addClass('active');
-
-                    // Fetch data when navigating to specific sections
-                    if (target === '#dashboard-section') { 
-                        fetchDashboardStats();
-                    } else if (target === '#users-section') {
-                        fetchUsers();
-                    } else if (target === '#recharge-section') {
-                        fetchRechargeRequests();
-                    } else if (target === '#withdrawal-section') {
-                        fetchWithdrawalRequests();
-                    } else if (target === '#bookings-section') { 
-                        fetchBookings(1); 
-                    } else if (target === '#results-section') { 
-                        fetchResultsForAdminPanel();
-                        fetchBookingSettings(); // Also refresh booking settings when on results page
-                    } else if (target === '#winners-section') { 
-                        fetchTodaysWinners(); 
-                    }
-                }
+            // New filter event listeners for Winners
+            $('#apply-winners-filters').click(function() {
+                fetchTodaysWinners($('#winners-date-filter').val());
+            });
+            $('#reset-winners-filters').click(function() {
+                const today = new Date().toISOString().split('T')[0];
+                $('#winners-date-filter').val(today);
+                fetchTodaysWinners(today);
+            });
+            // NEW: Export PDF for Winners
+            $('#export-winners-pdf').click(function() {
+                exportWinnersPdf();
             });
 
+            // --- User Management Functionality --- (already in admin.txt, updated for ID/Role columns)
             function fetchUsers() {
                 console.log('Admin Panel: Fetching users...');
                 $.ajax({
@@ -1868,9 +2169,11 @@
                             response.users.forEach(user => {
                                 usersList.append(`
                                     <tr>
+                                        <td>${user.id}</td> <!-- User ID -->
                                         <td>${user.username}</td>
                                         <td>${user.phone_number}</td>
                                         <td>₹${parseFloat(user.balance).toFixed(2)}</td>
+                                        <td>${user.role ? (user.role.charAt(0).toUpperCase() + user.role.slice(1)) : 'N/A'}</td> <!-- User Role -->
                                         <td class="user-status-${user.status}">${user.status.charAt(0).toUpperCase() + user.status.slice(1)}</td>
                                         <td>
                                             <button class="btn btn-primary btn-sm edit-user" data-id="${user.id}"><i class="fas fa-edit"></i></button>
@@ -1881,19 +2184,588 @@
                                 userCount++;
                             });
                         } else {
-                            usersList.append('<tr><td colspan="5" style="text-align: center;">' + response.message + '</td></tr>');
+                            usersList.append('<tr><td colspan="7" style="text-align: center;">' + response.message + '</td></tr>'); // Colspan adjusted
                         }
                         $('#total-users-count').text(userCount); 
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         console.error("Admin Panel: Error fetching users:", {jqXHR, textStatus, errorThrown, responseText: jqXHR.responseText});
-                        $('#users-list').empty().append('<tr><td colspan="5" style="text-align: center; color: red;">Failed to load users. Check console for details.</td></tr>');
+                        $('#users-list').empty().append('<tr><td colspan="7" style="text-align: center; color: red;">Failed to load users. Check console for details.</td></tr>'); // Colspan adjusted
                         $('#total-users-count').text('Error');
                     }
                 });
             }
 
-        });
+            // --- PDF Export Functions ---
+            function exportBookingsPdf() {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF('landscape'); // Landscape for more columns
+                const date = $('#booking-date-filter').val();
+
+                doc.setFontSize(14);
+                doc.text(`Bookings Report - Date: ${date || 'All Dates'}`, 10, 10);
+
+                const table = document.getElementById('bookings-section').querySelector('table'); // Target the table within its section
+                const head = [];
+                Array.from(table.querySelector('thead tr').children).forEach(th => {
+                    // Exclude the "Actions" column from PDF export
+                    if (th.textContent.trim() !== 'Actions') {
+                        head.push(th.textContent.trim());
+                    }
+                });
+                
+                const body = [];
+                let totalBookingAmount = 0;
+
+                Array.from(table.querySelector('tbody').children).forEach(row => {
+                    const rowData = Array.from(row.children).map(cell => cell.textContent.trim());
+                    // Exclude the "Actions" column data from PDF export (last cell)
+                    const filteredRowData = rowData.slice(0, -1); 
+                    body.push(filteredRowData);
+                    
+                    // Assuming Total Amount is at index 6 in the raw table data
+                    const amountText = rowData[6]; // e.g., "₹100.00"
+                    if (amountText && amountText.startsWith('₹')) {
+                        totalBookingAmount += parseFloat(amountText.substring(1));
+                    }
+                });
+
+                doc.autoTable({
+                    head: [head],
+                    body: body,
+                    startY: 20,
+                    styles: { fontSize: 8, cellPadding: 2, overflow: 'linebreak' },
+                    headStyles: { fillColor: [220, 220, 220], textColor: 0, fontStyle: 'bold' },
+                    columnStyles: {
+                        // Define column widths for better PDF layout. These are examples, adjust as needed.
+                        0: { cellWidth: 20 }, // Booking No.
+                        1: { cellWidth: 25 }, // User
+                        2: { cellWidth: 18 }, // Booking Type
+                        3: { cellWidth: 18 }, // Round Type
+                        4: { cellWidth: 35 }, // Numbers
+                        5: { cellWidth: 15 }, // Amt/Unit
+                        6: { cellWidth: 15 }, // Total Amt
+                        7: { cellWidth: 15 }, // Status
+                        8: { cellWidth: 30 }  // Booked At
+                    }
+                });
+
+                const finalY = doc.lastAutoTable.finalY + 10;
+                doc.setFontSize(10);
+                doc.text(`Total Booking Amount: ₹${totalBookingAmount.toFixed(2)}`, 10, finalY);
+
+                doc.save(`bookings_report_${date}.pdf`);
+                displayAdminMessage('success', 'Bookings report exported as PDF.');
+            }
+
+            function exportWinnersPdf() {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF('landscape'); // Landscape for more columns
+                const date = $('#winners-date-filter').val();
+
+                doc.setFontSize(14);
+                doc.text(`Winners Report - Date: ${date || 'All Dates'}`, 10, 10);
+
+                const table = document.getElementById('winners-list-table'); // Target the winners table
+                const head = Array.from(table.querySelector('thead tr').children).map(th => th.textContent.trim());
+                const body = [];
+                let totalWinningsDistributed = 0;
+
+                Array.from(table.querySelector('tbody').children).forEach(row => {
+                    const rowData = Array.from(row.children).map(cell => cell.textContent.trim());
+                    body.push(rowData);
+                    // Assuming Win Amount is at index 6 in the raw table data
+                    const amountText = rowData[6]; // e.g., "₹700.00"
+                    if (amountText && amountText.startsWith('₹')) {
+                        totalWinningsDistributed += parseFloat(amountText.substring(1));
+                    }
+                });
+
+                doc.autoTable({
+                    head: [head],
+                    body: body,
+                    startY: 20,
+                    styles: { fontSize: 8, cellPadding: 2, overflow: 'linebreak' },
+                    headStyles: { fillColor: [220, 220, 220], textColor: 0, fontStyle: 'bold' },
+                    columnStyles: {
+                        0: { cellWidth: 20 }, // Booking No.
+                        1: { cellWidth: 20 }, // User
+                        2: { cellWidth: 25 }, // Booking Type
+                        3: { cellWidth: 15 }, // Round Type
+                        4: { cellWidth: 35 }, // Numbers Booked
+                        5: { cellWidth: 15 }, // Amt/Unit
+                        6: { cellWidth: 20 }, // Win Amount
+                        7: { cellWidth: 15 }  // Status (New column added)
+                    }
+                });
+
+                const finalY = doc.lastAutoTable.finalY + 10;
+                doc.setFontSize(10);
+                doc.text(`Total Winnings Distributed: ₹${totalWinningsDistributed.toFixed(2)}`, 10, finalY);
+
+                doc.save(`winners_report_${date}.pdf`);
+                displayAdminMessage('success', 'Winners report exported as PDF.');
+            }
+
+            function exportRechargePdf() {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                const date = $('#recharge-date-filter').val();
+
+                doc.setFontSize(14);
+                doc.text(`Recharge Requests Report - Date: ${date || 'All Dates'}`, 10, 10);
+
+                const table = document.getElementById('recharge-requests-list').closest('table');
+                const head = [];
+                Array.from(table.querySelector('thead tr').children).forEach(th => {
+                    if (th.textContent.trim() !== 'Actions') { // Exclude Actions column
+                        head.push(th.textContent.trim());
+                    }
+                });
+                
+                const body = [];
+                Array.from(table.querySelector('tbody').children).forEach(row => {
+                    const rowData = Array.from(row.children).map(cell => cell.textContent.trim());
+                    const filteredRowData = rowData.slice(0, -1); // Exclude last column (Actions)
+                    body.push(filteredRowData);
+                });
+
+                doc.autoTable({
+                    head: [head],
+                    body: body,
+                    startY: 20,
+                    styles: { fontSize: 8, cellPadding: 2, overflow: 'linebreak' },
+                    headStyles: { fillColor: [220, 220, 220], textColor: 0, fontStyle: 'bold' },
+                    columnStyles: {
+                        0: { cellWidth: 15 }, // Request ID
+                        3: { cellWidth: 20 }, // Amount
+                        5: { cellWidth: 30 } // Request Time
+                    }
+                });
+
+                // Add summary of pending amount if desired, fetch it from fetchRechargeRequests' response
+                const totalPendingText = $('#total-pending-recharge-requests-summary').text();
+                if (totalPendingText && totalPendingText.includes('₹')) {
+                    const amountMatch = totalPendingText.match(/₹([\d.,]+)/);
+                    if (amountMatch) {
+                        const totalPendingAmount = parseFloat(amountMatch[1].replace(/,/g, ''));
+                        const finalY = doc.lastAutoTable.finalY + 10;
+                        doc.setFontSize(10);
+                        doc.text(`Total Pending Recharge Amount: ₹${totalPendingAmount.toFixed(2)}`, 10, finalY);
+                    }
+                }
+
+                doc.save(`recharge_requests_report_${date}.pdf`);
+                displayAdminMessage('success', 'Recharge requests report exported as PDF.');
+            }
+
+            function exportWithdrawalPdf() {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF('landscape'); // Landscape for more columns
+                const date = $('#withdrawal-date-filter').val();
+
+                doc.setFontSize(14);
+                doc.text(`Withdrawal Requests Report - Date: ${date || 'All Dates'}`, 10, 10);
+
+                const table = document.getElementById('withdrawal-requests-list').closest('table');
+                const head = [];
+                Array.from(table.querySelector('thead tr').children).forEach(th => {
+                    if (th.textContent.trim() !== 'Actions') { // Exclude Actions column
+                        head.push(th.textContent.trim());
+                    }
+                });
+                
+                const body = [];
+                Array.from(table.querySelector('tbody').children).forEach(row => {
+                    const rowData = Array.from(row.children).map(cell => cell.textContent.trim());
+                    const filteredRowData = rowData.slice(0, -1); // Exclude last column (Actions)
+                    body.push(filteredRowData);
+                });
+
+                doc.autoTable({
+                    head: [head],
+                    body: body,
+                    startY: 20,
+                    styles: { fontSize: 8, cellPadding: 2, overflow: 'linebreak' },
+                    headStyles: { fillColor: [220, 220, 220], textColor: 0, fontStyle: 'bold' },
+                    columnStyles: {
+                        0: { cellWidth: 15 }, // Request ID
+                        3: { cellWidth: 20 }, // Amount
+                        8: { cellWidth: 30 } // Request Time
+                    }
+                });
+
+                const totalPendingText = $('#total-pending-withdrawal-requests-summary').text();
+                if (totalPendingText && totalPendingText.includes('₹')) {
+                    const amountMatch = totalPendingText.match(/₹([\d.,]+)/);
+                    if (amountMatch) {
+                        const totalPendingAmount = parseFloat(amountMatch[1].replace(/,/g, ''));
+                        const finalY = doc.lastAutoTable.finalY + 10;
+                        doc.setFontSize(10);
+                        doc.text(`Total Pending Withdrawal Amount: ₹${totalPendingAmount.toFixed(2)}`, 10, finalY);
+                    }
+                }
+
+                doc.save(`withdrawal_requests_report_${date}.pdf`);
+                displayAdminMessage('success', 'Withdrawal requests report exported as PDF.');
+            }
+
+            // Export to PDF for General Export Modal (from header)
+            $('#confirm-export').on('click', function() {
+                const dataType = $('#export-type').val();
+                const dateRange = $('#export-date-range').val(); // This will be "YYYY-MM-DD toYYYY-MM-DD" or empty
+                const format = $('#export-format').val(); // Should always be PDF based on current options
+
+                if (format !== 'pdf') {
+                    displayAdminMessage('danger', `Exporting to ${format.toUpperCase()} is not implemented. Please select PDF.`);
+                    return;
+                }
+
+                let startDate = '';
+                let endDate = '';
+                if (dateRange) {
+                    const dates = dateRange.split(' to ');
+                    startDate = dates[0];
+                    endDate = dates[1] || dates[0]; // If only one date selected, end date is same as start date
+                }
+
+                const doc = new jsPDF('landscape'); // Default to landscape for tables
+
+                doc.setFontSize(16);
+                doc.text(`${dataType.charAt(0).toUpperCase() + dataType.slice(1)} Report`, 10, 10);
+                if (dateRange) {
+                    doc.setFontSize(12);
+                    doc.text(`Date Range: ${dateRange}`, 10, 20);
+                }
+
+                let head = [];
+                let body = [];
+                let totalSummary = '';
+                let apiUrl = '';
+
+                // Dynamically fetch data based on dataType and populate head/body
+                switch (dataType) {
+                    case 'bookings':
+                        head = ['Booking No.', 'User', 'Booking Type', 'Round Type', 'Numbers', 'Amt/Unit', 'Total Amt', 'Status', 'Booked At'];
+                        apiUrl = '/project-teer/admin/get_bookings.php';
+                        $.ajax({
+                            url: `${apiUrl}?start_date=${startDate}&end_date=${endDate}&limit=99999`, // Fetch all for range
+                            method: 'GET',
+                            dataType: 'json',
+                            async: false, // Synchronous fetch for PDF generation
+                            success: function(response) {
+                                if (response.success && response.bookings.length > 0) {
+                                    let currentTotalBookingAmount = 0;
+                                    response.bookings.forEach(booking => {
+                                        let numbersDisplay = ''; 
+                                        try {
+                                            const parsedNumbers = JSON.parse(booking.numbers_booked_json);
+                                            if (Array.isArray(parsedNumbers)) {
+                                                if (booking.booking_type === 'pair') {
+                                                    // Refined logic for pair: handles objects and strings, pads with '0'
+                                                    numbersDisplay = parsedNumbers.map(item => {
+                                                        let num;
+                                                        if (typeof item === 'object' && item !== null && item.number !== undefined) {
+                                                            num = String(item.number);
+                                                        } else {
+                                                            num = String(item);
+                                                        }
+                                                        return num.padStart(2, '0');
+                                                    }).join('-');
+                                                } else if (booking.booking_type === 'house' || booking.booking_type === 'ending') {
+                                                    if (parsedNumbers.length > 0 && typeof parsedNumbers[0] === 'object' && parsedNumbers[0].digit) {
+                                                        numbersDisplay = parsedNumbers[0].digit;
+                                                    } else if (parsedNumbers.length > 0 && typeof parsedNumbers[0] === 'string' && /^\d$/.test(parsedNumbers[0])) {
+                                                        numbersDisplay = parsedNumbers[0];
+                                                    } else {
+                                                        numbersDisplay = JSON.stringify(parsedNumbers);
+                                                    }
+                                                } else if (booking.booking_type === 'single' || booking.booking_type === 'night_teer') {
+                                                    if (parsedNumbers.length > 0 && typeof parsedNumbers[0] === 'object' && parsedNumbers[0].number) {
+                                                        numbersDisplay = parsedNumbers[0].number;
+                                                    } else if (parsedNumbers.length > 0 && typeof parsedNumbers[0] === 'string' && /^\d{2}$/.test(parsedNumbers[0])) {
+                                                        numbersDisplay = parsedNumbers[0];
+                                                    } else {
+                                                        numbersDisplay = JSON.stringify(parsedNumbers);
+                                                    }
+                                                } else if (booking.booking_type === 'forecast') {
+                                                    const frNum = parsedNumbers.find(item => item.round === 'first_round')?.number || '--';
+                                                    const srNum = parsedNumbers.find(item => item.round === 'second_round')?.number || '--';
+                                                    numbersDisplay = `FR: ${frNum}, SR: ${srNum}`;
+                                                } else {
+                                                    numbersDisplay = JSON.stringify(parsedNumbers);
+                                                }
+                                            } else {
+                                                numbersDisplay = booking.numbers_booked_json;
+                                            }
+                                        } catch (e) {
+                                            numbersDisplay = `Error parsing: ${booking.numbers_booked_json}`;
+                                            console.error('Error parsing JSON for export:', e);
+                                        }
+
+                                        body.push([
+                                            booking.booking_id,
+                                            booking.username,
+                                            booking.booking_type.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+                                            booking.round_type ? booking.round_type.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'N/A',
+                                            numbersDisplay,
+                                            `₹${parseFloat(booking.amount_per_unit).toFixed(2)}`,
+                                            `₹${parseFloat(booking.total_amount).toFixed(2)}`,
+                                            booking.status.charAt(0).toUpperCase() + booking.status.slice(1),
+                                            new Date(booking.booked_at).toLocaleString()
+                                        ]);
+                                        currentTotalBookingAmount += parseFloat(booking.total_amount);
+                                    });
+                                    totalSummary = `Total Booking Amount: ₹${currentTotalBookingAmount.toFixed(2)}`;
+                                } else {
+                                    displayAdminMessage('info', 'No bookings found for the selected date range.', 'adminMessageBox');
+                                }
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                console.error("Error fetching bookings for export:", {jqXHR, textStatus, errorThrown, responseText: jqXHR.responseText});
+                                displayAdminMessage('danger', 'Failed to fetch bookings data for export. Check console.', 'adminMessageBox');
+                            }
+                        });
+                        break;
+                    case 'winners':
+                        head = ['Booking No.', 'User', 'Phone', 'Round', 'Type', 'Booked Number(s)', 'Win Amount', 'Status'];
+                        apiUrl = '/project-teer/admin/get_winners.php';
+                        $.ajax({
+                            url: `${apiUrl}?date=${startDate}&limit=99999`, // get_winners.php expects 'date' parameter
+                            method: 'GET',
+                            dataType: 'json',
+                            async: false,
+                            success: function(response) {
+                                if (response.success && response.winners.length > 0) {
+                                    let currentTotalWinningsDistributed = 0;
+                                    response.winners.forEach(winner => {
+                                        let numbersDisplay = ''; 
+                                        try {
+                                            const parsedNumbers = JSON.parse(winner.numbers_booked_json);
+                                            if (Array.isArray(parsedNumbers)) {
+                                                if (winner.booking_type === 'pair') {
+                                                    // Refined logic for pair: handles objects and strings, pads with '0'
+                                                    numbersDisplay = parsedNumbers.map(item => {
+                                                        let num;
+                                                        if (typeof item === 'object' && item !== null && item.number !== undefined) {
+                                                            num = String(item.number);
+                                                        } else {
+                                                            num = String(item);
+                                                        }
+                                                        return num.padStart(2, '0');
+                                                    }).join('-');
+                                                } else if (winner.booking_type === 'house' || winner.booking_type === 'ending') {
+                                                    if (parsedNumbers.length > 0 && typeof parsedNumbers[0] === 'object' && parsedNumbers[0].digit) {
+                                                        numbersDisplay = parsedNumbers[0].digit;
+                                                    } else if (parsedNumbers.length > 0 && typeof parsedNumbers[0] === 'string' && /^\d$/.test(parsedNumbers[0])) {
+                                                        numbersDisplay = parsedNumbers[0];
+                                                    } else {
+                                                        numbersDisplay = JSON.stringify(parsedNumbers);
+                                                    }
+                                                } else if (winner.booking_type === 'single' || winner.booking_type === 'night_teer') {
+                                                    if (parsedNumbers.length > 0 && typeof parsedNumbers[0] === 'object' && parsedNumbers[0].number) {
+                                                        numbersDisplay = parsedNumbers[0].number;
+                                                    } else if (parsedNumbers.length > 0 && typeof parsedNumbers[0] === 'string' && /^\d{2}$/.test(parsedNumbers[0])) {
+                                                        numbersDisplay = parsedNumbers[0];
+                                                    } else {
+                                                        numbersDisplay = JSON.stringify(parsedNumbers);
+                                                    }
+                                                } else if (winner.booking_type === 'forecast') {
+                                                    const frNum = parsedNumbers.find(item => item.round === 'first_round')?.number || '--';
+                                                    const srNum = parsedNumbers.find(item => item.round === 'second_round')?.number || '--';
+                                                    numbersDisplay = `FR: ${frNum}, SR: ${srNum}`;
+                                                } else {
+                                                    numbersDisplay = JSON.stringify(parsedNumbers);
+                                                }
+                                            } else {
+                                                numbersDisplay = winner.numbers_booked_json;
+                                            }
+                                        } catch (e) {
+                                            numbersDisplay = `Error parsing: ${winner.numbers_booked_json}`;
+                                            console.error('Error parsing JSON for export:', e);
+                                        }
+
+                                        body.push([
+                                            winner.booking_id,
+                                            winner.username,
+                                            winner.phone_number,
+                                            winner.round_type.replace('_round', '').replace('first', 'FR').replace('second', 'SR').replace('night_teer_fr', 'NT FR').replace('night_teer_sr', 'NT SR').toUpperCase(),
+                                            winner.booking_type.charAt(0).toUpperCase() + winner.booking_type.slice(1),
+                                            numbersDisplay,
+                                            `₹${parseFloat(winner.win_amount).toFixed(2)}`,
+                                            winner.status.charAt(0).toUpperCase() + winner.status.slice(1)
+                                        ]);
+                                        currentTotalWinningsDistributed += parseFloat(winner.win_amount);
+                                    });
+                                    totalSummary = `Total Winnings Distributed: ₹${currentTotalWinningsDistributed.toFixed(2)}`;
+                                } else {
+                                    displayAdminMessage('info', 'No winners found for the selected date.', 'adminMessageBox');
+                                }
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                console.error("Error fetching winners for export:", {jqXHR, textStatus, errorThrown, responseText: jqXHR.responseText});
+                                displayAdminMessage('danger', 'Failed to fetch winners data for export. Check console.', 'adminMessageBox');
+                            }
+                        });
+                        break;
+                    case 'users':
+                        head = ['ID', 'Username', 'Phone', 'Balance', 'Role', 'Status'];
+                        apiUrl = '/project-teer/admin/get_users.php';
+                         $.ajax({
+                            url: apiUrl,
+                            method: 'GET',
+                            dataType: 'json',
+                            async: false,
+                            success: function(response) {
+                                if (response.success && response.users.length > 0) {
+                                    response.users.forEach(user => {
+                                        body.push([
+                                            user.id,
+                                            user.username,
+                                            user.phone_number,
+                                            `₹${parseFloat(user.balance).toFixed(2)}`,
+                                            user.role.charAt(0).toUpperCase() + user.role.slice(1),
+                                            user.status.charAt(0).toUpperCase() + user.status.slice(1)
+                                        ]);
+                                    });
+                                    totalSummary = `Total Users: ${response.users.length}`;
+                                } else {
+                                    displayAdminMessage('info', 'No users found for export.', 'adminMessageBox');
+                                }
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                console.error("Error fetching users for export:", {jqXHR, textStatus, errorThrown, responseText: jqXHR.responseText});
+                                displayAdminMessage('danger', 'Failed to fetch user data for export. Check console.', 'adminMessageBox');
+                            }
+                        });
+                        break;
+                    case 'recharge':
+                        head = ['Request ID', 'Username', 'Phone', 'Amount', 'Status', 'Requested At'];
+                        apiUrl = '/project-teer/admin/get_recharge_requests.php';
+                        $.ajax({
+                            url: `${apiUrl}?date=${startDate}&limit=99999`, // Fetch all for a specific date
+                            method: 'GET',
+                            dataType: 'json',
+                            async: false,
+                            success: function(response) {
+                                if (response.success && response.requests.length > 0) {
+                                    let currentTotalPendingAmount = 0;
+                                    response.requests.forEach(request => {
+                                        body.push([
+                                            request.id,
+                                            request.username,
+                                            request.phone_number,
+                                            `₹${parseFloat(request.amount).toFixed(2)}`,
+                                            request.status.charAt(0).toUpperCase() + request.status.slice(1),
+                                            new Date(request.requested_at).toLocaleString()
+                                        ]);
+                                        if (request.status === 'pending') {
+                                            currentTotalPendingAmount += parseFloat(request.amount);
+                                        }
+                                    });
+                                    totalSummary = `Total Pending Recharge Amount: ₹${currentTotalPendingAmount.toFixed(2)}`;
+                                } else {
+                                    displayAdminMessage('info', 'No recharge requests found for the selected date.', 'adminMessageBox');
+                                }
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                console.error("Error fetching recharge requests for export:", {jqXHR, textStatus, errorThrown, responseText: jqXHR.responseText});
+                                displayAdminMessage('danger', 'Failed to fetch recharge requests data for export. Check console.', 'adminMessageBox');
+                            }
+                        });
+                        break;
+                    case 'withdrawal':
+                        head = ['Request ID', 'Username', 'Phone', 'Account Holder', 'Amount', 'Bank Name', 'Account No.', 'IFSC Code', 'Status', 'Request Time']; // Updated head
+                        apiUrl = '/project-teer/admin/get_withdrawal_requests.php';
+                        $.ajax({
+                            url: `${apiUrl}?date=${startDate}&limit=99999`, // Fetch all for a specific date
+                            method: 'GET',
+                            dataType: 'json',
+                            async: false,
+                            success: function(response) {
+                                if (response.success && response.requests.length > 0) {
+                                    let currentTotalPendingAmount = 0;
+                                    response.requests.forEach(request => {
+                                        body.push([
+                                            request.id,
+                                            request.username,
+                                            request.phone_number,
+                                            request.account_holder || 'N/A', // Account Holder
+                                            `₹${parseFloat(request.amount).toFixed(2)}`,
+                                            request.bank_name || 'N/A',
+                                            request.account_number || 'N/A',
+                                            request.ifsc_code || 'N/A',
+                                            request.status.charAt(0).toUpperCase() + request.status.slice(1),
+                                            new Date(request.requested_at).toLocaleString()
+                                        ]);
+                                        if (request.status === 'pending') {
+                                            currentTotalPendingAmount += parseFloat(request.amount);
+                                        }
+                                    });
+                                    totalSummary = `Total Pending Withdrawal Amount: ₹${currentTotalPendingAmount.toFixed(2)}`;
+                                } else {
+                                    displayAdminMessage('info', 'No withdrawal requests found for the selected date.', 'adminMessageBox');
+                                }
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                console.error("Error fetching withdrawal requests for export:", {jqXHR, textStatus, errorThrown, responseText: jqXHR.responseText});
+                                displayAdminMessage('danger', 'Failed to fetch withdrawal requests data for export. Check console.', 'adminMessageBox');
+                            }
+                        });
+                        break;
+                    default:
+                        displayAdminMessage('danger', 'Invalid data type selected for export.', 'adminMessageBox');
+                        return;
+                }
+
+                if (body.length > 0) {
+                    doc.autoTable({
+                        head: [head],
+                        body: body,
+                        startY: dateRange ? 30 : 20, // Adjust startY if date range is shown
+                        styles: { fontSize: 8, cellPadding: 2, overflow: 'linebreak' },
+                        headStyles: { fillColor: [220, 220, 220], textColor: 0, fontStyle: 'bold' },
+                        columnStyles: {
+                            // Column styles for different data types
+                            ...(dataType === 'bookings' && {
+                                0: { cellWidth: 20 }, 1: { cellWidth: 25 }, 2: { cellWidth: 18 }, 3: { cellWidth: 18 },
+                                4: { cellWidth: 35 }, 5: { cellWidth: 15 }, 6: { cellWidth: 15 }, 7: { cellWidth: 15 },
+                                8: { cellWidth: 30 }
+                            }),
+                            ...(dataType === 'winners' && {
+                                0: { cellWidth: 20 }, 1: { cellWidth: 20 }, 2: { cellWidth: 25 }, 3: { cellWidth: 15 },
+                                4: { cellWidth: 15 }, 5: { cellWidth: 35 }, 6: { cellWidth: 20 }, 7: { cellWidth: 15 }
+                            }),
+                            ...(dataType === 'users' && {
+                                0: { cellWidth: 15 }, 1: { cellWidth: 30 }, 2: { cellWidth: 30 }, 3: { cellWidth: 20 },
+                                4: { cellWidth: 15 }, 5: { cellWidth: 20 }
+                            }),
+                            ...(dataType === 'recharge' && {
+                                0: { cellWidth: 15 }, 1: { cellWidth: 25 }, 2: { cellWidth: 25 }, 3: { cellWidth: 20 },
+                                4: { cellWidth: 20 }, 5: { cellWidth: 35 }
+                            }),
+                            ...(dataType === 'withdrawal' && {
+                                0: { cellWidth: 15 }, 1: { cellWidth: 20 }, 2: { cellWidth: 20 }, 3: { cellWidth: 20 }, // Account Holder column width
+                                4: { cellWidth: 15 }, 5: { cellWidth: 20 }, 6: { cellWidth: 25 }, 7: { cellWidth: 20 },
+                                8: { cellWidth: 15 }, 9: { cellWidth: 30 }
+                            })
+                        }
+                    });
+
+                    if (totalSummary) {
+                        const finalY = doc.lastAutoTable.finalY + 10;
+                        doc.setFontSize(10);
+                        doc.text(totalSummary, 10, finalY);
+                    }
+
+                    doc.save(`${dataType}_report_${startDate || 'all'}${endDate && startDate !== endDate ? `_to_${endDate}` : ''}.pdf`);
+                    displayAdminMessage('success', `${dataType} report exported successfully as PDF!`, 'adminMessageBox');
+                } else {
+                    displayAdminMessage('info', `No data to export for ${dataType} for the selected criteria.`, 'adminMessageBox');
+                }
+                $('#export-modal').hide(); // Use hide instead of fadeOut for simpler behavior matching previous code
+            });
+        }); // End of document.ready
     </script>
 </body>
 </html>

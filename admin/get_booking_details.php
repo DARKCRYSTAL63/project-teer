@@ -1,7 +1,7 @@
 <?php
 // File: project-teer/admin/get_booking_details.php
 // Fetches detailed information for a single booking for the admin panel modal.
-
+session_name("ADMIN_SESSION"); // Set session name for admin
 session_start(); // Start the session
 
 header('Content-Type: application/json'); // Set content type to JSON

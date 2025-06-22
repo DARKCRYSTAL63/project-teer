@@ -1,7 +1,7 @@
 <?php
 // File: project-teer/admin/get_todays_winners_list.php
 // Fetches a list of today's winners and a summary of all processed bookings for the admin panel.
-
+session_name("ADMIN_SESSION"); // Set session name for admin
 session_start();
 
 header('Content-Type: application/json');

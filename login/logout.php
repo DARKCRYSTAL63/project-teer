@@ -1,5 +1,6 @@
 <?php
 // File: project-teer/login/logout.php
+session_name("USER_SESSION"); // Set session name for user
 session_start(); // Start the session
 
 // Unset all session variables

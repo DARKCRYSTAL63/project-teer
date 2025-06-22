@@ -1,7 +1,7 @@
 <?php
 // File: project-teer/admin/reset_results.php
 // Clears today's First Round, Second Round, and Night Teer results from the 'results' table.
-
+session_name("ADMIN_SESSION"); // Set session name for admin
 session_start();
 
 header('Content-Type: application/json');

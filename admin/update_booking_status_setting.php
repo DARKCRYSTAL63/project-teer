@@ -1,7 +1,7 @@
 <?php
 // File: project-teer/admin/update_booking_status_setting.php
 // Updates a specific booking setting (e.g., enable/disable first round booking).
-
+session_name("ADMIN_SESSION"); // Set session name for admin
 session_start();
 
 header('Content-Type: application/json');

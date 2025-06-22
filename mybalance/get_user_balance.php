@@ -1,5 +1,6 @@
 <?php
 // File: project-teer/mybalance/get_user_balance.php
+session_name("USER_SESSION"); // Set session name for user
 session_start(); // ENSURE THIS IS THE VERY FIRST LINE
 header('Content-Type: application/json');
 

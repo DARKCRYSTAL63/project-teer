@@ -1,5 +1,6 @@
 <?php
 // File: project-teer/booking/submit_booking.php
+session_name("USER_SESSION"); // Set session name for user
 session_start(); // ENSURE THIS IS THE VERY FIRST LINE, NO SPACES OR NEWLINES BEFORE IT
 header('Content-Type: application/json');
 

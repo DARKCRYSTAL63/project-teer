@@ -1,7 +1,7 @@
 <?php
 // File: project-teer/admin/handle_recharge_approval.php
 // Handles approval or rejection of recharge requests by admin.
-
+session_name("ADMIN_SESSION"); // Set session name for admin
 session_start(); // THIS MUST BE THE FIRST EXECUTABLE LINE AFTER <?php
 
 include '../db_connect.php'; // Correct path: Go up one level to reach db_connect.php
