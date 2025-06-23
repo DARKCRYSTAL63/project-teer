@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../index.css"> <!-- Assuming index.css contains general styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Specific styles for My Balance page */
+        /* Specific styles for My Balance page (These are from your provided mybalance.html's <style> block) */
         main {
             padding: 20px;
             max-width: 800px;
@@ -559,8 +559,18 @@
         <p>&copy; 2025 FrankyTeer. All rights reserved.</p>
     </footer>
 
+    <!-- NEW: Timeout Popup Message HTML Structure (initially hidden) -->
+    <div id="message-popup" class="message-popup" style="display: none;">
+        <div class="popup-content">
+            <span class="close-popup" onclick="hideMessagePopup()">&times;</span>
+            <p id="popup-message-text"></p>
+        </div>
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
+        let messageTimeout; // Global timeout ID for popup
+
         $(document).ready(function() {
             // Mobile menu toggle (already present in other files, but good to include here for consistency)
             const hamburger = document.querySelector('.hamburger');
@@ -626,7 +636,7 @@
 
             // --- End Login/Logout Button Logic ---
 
-            // Helper function to display messages
+            // Helper function to display messages (general message box)
             function displayMessage(type, message, redirectUrl = null) {
                 const messageBox = $('#balanceMessageBox');
                 messageBox.removeClass('success error info').addClass(type).text(message).show();
@@ -644,10 +654,29 @@
                 }
             }
 
+            // NEW: Function to show the specific timeout popup in the center
+            // Takes an optional 'duration' parameter, defaulting to 3000ms (3 seconds)
+            function showMessagePopup(message, duration = 3000) { 
+                const popup = $('#message-popup');
+                const popupMessageText = $('#popup-message-text');
+                popupMessageText.text(message);
+                popup.css('display', 'flex'); // Use flex to center the content
+
+                // Set a timeout to hide the popup
+                clearTimeout(messageTimeout); // Clear any previous timeout
+                messageTimeout = setTimeout(() => {
+                    hideMessagePopup();
+                }, duration); // Use the provided duration
+            }
+
+            // NEW: Function to hide the timeout popup
+            function hideMessagePopup() {
+                $('#message-popup').css('display', 'none'); // Hide using display property
+            }
+
+
             // Function to fetch user balance and bank accounts
             function fetchUserBalanceAndBankAccounts() {
-                // Removed displayMessage('info', 'Loading balance and bank accounts...'); here
-                // as it might be too frequent. The login check already provides initial feedback.
                 $.ajax({
                     url: 'get_user_balance.php', // Path from mybalance.html
                     method: 'GET',
@@ -659,7 +688,6 @@
                             renderBankAccounts(response.bank_accounts);
                             fetchWithdrawalRequests(); // Fetch withdrawals after balance
                             fetchUserRechargeRequests(); // Fetch recharge history
-                            // Removed success message here as well, to prevent spamming on every refresh
                         } else {
                             if (response.redirect) {
                                 displayMessage('error', response.message + ' Redirecting to login...', response.redirect);
@@ -758,19 +786,12 @@
             });
 
             $('#confirmPaymentBtn').on('click', function() {
-                // This is where you send the recharge request to your PHP backend
-                // This part sends the request to the backend.
-                // You already have `submit_recharge_request.php`
-                // So this button primarily tells the system the user *intends* to confirm.
-                // The actual approval will still be handled by the admin panel.
-                
                 // Display the specific timeout message after user confirms payment
-                displayMessage('success', 'Recharge complete! Your recharge amount will be added to your balance in 2 minutes.');
+                showMessagePopup('Recharge amount will be added to your balance shortly.', 5000); // 5 seconds
                 
                 $('#qrCodeModal').removeClass('active'); // Hide modal immediately
 
                 // Optionally, submit the recharge request to the backend with status 'pending'
-                // This call is important to record the user's intention to recharge.
                 $.ajax({
                     url: '../qrcode/submit_recharge_request.php', // Correct path to your existing script
                     method: 'POST',
@@ -779,9 +800,7 @@
                     success: function(response) {
                         console.log('Recharge request submission response:', response);
                         if (!response.success) {
-                            // If the backend call failed, even after client-side message, show an error
                             console.error("Backend error on recharge submission:", response.message);
-                            // This might overwrite the previous success message, but it's important for debugging
                             displayMessage('error', 'There was an issue recording your recharge. Please contact support if amount is not credited.');
                         }
                         fetchUserBalanceAndBankAccounts(); // Refresh history regardless
@@ -803,7 +822,7 @@
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
-                    displayMessage('info', 'QR code download started!'); // Changed to info
+                    displayMessage('info', 'QR code download started!');
                 } else {
                     displayMessage('error', 'No QR code selected to download.');
                 }
@@ -848,7 +867,7 @@
             // --- END RECHARGE BUTTONS & MODAL LOGIC ---
 
 
-            // Withdrawal Request Submission - MODIFIED to send bank details
+            // Withdrawal Request Submission - MODIFIED to trigger timeout popup
             $('#submitWithdrawalRequest').on('click', function() {
                 displayMessage('info', 'Submitting withdrawal request...');
                 const amount = $('#withdrawalAmount').val();
@@ -864,7 +883,7 @@
                     return;
                 }
 
-                const bankDetails = selectedBankRadio.data(); // Get all data- attributes
+                const bankDetails = selectedBankRadio.data();
                 
                 const dataToSend = {
                     amount: amount,
@@ -880,12 +899,11 @@
                     url: 'submit_withdrawal_request.php', // Your existing withdrawal script
                     method: 'POST',
                     dataType: 'json',
-                    data: dataToSend, // Send all necessary bank details
+                    data: dataToSend,
                     success: function(response) {
                         console.log('Withdrawal response:', response);
                         if (response.success) {
-                            // Display the specific timeout message after successful submission
-                            displayMessage('success', 'Withdrawal submitted. Your request is pending admin approval and will be processed shortly.');
+                            showMessagePopup('Withdrawal submitted.'); // Default 3-second timer
                             $('#withdrawalAmount').val(''); // Clear amount input
                             fetchUserBalanceAndBankAccounts(); // Refresh balance and withdrawal history
                         } else {

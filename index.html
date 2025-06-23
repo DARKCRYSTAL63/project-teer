@@ -6,8 +6,9 @@
     <title>FrankyTeer</title>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
-        /* Message Box Styling (replacing alerts) */
+        /* Message Box Styling (replacing alerts) - Existing styles from your provided HTML */
         .message-box {
             margin-top: 20px;
             padding: 10px 15px;
@@ -26,7 +27,7 @@
             color: #721c24;
             border: 1px solid #f5c6fb;
         }
-        /* Styles for user balance display */
+        /* Styles for user balance display - Existing styles from your provided HTML */
         .user-balance-display {
             background-color: #e0f7fa; /* Light blue */
             color: #007bff;
@@ -53,7 +54,7 @@
             word-break: break-all; /* Break long strings */
             font-size: 0.9em;
         }
-        /* Styling for the new Book button */
+        /* Styling for the new Book button - Existing styles from your provided HTML */
         .book-button { /* Changed from .pay-button */
             background-color: #28a745; /* Green for success actions */
             color: white;
@@ -75,7 +76,7 @@
             cursor: not-allowed;
             transform: none;
         }
-        /* Adjustments for add/remove buttons */
+        /* Adjustments for add/remove buttons - Existing styles from your provided HTML */
         .add-number {
             background-color: #007bff; /* Blue for add */
             color: white;
@@ -105,12 +106,12 @@
         .remove-number-btn:hover {
             background-color: #c82333;
         }
-        /* Specific input width for forecast/night teer */
+        /* Specific input width for forecast/night teer - Existing styles from your provided HTML */
         .forecast-table .fr-input, .forecast-table .sr-input,
         .night-teer-table .fr-input, .night-teer-table .sr-input {
             width: 70px; /* Adjust as needed */
         }
-        /* Inputs in tables */
+        /* Inputs in tables - Existing styles from your provided HTML */
         .booking-table .number-input, .booking-table .amount-input,
         .forecast-table .fr-input, .forecast-table .sr-input, .forecast-table .amount-input,
         .night-teer-table .fr-input, .night-teer-table .sr-input, .night-teer-table .amount-input,
@@ -126,7 +127,7 @@
         }
         /* Removed .booking-table select.round-select as it's no longer used for these sections */
 
-        /* NEW CSS for "Booking Closed" overlay */
+        /* NEW CSS for "Booking Closed" overlay - Existing styles from your provided HTML */
         .round-section {
             position: relative; /* Essential for absolute positioning of overlay */
             background-color: #ffffff;
@@ -155,7 +156,7 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
             pointer-events: none; /* Allows clicks to pass through if needed, but we'll disable elements below */
         }
-        /* Styles for user greeting */
+        /* Styles for user greeting - Existing styles from your provided HTML */
         .user-greeting {
             color: #555;
             font-size: 1em;
@@ -177,6 +178,45 @@
                 background-color: #f9f9f9; /* Slightly different background */
             }
         }
+
+        /* NEW: Timeout Popup Message Styles (Minimal, Functional, Centered) */
+        .message-popup {
+            position: fixed; /* Fixed to viewport */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5); /* Semi-transparent overlay */
+            z-index: 1000; /* On top of everything */
+            display: flex; /* Crucial for centering content */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+        }
+
+        .popup-content {
+            background-color: white; /* Plain white background */
+            padding: 20px; /* Minimal padding */
+            border: 1px solid #ccc; /* Simple border, neutral color */
+            position: relative; /* For close button positioning */
+            text-align: center; /* Center text */
+            width: 90%; /* Take 90% width on small screens */
+            max-width: 300px; /* Max width to prevent it from getting too large */
+        }
+
+        .popup-content p {
+            font-size: 1em; /* Readable font size */
+            color: #333; /* Dark text color */
+            margin-bottom: 0; /* No extra margin */
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #333; /* Simple dark color for visibility */
+        }
     </style>
 </head>
 <body>
@@ -197,7 +237,7 @@
             
             <nav class="desktop-nav">
                 <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
+                    
                     <li><a href="mytickets/mytickets.html">MyTickets</a></li>
                     <li><a href="mybalance/mybalance.html">My Balance</a></li>
                     <li><a href="dreamnumber/dreamnumber.html">Dream Numbers</a></li>
@@ -220,7 +260,7 @@
             <ul>
                 <!-- Mobile greeting added here -->
                 <li style="display: none;" id="mobile-user-greeting-li"><a href="#" class="user-greeting-mobile"></a></li>
-                <li><a href="index.html">Home</a></li>
+                
                 <li><a href="mytickets/mytickets.html">MyTickets</a></li>
                 <li><a href="mybalance/mybalance.html">My Balance</a></li>
                 <li><a href="dreamnumber/dreamnumber.html">Dream Numbers</a></li>
@@ -250,12 +290,12 @@
             </div>
         </section>
 
-        <!-- User Balance Display - Added here -->
+        <!-- User Balance Display - Existing -->
         <div class="user-balance-display">
             <i class="fas fa-wallet"></i> Current Balance: ₹<span id="currentBalance">0.00</span>
         </div>
         
-        <!-- Consolidated Message Box - Added here -->
+        <!-- Consolidated Message Box - Existing -->
         <div id="bookingMessageBox" class="message-box"></div>
 
         <section class="booking-section" data-booking-type="single">
@@ -266,7 +306,7 @@
                 <table class="booking-table">
                     <thead>
                         <tr>
-                            <th>Numbers (2 digits)</th>
+                            <th>Numbers</th>
                             <th>Amount</th>
                             <th></th> <!-- For remove button -->
                         </tr>
@@ -295,7 +335,7 @@
                 <table class="booking-table">
                     <thead>
                         <tr>
-                            <th>Numbers (2 digits)</th>
+                            <th>Numbers</th>
                             <th>Amount</th>
                             <th></th> <!-- For remove button -->
                         </tr>
@@ -326,8 +366,8 @@
                 <table class="forecast-table booking-table"> 
                     <thead>
                         <tr>
-                            <th>First Round (2 digits)</th>
-                            <th>Second Round (2 digits)</th>
+                            <th>First Round</th>
+                            <th>Second Round</th>
                             <th>Amount</th>
                             <th></th> <!-- For remove button -->
                         </tr>
@@ -362,8 +402,8 @@
                 <table class="booking-table">
                     <thead>
                         <tr>
-                            <th>House Digit (0-9)</th>
-                            <th>Amount (x10)</th>
+                            <th>House (0-9)</th>
+                            <th>Amount</th>
                             <th></th> <!-- For remove button -->
                         </tr>
                     </thead>
@@ -391,8 +431,8 @@
                 <table class="booking-table">
                     <thead>
                         <tr>
-                            <th>House Digit (0-9)</th>
-                            <th>Amount (x10)</th>
+                            <th>House (0-9)</th>
+                            <th>Amount</th>
                             <th></th> <!-- For remove button -->
                         </tr>
                     </thead>
@@ -425,8 +465,8 @@
                 <table class="booking-table">
                     <thead>
                         <tr>
-                            <th>Ending Digit (0-9)</th>
-                            <th>Amount (x10)</th>
+                            <th>Ending (0-9)</th>
+                            <th>Amount</th>
                             <th></th> <!-- For remove button -->
                         </tr>
                     </thead>
@@ -454,8 +494,8 @@
                 <table class="booking-table">
                     <thead>
                         <tr>
-                            <th>Ending Digit (0-9)</th>
-                            <th>Amount (x10)</th>
+                            <th>Ending (0-9)</th>
+                            <th>Amount</th>
                             <th></th> <!-- For remove button -->
                         </tr>
                     </thead>
@@ -489,7 +529,7 @@
                     <thead>
                         <tr>
                             <th>Numbers</th>
-                            <th>Amount (x10)</th>
+                            <th>Amount</th>
                             <th></th> <!-- For remove button -->
                         </tr>
                     </thead>
@@ -518,7 +558,7 @@
                     <thead>
                         <tr>
                             <th>Numbers</th>
-                            <th>Amount (x10)</th>
+                            <th>Amount</th>
                             <th></th> <!-- For remove button -->
                         </tr>
                     </thead>
@@ -550,7 +590,7 @@
                 <table class="booking-table night-teer-table">
                     <thead>
                         <tr>
-                            <th>Numbers (2 digits)</th>
+                            <th>Numbers</th>
                             <th>Amount</th>
                             <th></th> <!-- For remove button -->
                         </tr>
@@ -579,7 +619,7 @@
                 <table class="booking-table night-teer-table">
                     <thead>
                         <tr>
-                            <th>Numbers (2 digits)</th>
+                            <th>Numbers</th>
                             <th>Amount</th>
                             <th></th> <!-- For remove button -->
                         </tr>
@@ -607,22 +647,33 @@
             <h2>Live Draws</h2>
             <div class="video-container">
                 <div class="video-thumb">
-    <a href="https://www.youtube.com/watch?v=VzxcyRnA6-0" target="_blank">
-        <img src="https://img.youtube.com/vi/VzxcyRnA6-0/hqdefault.jpg" alt="Live Draw" class="thumb-img">
-    </a>
-</div>
-<div class="video-thumb">
-    <a href="https://www.youtube.com/@shillongteerlivee" target="_blank">
-        <img src="https://img.youtube.com/vi/VzxcyRnA6-0/hqdefault.jpg" alt="Live Draw" class="thumb-img">
-    </a>
-</div>
-<div class="video-thumb">
-    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
-        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Live Draw" class="thumb-img">
-    </a>
-</div>
+                    <a href="https://www.youtube.com/watch?v=VzxcyRnA6-0" target="_blank">
+                        <!-- Placeholder for live draw thumbnail -->
+                        <div class="live-thumbnail-placeholder">Live Draw 1</div>
+                    </a>
+                </div>
+                <div class="video-thumb">
+                    <a href="https://www.youtube.com/@shillongteerlivee" target="_blank">
+                        <!-- Placeholder for live draw thumbnail -->
+                        <div class="live-thumbnail-placeholder">Live Draw 2</div>
+                    </a>
+                </div>
+                <div class="video-thumb">
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+                        <!-- Placeholder for live draw thumbnail -->
+                        <div class="live-thumbnail-placeholder">Live Draw 3</div>
+                    </a>
+                </div>
             </div>
         </section>
+    <!-- NEW: Timeout Popup Message HTML Structure -->
+    <div id="message-popup" class="message-popup" style="display: none;">
+        <div class="popup-content">
+            <span class="close-popup" onclick="hideMessagePopup()">&times;</span>
+            <p id="popup-message-text"></p>
+        </div>
+    </div>
+
     </main>
 
     <footer>
@@ -631,6 +682,12 @@
     </footer> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
+    // This variable needs to be accessible globally within your script
+    let isLoggedIn = false; 
+    let messageTimeout; // To store the timeout ID for the popup message
+    let currentBalance = 0; // Will be fetched from backend
+    let bookingSettings = {}; // Store booking enable/disable settings
+
     document.addEventListener('DOMContentLoaded', function() {
         // Mobile menu toggle
         const hamburger = document.querySelector('.hamburger');
@@ -640,7 +697,24 @@
             mobileNav.classList.toggle('active');
             this.classList.toggle('active');
         });
-        
+         // Your JavaScript code including showMessagePopup and hideMessagePopup functions
+        let messageTimeout; // Ensure this is declared globally or accessible
+
+        function showMessagePopup(message) {
+            const popup = $('#message-popup');
+            const popupMessageText = $('#popup-message-text');
+            popupMessageText.text(message);
+            popup.css('display', 'flex'); // Use flex to center, as per CSS
+
+            clearTimeout(messageTimeout); 
+            messageTimeout = setTimeout(() => {
+                hideMessagePopup();
+            }, 3000); 
+        }
+
+        function hideMessagePopup() {
+            $('#message-popup').css('display', 'none'); 
+        }
         // Close menu when clicking outside
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.mobile-nav') && !e.target.closest('.hamburger')) {
@@ -648,27 +722,10 @@
                 hamburger.classList.remove('active');
             }
         });
+
+
+        // Helper function to display temporary messages in a designated area (like bookingMessageBox)
         function displayMessage(type, message, redirectUrl = null) {
-    const messageBox = $('#bookingMessageBox');
-    messageBox.removeClass('success error').addClass(type).text(message).show();
-
-    if (type === 'success') {
-        setTimeout(() => {
-            messageBox.fadeOut();
-        }, 4000); // 4 seconds timeout for success message
-    }
-
-    if (redirectUrl) {
-        setTimeout(() => { window.location.href = redirectUrl; }, 2000);
-    }
-}
-
-        // --- NEW/MODIFIED JAVASCRIPT FOR BOOKING SECTION ---
-        let currentBalance = 0; // Will be fetched from backend
-        let bookingSettings = {}; // Store booking enable/disable settings
-
-        // Helper function to display messages
-        function displayMessage(type, message, redirectUrl = null) { // Added redirectUrl parameter
             const messageBox = $('#bookingMessageBox');
             messageBox.removeClass('success error').addClass(type).text(message).show();
             console.log(`Displaying message: Type=${type}, Message=${message}, Redirect URL=${redirectUrl}`);
@@ -677,10 +734,29 @@
                 console.log(`Redirecting to: ${redirectUrl} in 2 seconds...`);
                 setTimeout(() => { window.location.href = redirectUrl; }, 2000);
             } else {
-                // Optional: Hide after a few seconds if no redirect
                 setTimeout(() => messageBox.fadeOut(), 5000);
             }
         }
+
+        // Function to show the specific timeout popup in the center
+        function showMessagePopup(message) {
+            const popup = $('#message-popup');
+            const popupMessageText = $('#popup-message-text');
+            popupMessageText.text(message);
+            popup.css('display', 'flex'); // Use flex to center the content
+            
+            // Set a timeout to hide the popup
+            clearTimeout(messageTimeout); // Clear any previous timeout
+            messageTimeout = setTimeout(() => {
+                hideMessagePopup();
+            }, 3000); // Popup disappears after 3 seconds
+        }
+
+        // Function to hide the timeout popup
+        function hideMessagePopup() {
+            $('#message-popup').css('display', 'none'); // Hide using display property
+        }
+
 
         // Function to fetch user balance
         function fetchUserBalance() {
@@ -694,25 +770,18 @@
                         currentBalance = parseFloat(response.balance);
                         $('#currentBalance').text(currentBalance.toFixed(2));
                     } else {
-                        // If not logged in, redirect
-                        if (response.redirect) {
-                            displayMessage('error', response.message + ' Redirecting to login...', response.redirect);
-                        } else {
-                            displayMessage('error', "Error fetching balance: " + response.message);
-                            $('#currentBalance').text('Error');
-                        }
+                        $('#currentBalance').text('0.00'); // Reset balance if not logged in or error
                     }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.error("Error fetching user balance:", jqXHR.responseText);
-                    // This error typically means server is unreachable or returned non-JSON.
-                    // The PHP script itself should handle user not logged in with a JSON response.
-                    displayMessage('error', "Could not fetch balance. Server error or invalid response."); 
+                    displayMessage('error', "Could not fetch balance. Server error or invalid response.", null);
+                    $('#currentBalance').text('Error');
                 }
             });
         }
 
-        // NEW: Function to fetch and apply booking settings
+        // Function to fetch and apply booking settings
         function fetchAndApplyBookingSettings() {
             console.log('--- fetchAndApplyBookingSettings called ---');
             $.ajax({
@@ -720,19 +789,19 @@
                 method: 'GET',
                 dataType: 'json',
                 success: function(response) {
-                    console.log('API Response for get_booking_settings.php (raw):', response); // LOG THIS
+                    console.log('API Response for get_booking_settings.php (raw):', response);
                     if (response.success && response.settings) {
                         bookingSettings = response.settings;
-                        console.log('Updated bookingSettings (parsed):', bookingSettings); // LOG THIS
-                        applyBookingSectionStates(); // Apply states to all relevant sections
+                        console.log('Updated bookingSettings (parsed):', bookingSettings);
+                        applyBookingSectionStates();
                     } else {
-                        console.error("Error fetching booking settings:", response.message);
-                        displayMessage('error', 'Could not fetch booking rules. Some options might be unavailable.');
+                        console.error("Error fetching booking settings: " + response.message);
+                        displayMessage('error', 'Could not fetch booking rules. Some options might be unavailable.', null);
                     }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.error("AJAX Error fetching booking settings:", {jqXHR, textStatus, errorThrown});
-                    displayMessage('error', 'Failed to load booking rules. Please refresh.');
+                    displayMessage('error', 'Failed to load booking rules. Please refresh.', null);
                 }
             });
         }
@@ -751,17 +820,16 @@
                 case 'night_teer_sr':
                     return 'Night Teer Second Round';
                 default:
-                    return 'Round'; // Fallback
+                    return 'Round';
             }
         }
 
-        // NEW: Function to apply enable/disable states to booking sections and their elements
+        // Function to apply enable/disable states to booking sections and their elements
         function applyBookingSectionStates() {
             console.log('--- applyBookingSectionStates called ---');
             console.log('Current bookingSettings (inside applyBookingSectionStates):', bookingSettings);
 
             const allRoundSections = document.querySelectorAll('.round-section');
-            // These are the individual round keys that are toggled in the admin panel and returned by get_booking_settings.php
             const individualBookingToggleKeys = ['first_round', 'second_round', 'night_teer_fr', 'night_teer_sr', 'forecast']; 
 
             allRoundSections.forEach(sectionDiv => {
@@ -775,7 +843,7 @@
                 console.log('\nProcessing sectionDiv:', sectionId, sectionDiv);
 
                 let sectionShouldBeDisabled = false;
-                let overlayMessage = 'Booking Closed'; // Default message
+                let overlayMessage = 'Booking Closed';
 
                 if (individualBookingToggleKeys.includes(boundRoundType)) {
                     console.log('  -> Section bound to specific key:', boundRoundType);
@@ -784,7 +852,6 @@
 
                     if (isBookingEnabled === false) { 
                         sectionShouldBeDisabled = true;
-                        // Set specific message for the overlay
                         overlayMessage = formatRoundTypeForDisplay(boundRoundType) + ' Booking Closed';
                         console.log('    -> DISABLING: Booking for', boundRoundType, 'is FALSE in settings. Overlay Message:', overlayMessage);
                     } else {
@@ -795,20 +862,19 @@
                     sectionShouldBeDisabled = false; 
                 }
 
-                // Apply the determined state to the section
                 if (sectionShouldBeDisabled) {
-                    overlay.textContent = overlayMessage; // Set the specific message
-                    overlay.style.display = 'flex'; // Show overlay
+                    overlay.textContent = overlayMessage;
+                    overlay.style.display = 'flex';
                     formElements.forEach(element => {
-                        element.disabled = true; // Disable elements
+                        element.disabled = true;
                         console.log('    -> Element disabled:', element);
                     });
-                    $(sectionDiv).find('.total-row').hide(); // Hide total if section is disabled
+                    $(sectionDiv).find('.total-row').hide();
                     console.log('  -> Final state: OVERLAY SHOWN, elements DISABLED.');
                 } else {
-                    overlay.style.display = 'none'; // Hide overlay
+                    overlay.style.display = 'none';
                     formElements.forEach(element => {
-                         element.disabled = false; // Enable elements
+                         element.disabled = false;
                         console.log('    -> Element enabled:', element);
                     });
                     calculateTotal($(sectionDiv).find('.booking-table'));
@@ -818,7 +884,6 @@
         }
 
 
-        // Call balance fetch and booking settings fetch on page load
         fetchUserBalance();
         fetchAndApplyBookingSettings(); 
 
@@ -829,14 +894,13 @@
 
             newRow.find('input').val('');
             
-            newRow.find('.remove-number-btn').show(); // Ensure remove button is visible on new row
+            newRow.find('.remove-number-btn').show();
 
             tbody.append(newRow);
             calculateTotal($(this).siblings('.booking-table'));
 
-            // After adding a new row, re-apply the disabled state to new elements if the section is disabled
             const sectionDiv = $(this).closest('.round-section'); 
-            const overlay = sectionDiv[0].querySelector('.booking-closed-overlay'); // Corrected: Access native DOM element
+            const overlay = sectionDiv[0].querySelector('.booking-closed-overlay');
             if (overlay && overlay.style.display === 'flex') { 
                 newRow.find('input, button').prop('disabled', true); 
             } 
@@ -849,7 +913,7 @@
                 $(this).closest('tr').remove();
                 calculateTotal(tableBody.closest('table'));
             } else {
-                displayMessage('error', 'Cannot remove the last row. Please clear inputs instead.');
+                displayMessage('error', 'Cannot remove the last row. Please clear inputs instead.', null);
                 $(this).closest('tr').find('input').val(''); 
                 calculateTotal(tableBody.closest('table')); 
             }
@@ -893,7 +957,6 @@
             let total = 0;
 
             $(table).find('tbody tr').each(function() {
-                // If the input in this row is disabled, skip it.
                 if ($(this).find('input').prop('disabled')) {
                     return true; 
                 }
@@ -907,7 +970,6 @@
                 
                 let current_row_total = amount; 
 
-                // Determine multiplier based on booking type.
                 if (bookingType === 'house' || bookingType === 'ending' || bookingType === 'pair') {
                     current_row_total = amount * 10; 
                 }
@@ -940,13 +1002,19 @@
             console.log('Booking Category:', bookingCategory);
             console.log('Round Type (from button):', roundTypeFromButton);
 
-            // Initial check: if the entire section is visually disabled by the overlay
-            const overlay = roundSectionDiv[0].querySelector('.booking-closed-overlay'); // Corrected: Access native DOM element
+            const overlay = roundSectionDiv[0].querySelector('.booking-closed-overlay');
             if (overlay && overlay.style.display === 'flex') {
-                displayMessage('error', 'Booking for this section is currently closed.'); // Keep general error here if they somehow bypass JS disable
+                displayMessage('error', 'Booking for this section is currently closed.', null);
                 console.log('Booking closed, preventing submission.');
                 return;
             }
+
+            // Client-side check for login status
+            if (!isLoggedIn) {
+                displayMessage('error', 'Please log in to book a number!', 'login/login.html');
+                return;
+            }
+
 
             const table = roundSectionDiv.find('.booking-table');
             const rows = table.find('tbody tr');
@@ -971,32 +1039,31 @@
                 
                 let bet_data = { 
                     amount_per_unit: amount_per_unit,
-                    round_type: roundTypeFromButton // Direct round type from button's data-round
+                    round_type: roundTypeFromButton
                 };
                 let current_row_total = amount_per_unit; 
+                let number;
 
-                // Get the number input value for single, house, ending, night teer
                 if (['single', 'night_teer', 'house', 'ending'].includes(bookingCategory)) {
                     const numberInput = $(this).find('.number-input');
-                    const number = numberInput.val().trim();
-                    if (!number) { // Check if number is empty
-                        displayMessage('error', 'Please enter a number for each bet.');
-                        hasValidBet = false; return false; // Break out of .each
+                    number = numberInput.val().trim();
+                    if (!number) {
+                        displayMessage('error', 'Please enter a number for each bet.', null);
+                        hasValidBet = false; return false;
                     }
                     if (bookingCategory === 'single' || bookingCategory === 'night_teer') {
                         if (!/^\d{2}$/.test(number) || parseInt(number) < 0 || parseInt(number) > 99) {
-                            displayMessage('error', 'Numbers must be 2 digits (00-99).');
+                            displayMessage('error', 'Numbers must be 2 digits (00-99).', null);
                             hasValidBet = false; return false;
                         }
                     } else if (bookingCategory === 'house' || bookingCategory === 'ending') {
                         if (!/^\d{1}$/.test(number) || parseInt(number) < 0 || parseInt(number) > 9) {
-                            displayMessage('error', ucfirst(bookingCategory) + ' digit must be a single digit (0-9).');
+                            displayMessage('error', ucfirst(bookingCategory) + ' digit must be a single digit (0-9).', null);
                             hasValidBet = false; return false;
                         }
-                        // For house/ending, 'number' in bet_data is actually the single digit
                         bet_data.single_digit = number; 
                     }
-                    bet_data.number = number; // Store the number/digit
+                    bet_data.number = number;
                 }
                 
                 if (bookingCategory === 'forecast') {
@@ -1007,13 +1074,13 @@
 
                     if (!fr_number && !sr_number) { 
                          console.log('Skipping forecast row with no FR or SR number.');
-                         return true; // Skip row if both are empty
+                         return true;
                     }
                     
                     let hasValidForecastNumber = false;
                     if (fr_number) {
                         if (!/^\d{2}$/.test(fr_number) || parseInt(fr_number) < 0 || parseInt(fr_number) > 99) {
-                            displayMessage('error', 'Forecast First Round number must be 2 digits (00-99).');
+                            displayMessage('error', 'Forecast First Round number must be 2 digits (00-99).', null);
                             hasValidBet = false; return false;
                         }
                         bet_data.number_fr = fr_number;
@@ -1021,7 +1088,7 @@
                     }
                     if (sr_number) {
                         if (!/^\d{2}$/.test(sr_number) || parseInt(sr_number) < 0 || parseInt(sr_number) > 99) {
-                            displayMessage('error', 'Forecast Second Round number must be 2 digits (00-99).');
+                            displayMessage('error', 'Forecast Second Round number must be 2 digits (00-99).', null);
                             hasValidBet = false; return false;
                         }
                         bet_data.number_sr = sr_number;
@@ -1029,7 +1096,7 @@
                     }
                     
                     if (!hasValidForecastNumber) { 
-                        displayMessage('error', 'Please enter at least one valid number (F/R or S/R) for each Forecast bet.');
+                        displayMessage('error', 'Please enter at least one valid number (F/R or S/R) for each Forecast bet.', null);
                         hasValidBet = false; return false;
                     }
                     current_row_total = amount_per_unit; 
@@ -1054,21 +1121,21 @@
             console.log('Total Amount for This Section:', totalAmountForThisSection);
 
             if (!hasValidBet || bets_to_send.length === 0) {
-                displayMessage('error', 'Please add at least one valid booking row.');
+                displayMessage('error', 'Please add at least one valid booking row.', null);
                 console.log('No valid bets found, preventing submission.');
                 return; 
             }
             
             if (totalAmountForThisSection > currentBalance) {
-                displayMessage('error', 'Insufficient balance. Your current balance is ₹' + currentBalance.toFixed(2));
+                displayMessage('error', 'Insufficient balance. Your current balance is ₹' + currentBalance.toFixed(2), null);
                 console.log('Insufficient balance, preventing submission. Current balance:', currentBalance);
                 return;
             }
 
             const formData = {
-                booking_type: bookingCategory, // Main category for backend ('single', 'forecast', 'house', etc.)
+                booking_type: bookingCategory,
                 total_amount: totalAmountForThisSection,
-                bets: JSON.stringify(bets_to_send) // JSON.stringify the bets array
+                bets: JSON.stringify(bets_to_send)
             };
 
             console.log('Sending formData to PHP:', formData);
@@ -1081,11 +1148,8 @@
                 success: function(response) {
                     console.log('PHP Response:', response);
                     if (response.success) {
-                        displayMessage('success', response.message);
-                        if (response.new_balance !== undefined) {
-                            currentBalance = parseFloat(response.new_balance);
-                            $('#currentBalance').text(currentBalance.toFixed(2));
-                        }
+                        showMessagePopup(response.message); // Show the timeout popup on success
+                        displayMessage('success', response.message, null);
                         rows.each(function(index) {
                             if (index > 0) { 
                                 $(this).remove();
@@ -1094,19 +1158,18 @@
                             }
                         });
                         calculateTotal(table); 
+                        fetchUserBalance();
                     } else {
-                        // Check for redirect explicitly in the success callback too (though error is more likely for not logged in)
                         if (response.redirect) {
                             displayMessage('error', response.message, response.redirect);
                         } else {
-                            displayMessage('error', response.message);
+                            displayMessage('error', response.message, null);
                         }
                     }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.error("AJAX error submitting booking:", jqXHR.responseText, status, errorThrown);
-                    // This error typically means server is unreachable or returned non-JSON.
-                    displayMessage('error', "An unexpected error occurred during booking submission. Please try again.");
+                    displayMessage('error', "An unexpected error occurred during booking submission. Please try again.", null);
                 }
             });
         });
@@ -1129,7 +1192,6 @@
                     const frResultBox = document.querySelector('.todays-result .result-box:nth-child(1) .result-number');
                     const srResultBox = document.querySelector('.todays-result .result-box:nth-child(2) .result-number');
                     
-                    // Reset text content before assigning
                     frResultBox.textContent = '--';
                     srResultBox.textContent = '--';
 
@@ -1158,25 +1220,25 @@
             calculateTotal(table);
         });
 
-        // --- Start of NEW Login/Logout JavaScript Logic ---
-        // Function to check login status and update UI
+        // --- Login/Logout JavaScript Logic (Revised for no automatic redirect on visit) ---
         function checkLoginStatus() {
-            console.log("Checking login status..."); // Debugging log
+            console.log("Checking login status...");
             $.ajax({
-                url: 'check_login_status.php', // Path to your new PHP script
+                url: 'check_login_status.php',
                 method: 'GET',
                 dataType: 'json',
                 success: function(response) {
-                    console.log("check_login_status.php Response:", response); // Debugging log
+                    console.log("check_login_status.php Response:", response);
                     const loginLogoutLink = $('#login-logout-link');
                     const mobileLoginLogoutLink = $('#mobile-login-logout-link');
                     const mobileUserGreetingLi = $('#mobile-user-greeting-li');
                     const mobileUserGreeting = mobileUserGreetingLi.find('.user-greeting-mobile');
 
                     if (response.isLoggedIn) {
+                        isLoggedIn = true; // Set the global flag to true
                         // Change to Logout
                         loginLogoutLink.text('Logout').attr('href', 'login/logout.php').off('click').on('click', function(e) {
-                            e.preventDefault(); // Prevent default link behavior
+                            e.preventDefault();
                             if (confirm('Are you sure you want to log out?')) {
                                 window.location.href = 'login/logout.php';
                             }
@@ -1188,22 +1250,23 @@
                             }
                         });
 
-                        // Display username if available in mobile nav
                         if (response.username) {
                             mobileUserGreeting.text('Hello, ' + response.username + '!').show();
                             mobileUserGreetingLi.show();
                         }
 
                     } else {
-                        // Keep as Login
-                        loginLogoutLink.text('Login').attr('href', 'login/login.html').off('click'); // Remove any previous logout click handler
+                        isLoggedIn = false; // Set the global flag to false
+                        // User is NOT logged in. We just update the UI to show "Login" and hide user-specific links.
+                        // NO REDIRECTION HERE on initial page load.
+                        loginLogoutLink.text('Login').attr('href', 'login/login.html').off('click');
                         mobileLoginLogoutLink.text('Login').attr('href', 'login/login.html').off('click');
-                        mobileUserGreetingLi.hide(); // Hide mobile greeting
+                        mobileUserGreetingLi.hide();
                     }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.error("Error checking login status:", jqXHR.responseText);
-                    // Default to Login state on error
+                    isLoggedIn = false; // Set the global flag to false on error as well
                     $('#login-logout-link').text('Login').attr('href', 'login/login.html');
                     $('#mobile-login-logout-link').text('Login').attr('href', 'login/login.html');
                     $('#mobile-user-greeting-li').hide();
@@ -1211,11 +1274,9 @@
             });
         }
 
-        // Call the function on page load
         checkLoginStatus();
-        // --- End of NEW Login/Logout JavaScript Logic ---
 
     });
-</script>
+    </script>
 </body>
 </html>
