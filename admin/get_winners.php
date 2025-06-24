@@ -32,15 +32,23 @@ try {
             status, 
             COUNT(id) AS count, 
             SUM(total_amount) AS total_bet_amount, 
-            SUM(CASE 
-                WHEN status = 'won' THEN (amount_per_unit * CASE 
-                        WHEN round_type IN ('first_round', 'night_teer_fr') THEN 80
-                        WHEN round_type IN ('second_round', 'night_teer_sr') THEN 80
-                        ELSE 0
-                    END
-                )
-                ELSE 0 
-            END) AS total_win_amount
+            SUM(
+  CASE 
+    WHEN status = 'won' THEN (
+      amount_per_unit *
+      CASE
+        WHEN booking_type = 'forecast' THEN 4000
+        WHEN booking_type = 'ending' AND round_type IN ('first_round', 'night_teer_fr') THEN 90
+        WHEN booking_type = 'ending' AND round_type IN ('second_round', 'night_teer_sr') THEN 70
+        WHEN booking_type IN ('single', 'pair', 'house') AND round_type IN ('first_round', 'night_teer_fr') THEN 80
+        WHEN booking_type IN ('single', 'pair', 'house') AND round_type IN ('second_round', 'night_teer_sr') THEN 60
+        ELSE 0
+      END
+    )
+    ELSE 0
+  END
+) AS total_win_amount
+
         FROM bookings
         WHERE DATE(booked_at) = ?
         GROUP BY status"; // Group by status to get counts for each
@@ -83,26 +91,31 @@ try {
     // --- Fetch details of 'won' bookings for the filtered date ---
     $winners_sql = "
         SELECT 
-            b.id AS booking_id, 
-            b.user_id, 
-            u.username, 
-            u.phone_number,         -- Added phone_number
-            b.booking_type, 
-            b.round_type, 
-            b.numbers_booked_json,  -- Added numbers_booked_json
-            b.amount_per_unit, 
-            (b.amount_per_unit * CASE 
-                    WHEN b.round_type IN ('first_round', 'night_teer_fr') THEN 80
-                    WHEN b.round_type IN ('second_round', 'night_teer_sr') THEN 80
-                    ELSE 0
-                END
-            ) AS win_amount,
-            b.status,
-            b.booked_at
-        FROM bookings b
-        JOIN users u ON b.user_id = u.id
-        WHERE DATE(b.booked_at) = ? AND b.status = 'won'
-        ORDER BY b.booked_at DESC";
+    b.id AS booking_id, 
+    b.user_id, 
+    u.username, 
+    u.phone_number, 
+    b.booking_type, 
+    b.round_type, 
+    b.numbers_booked_json, 
+    b.amount_per_unit, 
+    (
+        b.amount_per_unit * 
+        CASE 
+            WHEN b.booking_type = 'forecast' THEN 4000
+            WHEN b.booking_type = 'ending' AND b.round_type IN ('first_round', 'night_teer_fr') THEN 90
+            WHEN b.booking_type = 'ending' AND b.round_type IN ('second_round', 'night_teer_sr') THEN 70
+            WHEN b.booking_type IN ('single', 'pair', 'house') AND b.round_type IN ('first_round', 'night_teer_fr') THEN 80
+            WHEN b.booking_type IN ('single', 'pair', 'house') AND b.round_type IN ('second_round', 'night_teer_sr') THEN 60
+            ELSE 0
+        END
+    ) AS win_amount,
+    b.status,
+    b.booked_at
+FROM bookings b
+JOIN users u ON b.user_id = u.id
+WHERE DATE(b.booked_at) = ? AND b.status = 'won'
+ORDER BY b.booked_at DESC";
     
     $stmt_winners = $conn->prepare($winners_sql);
     if (!$stmt_winners) {
